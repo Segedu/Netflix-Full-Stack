@@ -1,21 +1,32 @@
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 
-export function mainCardsDisplay(cardsCategory, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
-    const elements = data.filter(movieType => movieType.type == cardsCategory).map(movie =>
+export function mainCardsDisplay(str,data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
+    const elements = data.map(movie =>
         <section key={movie.id}>
-            <img src={movie.posterUrl} alt={movie.title} />
-            <article className="details" onClick={() => {
+            <img src={movie.posterUrl} alt={movie.title} onClick={() => {
                 showObjDetails(movie.id, data, setMovieDetails, setIsRedirect);
-            }}>
+            }} />
+            <article className="details" >
                 <h2>{movie.title}</h2>
                 <p>{movie.actors}</p>
                 <h3>{movie.year}</h3>
                 <article className="buttonsCont">
-                    <button onClick={() => playVideo(data, movie.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => addToList(data, movie.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => removeFromList(movie.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => addToList(data, movie.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
+                    {str === "tvShows" || str === "movies" ? <>
+                        <button onClick={() => playVideo(data, movie.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
+                        <button onClick={() => addToList(data, movie.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
+                        <button onClick={() => addToList(data, movie.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
+                    </> : ""}
+                   {str === "watchList" ? <>
+                        <button onClick={() => playVideo(data, movie.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
+                        <button onClick={() => addToList(data, movie.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
+                        <button onClick={() => removeFromList(movie.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
+                    </> : ""}
+                    {str === "favoritesList" ? <>
+                        <button onClick={() => playVideo(data, movie.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
+                        <button onClick={() => addToList(data, movie.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
+                        <button onClick={() => removeFromList(movie.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
+                    </> : ""} 
                 </article>
             </article>
         </section >
@@ -24,8 +35,8 @@ export function mainCardsDisplay(cardsCategory, data, showObjDetails, setMovieDe
 }
 
 export function addToList(dataArray, objId, category, setFunction, listKeyName) {
-    const filtered = dataArray.filter(obj => obj.id == objId);
-    const foundObj = filtered.find(obj => obj.id == objId);
+    // const filtered = dataArray.filter(obj => obj.id == objId);
+    const foundObj = dataArray.find(obj => obj.id == objId);
     if (category.indexOf(foundObj) > -1) {
         alert(`already in your ${listKeyName}`)
     }

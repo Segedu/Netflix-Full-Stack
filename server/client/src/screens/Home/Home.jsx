@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { addToList, removeFromList, showObjDetails, playVideo } from  '../../clientUtils/clientUtils';
+import { addToList, removeFromList, showObjDetails, playVideo, mainCardsDisplay } from '../../clientUtils/clientUtils';
+// import { showObjDetails, mainCardsDisplay } from '../../clientUtils/clientUtils';
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { Redirect } from "react-router-dom";
@@ -7,7 +8,7 @@ import { API_KEY_MOVIES } from '../../logic/key';
 import styles from './Home.module.css';
 import axios from "axios";
 
-const Home = ({ data, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
+const Home = ({ movies, tvShows, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
     const [searchResults, setSearchResults] = useState([])
     const [isRedirect, setIsRedirect] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
@@ -27,74 +28,31 @@ const Home = ({ data, watchList, setWatchList, setMovieDetails, setMovieToPlay, 
             })
     }
 
-    const Elements = data.map(display =>
-        <section key={display.id}>
-            <img src={display.posterUrl} alt={display.title} onClick={() => {
-                showObjDetails(display.id, data, setMovieDetails, setIsRedirect)
-            }} />
-            <article className="details">
-                <h4>{display.title}</h4>
-                <h4>{display.year}</h4>
-                <article className="buttonsCont">
-                    <button onClick={() => playVideo(data, display.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => addToList(data, display.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => removeFromList(display.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => addToList(data, display.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                </article>
-            </article>
-        </section>
-    )
+    const moviesElements = mainCardsDisplay("movies", movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const tvShowsElements = mainCardsDisplay("tvShows", tvShows, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const watchListElements = mainCardsDisplay("watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, favoritesList, setFavoritesList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const favoritesElements = mainCardsDisplay("favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    // const searchResultsElements = mainCardsDisplay(searchResults, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
 
 
     const searchInputHandler = (searchTerm) => {
         setSearchTerm(searchTerm);
     }
 
-    const searchResultsElements = searchResults.map((movie) =>
-        <section key={movie.imdbID}>
-            <img src={movie.Poster} />
-            <article className="details">
-                <h4>{movie.Title}</h4>
-                <article className="buttonsCont">
-                    <button onClick={() => playVideo(movie.video, setMovieToPlay, data, setIsRedirectToVideoPlayer)}><BsPlayCircle fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => addToList(data, movie.id, watchList, setWatchList, "watchList")}> <HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => removeFromList(movie.id, watchList, setWatchList, "watchList")}> <HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => addToList(data, movie.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                </article>
-            </article>
-        </section>
-    )
-
-    const watchListElements = watchList.map(watchListObj =>
-        <section key={watchListObj.id}>
-            <img src={watchListObj.posterUrl} alt={watchListObj.title} />
-            <article className="details">
-                <h4>{watchListObj.title}</h4>
-                {/* <p>{watchListObj.actors}</p> */}
-                <h4>{watchListObj.year}</h4>
-                <article className="buttonsCont">
-                    <button onClick={() => playVideo(data, watchListObj.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => addToList(data, watchListObj.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => removeFromList(watchListObj.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
-                </article>
-            </article>
-        </section>
-    )
-
-    const favoritesElements = favoritesList.map(likedItem =>
-        <section key={likedItem.id}>
-            <img src={likedItem.posterUrl} alt={likedItem.title} />
-            <article className="details">
-                <h4>{likedItem.title}</h4>
-                {/* <p>{likedItem.actors}</p> */}
-                <p>{likedItem.year}</p>
-                <article className="buttonsCont">
-                    <button onClick={() => addToList(data, likedItem.id, watchList, setWatchList, "watchList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => removeFromList(likedItem.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
-                </article>
-            </article>
-        </section>
-    )
+    // const searchResultsElements = searchResults.map((movie) =>
+    //     <section key={movie.imdbID}>
+    //         <img src={movie.Poster} />
+    //         <article className="details">
+    //             <h4>{movie.Title}</h4>
+    //             <article className="buttonsCont">
+    //                 <button onClick={() => playVideo(movie.video, setMovieToPlay, data, setIsRedirectToVideoPlayer)}><BsPlayCircle fontSize="xx-large" color="white" /></button>
+    //                 <button onClick={() => addToList(data, movie.id, watchList, setWatchList, "watchList")}> <HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
+    //                 <button onClick={() => removeFromList(movie.id, watchList, setWatchList, "watchList")}> <HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
+    //                 <button onClick={() => addToList(data, movie.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
+    //             </article>
+    //         </article>
+    //     </section>
+    // )
 
     return (
         <div className="cardsContainer">
@@ -104,7 +62,9 @@ const Home = ({ data, watchList, setWatchList, setMovieDetails, setMovieToPlay, 
             </div>
             <div className="HomePageTrailer"><iframe width="1366" height="625" src="https://www.youtube-nocookie.com/embed/GV3HUDMQ-F8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
             <h3>Movies & TV shows</h3>
-            <div className="cards" >{searchTerm ? searchResultsElements : Elements}</div>
+            {/* <div className="cards" >{searchTerm ? searchResultsElements : moviesElements, tvShowsElements}</div> */}
+            <div className="cards" >{moviesElements, tvShowsElements}</div>
+
             <h3>Your Watch List</h3>
             <div className="watchListCards">{watchListElements}</div>
             <h3>Your Favorites</h3>

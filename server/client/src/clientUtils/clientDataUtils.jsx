@@ -4,7 +4,6 @@ export function getData(route, setData) {
     axios
         .get(`/${route}`)
         .then(response => {
-            console.log(response.data);
             setData(response.data)
         })
         .catch(error => {
