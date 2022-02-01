@@ -2,10 +2,19 @@
 GET http://localhost:5000/movies
 
 ###
+Get http://localhost:5000/movies/78
+
+###
 
 GET http://localhost:5000/tvShows
 
 ###
 
-GET http://localhost:5000/users
+GET http://localhost:5000/tvShows/54
+###
+
+GET http://localhost:5000/users/450987
  
+###
+ 
+GET http://localhost:5000/users/3210343/myWatchList/9843'

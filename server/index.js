@@ -1,27 +1,42 @@
 console.log("app is loading");
 const express = require("express");
 const app = express(),
+  moviesRoute = "movies",
+  tvShowsRoute = "tvShows",
+  usersRoute = "users",
   {
     getData,
   } = require('./serverUtils');
 
-
-// used for json inside body 
 app.use(express.json());
 
-
-app.get('/movies', (req, res) => {
-  // res.send("server works");
-  getData(req, res, 'movies');
+app.get(`/${moviesRoute}`, (req, res) => {
+  getData(req, res, moviesRoute);
 });
 
-app.get('/tvShows', (req, res) => {
-  getData(req, res, 'tvShows');
 
+app.get(`/${tvShowsRoute}`, (req, res) => {
+  getData(req, res, tvShowsRoute);
 });
 
-app.get('/users', (req, res) => {
-  getData(req, res, "users");
+// app.get(`/${moviesRoute}/:id`, (req, res) => {
+//   res.send(req.params.id);
+// });
+
+// app.get(`/${tvShowsRoute}/:id`, (req, res) => {
+//   res.send(req.params.id);
+// });
+
+app.get(`/${usersRoute}/:id`, (req, res) => {
+  res.send(req.params.id);
+});
+
+app.get(`/${usersRoute}/:id/:watchList`, (req, res) => {
+  res.send(req.params);
+});
+
+app.patch(`/${usersRoute}/:id/:watchList/:movie_id`, (req, res) => {
+  // res.send(req.params);
 });
 
 const PORT = process.env.PORT || 5000;
