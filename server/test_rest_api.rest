@@ -1,0 +1,11 @@
+### 
+GET http://localhost:5000/movies
+
+###
+
+GET http://localhost:5000/tvShows
+
+###
+
+GET http://localhost:5000/users
+ 
