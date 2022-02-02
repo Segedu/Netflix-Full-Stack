@@ -13,13 +13,6 @@ const Register = ({ setAuth, auth }) => {
     const [loading, setLoading] = useState(false);
     const LOCAL_STORAGE_AUTH_KEY = "auth";
 
-    // insertNewUser(e, `users`, auth.localId, auth.email);
-    // useEffect(() => {
-    //     if (localStorage.getItem("auth")) {
-    //         let autDetails = JSON.parse(localStorage.getItem("auth"));
-    //     }
-    // }, [])
-
     function register() {
         setLoading(true)
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`
@@ -29,6 +22,7 @@ const Register = ({ setAuth, auth }) => {
                 password: password,
             })
             .then(response => {
+                insertNewUser(e,'users',auth.localId, auth.email);
                 setLoading(false)
                 setAuth(response.data);
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
