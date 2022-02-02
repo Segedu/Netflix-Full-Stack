@@ -56,18 +56,19 @@ const Home = ({ movies, tvShows, watchList, setWatchList, setMovieDetails, setMo
 
     return (
         <div className="cardsContainer">
+            <div className="HomePageTrailer"><iframe width="1366" height="625" src="https://www.youtube-nocookie.com/embed/GV3HUDMQ-F8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
             <div className="searchNav">
                 <input onChange={(e) => searchInputHandler(e.target.value)} value={searchTerm} className={styles.searchInput} type="text" inputMode="search" placeholder="Type movie / Tv series..." autoComplete="true" />
                 <button onClick={() => getMovies(searchTerm)} className={styles.searchBtn}>Search</button>
             </div>
-            <div className="HomePageTrailer"><iframe width="1366" height="625" src="https://www.youtube-nocookie.com/embed/GV3HUDMQ-F8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
-            <h3>Movies & TV shows</h3>
+            <h1>Movies</h1>
             {/* <div className="cards" >{searchTerm ? searchResultsElements : moviesElements, tvShowsElements}</div> */}
-            <div className="cards" >{moviesElements, tvShowsElements}</div>
-
-            <h3>Your Watch List</h3>
+            <div className="cards" >{moviesElements}</div>
+            <h1>TV shows</h1>
+            <div className="cards" >{tvShowsElements}</div>
+            <h1>Your Watch List</h1>
             <div className="watchListCards">{watchListElements}</div>
-            <h3>Your Favorites</h3>
+            <h1>Your Favorites</h1>
             <div className="favoritesCards"> {favoritesElements}</div>
             {isRedirect ? <Redirect to="/Details" /> : ""}
             {isRedirectToVideoPlayer ? <Redirect to="/VideoPlayer" /> : ""}
