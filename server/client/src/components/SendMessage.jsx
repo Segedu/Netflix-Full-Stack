@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { db, auth } from '../firebase';
+import { db, firebaseAuth } from '../firebase';
 import firebase from 'firebase';
 
 
@@ -8,7 +8,7 @@ function SendMessage() {
 
     async function sendMessage(e) {
         e.preventDefault();
-        const { uid, photoURL } = auth.currentUser;
+        const { uid, photoURL } = firebaseAuth.currentUser;
         await db.collection('messages').add({
             text: message,
             photoURL,

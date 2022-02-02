@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { auth, db } from '../firebase';
+import { firebaseAuth, db } from '../firebase';
 import SendMessage from './SendMessage';
 import './Chat.css';
 
@@ -15,7 +15,7 @@ function Chat() {
 
     const elements = messages.map(({ id, uid, text, photoURL }) =>
         // < div >
-        <div key={id} className={`message ${uid == auth.currentUser.uid ? 'sent' : 'received'}`}>
+        <div key={id} className={`message ${uid == firebaseAuth.currentUser.uid ? 'sent' : 'received'}`}>
             <img src={photoURL} alt="" />
             <h4>{text}</h4>
         </div>)

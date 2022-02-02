@@ -22,14 +22,14 @@ function getData(req, res, collectionName) {
 }
 
 //! movie/:id, /tvShow/:id
-function getDataById(req, res) {
+function getDataById(req, res, collectionName) {
     MongoClient.connect(url, (err, db) => {
         if (err) throw err;
-        const mediaId = req.params.id;
+        const objId = req.params.id;
         const currentDB = db.db(dbName);
         currentDB
             .collection(collectionName)
-            .findOne({ _id: ObjectId(mediaId) }, (err, user) => {
+            .findOne({ _id: ObjectId(objId) }, (err, user) => {
                 if (err) throw err;
                 res.status(200).send(user);
                 console.log({ user });

@@ -5,9 +5,10 @@ import React from 'react';
 import firebase from 'firebase';
 import { API_KEY } from '../../logic/key';
 import { useState } from "react";
-import { auth } from '../../firebase';
+import { firebaseAuth } from '../../firebase';
+import { getDataById } from "../../clientUtils/clientUtils";
 
-const LogIn = ({ setAuth }) => {
+const LogIn = ({ setAuth, auth }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorFromServer, setErrorFromServer] = useState(false);
@@ -16,8 +17,8 @@ const LogIn = ({ setAuth }) => {
 
     function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider()
-        auth.signInWithPopup(provider)
-        setAuth(auth.currentUser.email)
+        firebaseAuth.signInWithPopup(provider)
+        setAuth(firebaseAuth.currentUser.email)
     }
 
     const login = () => {
@@ -30,7 +31,7 @@ const LogIn = ({ setAuth }) => {
             })
             .then(function (response) {
                 setLoading(false)
-                setAuth(response.data.email)
+                setAuth(response.data)
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
             })
             .catch(function (error) {
@@ -45,6 +46,7 @@ const LogIn = ({ setAuth }) => {
             <form onSubmit={e => {
                 e.preventDefault();
                 login()
+                getDataById(`users/${auth.localId}`)
             }} >
                 <h1>Login</h1>
                 <input className={styles.input} type="email" placeholder="Enter Your Email" onChange={(e) => { setEmail(e.target.value) }} /><br></br>

@@ -17,4 +17,4 @@ GET http://localhost:5000/users/450987
  
 ###
  
-GET http://localhost:5000/users/3210343/myWatchList/9843'
+GET http://localhost:5000/users/3210343'

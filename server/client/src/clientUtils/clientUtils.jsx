@@ -1,5 +1,6 @@
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
+import axios from "axios";
 const moviesRoute = "movies",
     tvShowsRoute = "tvShows",
     usersRoute = "users";
@@ -23,7 +24,7 @@ export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, set
                     {str === "watchList" ? <>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
                         <button onClick={() => addToList(data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                        <button onClick={() => removeFromList(movie.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
+                        <button onClick={() => removeFromList(media.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
                     </> : ""}
                     {str === "favoritesList" ? <>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
@@ -67,7 +68,7 @@ export function getDataById(route) {
     axios
         .get(`/${route}/:id`)
         .then(function (response) {
-            response.data;
+            console.log(response.data)
         })
         .catch(function (error) {
             console.log("you are in get media by id catch");

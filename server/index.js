@@ -5,6 +5,7 @@ const app = express(),
   tvShowsRoute = "tvShows",
   usersRoute = "users",
   {
+    getDataById,
     getData,
   } = require('./serverUtils');
 
@@ -24,11 +25,11 @@ app.get(`/${tvShowsRoute}`, (req, res) => {
 // });
 
 // app.get(`/${tvShowsRoute}/:id`, (req, res) => {
-//   res.send(req.params.id);
+//   getDataById(req, res, tvShowsRoute);
 // });
 
 app.get(`/${usersRoute}/:id`, (req, res) => {
-  res.send(req.params.id);
+  getDataById(req, res, usersRoute);
 });
 
 app.get(`/${usersRoute}/:id/:watchList`, (req, res) => {
