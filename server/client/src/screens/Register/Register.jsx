@@ -22,7 +22,7 @@ const Register = ({ setAuth, auth }) => {
                 password: password,
             })
             .then(response => {
-                insertNewUser(e,'users',auth.localId, auth.email);
+                // insertNewUser(e,'users',auth.localId, auth.email);
                 setLoading(false)
                 setAuth(response.data);
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));

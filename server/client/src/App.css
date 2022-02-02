@@ -62,22 +62,18 @@ a .watchListCounter{
   display: flex;
   align-items: flex-end;
  color: rgb(228, 228, 228);
-  /* color: rgb(180, 0, 0); */
   margin-left: 3rem;
   width: 100%;
 } 
 .cards{
   display: flex;
-  /* justify-content: center; */
-  /* flex-direction: row; */
-  /* align-content: center; */
+  justify-content: flex-start;
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
   
 }
 .cards::-webkit-scrollbar{
-  /* background-color: lime; */
   display: none;
 }
 
@@ -90,7 +86,7 @@ padding: 0.3rem;
 }
 section:hover{
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.2);
   z-index: 1;
 }
 

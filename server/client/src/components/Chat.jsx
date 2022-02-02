@@ -14,12 +14,10 @@ function Chat() {
     }, []);
 
     const elements = messages.map(({ id, uid, text, photoURL }) =>
-        // < div >
         <div key={id} className={`message ${uid == firebaseAuth.currentUser.uid ? 'sent' : 'received'}`}>
-            <img src={photoURL} alt="" />
+            <img className='chatProfileImg' src={photoURL} alt="" />
             <h4>{text}</h4>
         </div>)
-    // </div >)
 
     return <>
         <div className='messages'>
