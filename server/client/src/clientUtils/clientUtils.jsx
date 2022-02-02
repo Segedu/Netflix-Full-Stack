@@ -67,6 +67,19 @@ export function addToList(dataArray, objId, category, setFunction, listKeyName) 
     }
 }
 
+export function getData(route, setData) {
+    axios
+        .get(`/${route}`)
+        .then(response => {
+            setData(response.data)
+        })
+        .catch(error => {
+            console.log(error.message, "you are in getting movies/Tv shows catch");
+        });
+}
+
+
+
 //!user, movie/tvShow
 export function getDataById(route, id) {
     axios

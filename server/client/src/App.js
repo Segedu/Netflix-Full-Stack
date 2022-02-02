@@ -12,18 +12,18 @@ import Details from './screens/Details/Details';
 import VideoPlayer from './screens/VideoPlayer/VideoPlayer';
 import netflixLogo from './video/netflix.png.png'
 import Chat from './components/Chat';
-import { getData } from './clientUtils/clientDataUtils';
+import { getData } from './clientUtils/clientUtils';
 import './App.css';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : null);
-  // const [data, error, isLoading] = useFetch("/data/data.json");
+  // const [data, error, isLoading] = useFetch("");
+  const [movieDetails, setMovieDetails] = useState("");
+  const [movieToPlay, setMovieToPlay] = useState("");
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
   const [watchList, setWatchList] = useState([]);
-  const [movieDetails, setMovieDetails] = useState("");
   const [favoritesList, setFavoritesList] = useState([]);
-  const [movieToPlay, setMovieToPlay] = useState("");
 
   useEffect(() => {
     getData('movies', setMovies);
