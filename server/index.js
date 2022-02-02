@@ -7,6 +7,7 @@ const app = express(),
   {
     getDataById,
     getData,
+    insertNewUser,
   } = require('./serverUtils');
 
 app.use(express.json());
@@ -32,12 +33,16 @@ app.get(`/${usersRoute}/:id`, (req, res) => {
   getDataById(req, res, usersRoute);
 });
 
+app.post(`/${usersRoute}`, (req, res) => {
+  insertNewUser(req, res, usersRoute)
+});
+
 app.get(`/${usersRoute}/:id/:watchList`, (req, res) => {
-  res.send(req.params);
+  getDataById(req, res, usersRoute);
+
 });
 
 app.patch(`/${usersRoute}/:id/:watchList/:movie_id`, (req, res) => {
-  // res.send(req.params);
 });
 
 const PORT = process.env.PORT || 5000;

@@ -52,7 +52,7 @@ export function addToList(dataArray, objId, category, setFunction, listKeyName) 
     //         console.log(error);
     //     });
 
-    const foundObj = dataArray.find(obj => obj.id == objId);
+    const foundObj = dataArray.find(obj => obj.id === objId);
     if (category.indexOf(foundObj) > -1) {
         alert(`already in your ${listKeyName}`)
     }
@@ -63,16 +63,35 @@ export function addToList(dataArray, objId, category, setFunction, listKeyName) 
     }
 }
 
-
-export function getDataById(route) {
+//!user, movie/tvShow
+export function getDataById(route, id) {
     axios
-        .get(`/${route}/:id`)
+        .get(`/${route}/${id}`)
         .then(function (response) {
             console.log(response.data)
         })
         .catch(function (error) {
-            console.log("you are in get media by id catch");
+            console.log("you are in get user/media by id catch");
             console.log(error);
+        });
+}
+
+export function insertNewUser(e, route, authId, authEmail) {
+    e.preventDefault();
+    const user = {
+        localId: authId,
+        email: authEmail,
+        watchList: [],
+        favoritesList: []
+    };
+
+    axios.post(`/${route}`, { user })
+        .then(response => {
+            console.log(response.data);
+            alert("Your user account created successfully");
+        })
+        .catch(error => {
+            console.log(error, "you are in the create new user catch");
         });
 }
 

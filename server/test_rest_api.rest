@@ -13,8 +13,21 @@ GET http://localhost:5000/tvShows
 GET http://localhost:5000/tvShows/54
 ###
 
-GET http://localhost:5000/users/450987
+GET http://localhost:5000/users/61fa7f06bd5bceb4976c00a0
  
 ###
  
-GET http://localhost:5000/users/3210343'
+GET http://localhost:5000/users/61fa72d57a80163b6d85615f
+
+### 
+POST http://localhost:5000/users
+content-type: application/json
+
+{
+    "email" : "9@gmail.com",
+    "watchList" : [],
+    "favoritesList": [],
+    "localId":"bo6NsSJ9ZuO9WkvDlpNAqcTDgHh1"
+}
+
+###

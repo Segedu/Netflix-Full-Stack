@@ -39,14 +39,15 @@ const LogIn = ({ setAuth, auth }) => {
                 setErrorFromServer(error)
             });
     }
-
+    // let usersRoute = "users",
+    //     id = "61fa7f06bd5bceb4976c00a0";
     return (
         <div className="Form">
             <section>{loading ? <Spinner /> : ""}</section>
             <form onSubmit={e => {
                 e.preventDefault();
                 login()
-                getDataById(`users/${auth.localId}`)
+                // getDataById(`${usersRoute}/${id}`)
             }} >
                 <h1>Login</h1>
                 <input className={styles.input} type="email" placeholder="Enter Your Email" onChange={(e) => { setEmail(e.target.value) }} /><br></br>

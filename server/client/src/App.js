@@ -63,7 +63,7 @@ function App() {
           <Route exact path="/Details" component={() => <Details setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} />} />
           <Route exact path="/UserWatchList" component={() => <UserWatchList setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} />} />
           <Route exact path="/VideoPlayer" component={() => <VideoPlayer movieToPlay={movieToPlay} />} />
-          <Route exact path="/Register" component={() => <Register setAuth={setAuth} />} />
+          <Route exact path="/Register" component={() => <Register auth={auth} setAuth={setAuth} />} />
           <Route exact path="/Login" component={() => <Login auth={auth} setAuth={setAuth} />} />
           <Route exact path="/Chat" component={() => <Chat setAuth={setAuth} />} />
         </Switch>
