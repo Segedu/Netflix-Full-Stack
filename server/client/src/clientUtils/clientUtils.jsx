@@ -13,19 +13,19 @@ export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, set
             <article className="details" >
                 <article className="buttonsCont">
                     {str === "tvShows" || str === "movies" ? <>
-                        <button onClick={() => showObjDetails(media.id, data, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => showObjDetails(data, media.id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
                         <button onClick={() => addToList(data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => addToList(data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "watchList" ? <>
-                        <button onClick={() => showObjDetails(media.id, data, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => showObjDetails(data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
                         <button onClick={() => addToList(data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
                         <button onClick={() => removeFromList(media.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "favoritesList" ? <>
-                        <button onClick={() => showObjDetails(media.id, data, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => showObjDetails(data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
                         <button onClick={() => addToList(data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => removeFromList(media.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
@@ -42,7 +42,7 @@ export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, set
     return elements;
 }
 
-export function addToList(dataArray, objId, category, setFunction, listKeyName) {
+export function addToList(dataArray, objId, listCategory, setFunction, listKeyName) {
     // axios
     //     .patch("/user/:id/watchList/:movie_id", {
     //         _id: objId,
@@ -57,16 +57,17 @@ export function addToList(dataArray, objId, category, setFunction, listKeyName) 
     //     });
 
     const foundObj = dataArray.find(obj => obj.id === objId);
-    if (category.indexOf(foundObj) > -1) {
+    if (listCategory.indexOf(foundObj) > -1) {
         alert(`already in your ${listKeyName}`)
     }
     else {
-        const updatedArray = [foundObj, ...category];
+        const updatedArray = [foundObj, ...listCategory];
         setFunction(updatedArray);
         localStorage.setItem(listKeyName, JSON.stringify(updatedArray));
     }
 }
 
+//! movies...
 export function getData(route, setData) {
     axios
         .get(`/${route}`)
@@ -80,7 +81,7 @@ export function getData(route, setData) {
 
 
 
-//!user, movie/tvShow
+//!user/:id, movie/tvShow/:id
 export function getDataById(route, id) {
     axios
         .get(`/${route}/${id}`)
@@ -93,8 +94,8 @@ export function getDataById(route, id) {
         });
 }
 
-export function insertNewUser(e, route, authId, authEmail) {
-    e.preventDefault();
+export function insertNewUser(route, authId, authEmail) {
+    // e.preventDefault();
     const user = {
         localId: authId,
         email: authEmail,
@@ -112,14 +113,14 @@ export function insertNewUser(e, route, authId, authEmail) {
         });
 }
 
-export const removeFromList = (objId, category, setFunction, listKeyName) => {
-    const updatedArrayAfterRemove = [...category].filter(obj => obj.id !== objId);
+export const removeFromList = (objId, listCategory, setFunction, listKeyName) => {
+    const updatedArrayAfterRemove = [...listCategory].filter(obj => obj.id !== objId);
     setFunction(updatedArrayAfterRemove);
     localStorage.setItem(listKeyName, JSON.stringify(updatedArrayAfterRemove));
     return updatedArrayAfterRemove
 }
 
-export const showObjDetails = (objId, dataArray, setFunction, setIsRedirect) => {
+export const showObjDetails = (dataArray, objId, setFunction, setIsRedirect) => {
     const foundObj = dataArray.find(obj => obj.id === objId);
     setFunction(foundObj);
     setIsRedirect(true);

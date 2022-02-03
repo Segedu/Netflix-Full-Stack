@@ -5,8 +5,10 @@ import { Redirect } from "react-router-dom";
 import { addToList, playVideo } from '../../clientUtils/clientUtils';
 import style from './Details.module.css';
 
-const Details = ({ data, movieDetails, watchList, setWatchList,favoritesList, setFavoritesList, setMovieToPlay }) => {
+const Details = ({ movies, tvShows, movieDetails, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay }) => {
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
+    let data = [];
+    { movieDetails.type == "Movie" ? data = movies : data = tvShows }
 
     return (
         <div className={style.Details}>
