@@ -57,7 +57,7 @@ function App() {
           ) : <Redirect to="/" />}
         </nav>
         <Switch>
-          <Route exact path="/" component={() => <Home setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
+          <Route exact path="/" component={() => <Home auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
           <Route exact path="/Movies" component={() => <Movies setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
           <Route exact path="/TvShows" component={() => <TvShows setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
           <Route exact path="/Details" component={() => <Details setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} movies={movies} tvShows={tvShows} />} />

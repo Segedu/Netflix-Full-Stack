@@ -55,15 +55,14 @@ function insertNewUser(req, res, collectionName) {
     });
 }
 
-
-function updateUserListById(req, res, usersRoute) {
+function updateUserListById(req, res, collectionName) {
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         const dataToUpdate = req.body,
             id = req.params.id,
             currentDB = db.db(dbName);
         currentDB
-            .collection(usersRoute)
+            .collection(collectionName)
             .findOneAndUpdate(
                 { _id: id },
                 { $set: dataToUpdate },

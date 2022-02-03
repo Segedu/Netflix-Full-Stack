@@ -3,7 +3,7 @@ import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { IoIosArrowDropdown } from "react-icons/io";
 import YouTube from 'react-youtube';
 import axios from "axios";
-import { updateUserListById } from "../../../serverUtils";
+// import { updateUserListById } from "../../../serverUtils";
 const moviesRoute = "movies",
     tvShowsRoute = "tvShows",
     usersRoute = "users";
@@ -17,34 +17,33 @@ const moviesRoute = "movies",
 //     }
 // }
 
-export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
+export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
         <section key={media.id}>
-
             <img src={media.posterUrl} alt={media.title} />
             <article className="details" >
                 <article className="buttonsCont">
                     {str === "tvShows" || str === "movies" ? <>
                         <button onClick={() => showObjDetails(data, media.id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "watchList" ? <>
                         <button onClick={() => showObjDetails(data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
                         <button onClick={() => removeFromList(media.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "favoritesList" ? <>
                         <button onClick={() => showObjDetails(data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => removeFromList(media.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "searchResults" ? <>
-                        <button onClick={() => addToList(data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                 </article>
@@ -61,23 +60,25 @@ export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, set
     return elements;
 }
 
-export function addToList(dataArray, objId, listCategory, setFunction, listKeyName) {
+
+export function addToList(authLocalId, dataArray, objId, listCategory, setFunction, listKeyName) {
+    let updatedArray = [];
     const foundObj = dataArray.find(obj => obj.id === objId);
     if (listCategory.indexOf(foundObj) > -1) {
-        alert(`already in your ${listKeyName}`)
+        alert(`already in your ${listKeyName}`);
     } else {
-        const updatedArray = [foundObj, ...listCategory];
+        updatedArray = [foundObj, ...listCategory];
         setFunction(updatedArray);
     }
+
     axios
-        .patch(`/users/add/${auth.localId}`, {
-            watchList: updatedArray,
-            favoritesList: updatedArray,
-        })
+        .patch(`/users/${authLocalId}`, {
+            // listCategory: updatedArray
+        }
+        )
         .then(function (response) {
             console.log(response);
-            alert("movie/Tv show added successfully");
-
+            alert(`movie/Tv show added successfully to ${listCategory}`);
         })
         .catch(function (error) {
             console.log(error, "you are in add to watch list /favorites catch");

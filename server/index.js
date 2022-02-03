@@ -9,7 +9,7 @@ const app = express(),
     getUserDataById,
     getData,
     insertNewUser,
-  } = require('./serverUtils');
+  } = require('./src/serverUtils');
 
 app.use(express.json());
 
@@ -30,7 +30,7 @@ app.get(`/${usersRoute}/:id`, (req, res) => {
 });
 
 // app.get(`/${moviesRoute}/:id`, (req, res) => {
-//   res.send(req.params.id);
+//   getUserDataById(req, res, tvShowsRoute);
 // });
 
 // app.get(`/${tvShowsRoute}/:id`, (req, res) => {

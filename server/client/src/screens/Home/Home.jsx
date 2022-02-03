@@ -7,7 +7,7 @@ import { API_KEY_MOVIES } from '../../logic/key';
 import styles from './Home.module.css';
 import axios from "axios";
 
-const Home = ({ movies, tvShows, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
+const Home = ({ auth, movies, tvShows, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
     const [searchResults, setSearchResults] = useState([])
     const [isRedirect, setIsRedirect] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
@@ -27,10 +27,10 @@ const Home = ({ movies, tvShows, watchList, setWatchList, setMovieDetails, setMo
             })
     }
 
-    const moviesElements = mainCardsDisplay("movies", movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const tvShowsElements = mainCardsDisplay("tvShows", tvShows, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const watchListElements = mainCardsDisplay("watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, favoritesList, setFavoritesList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const favoritesElements = mainCardsDisplay("favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const moviesElements = mainCardsDisplay(auth, "movies", movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const tvShowsElements = mainCardsDisplay(auth, "tvShows", tvShows, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const watchListElements = mainCardsDisplay(auth, "watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, favoritesList, setFavoritesList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const favoritesElements = mainCardsDisplay(auth, "favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     // const searchResultsElements = mainCardsDisplay("searchResults", searchResults, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
 
 
