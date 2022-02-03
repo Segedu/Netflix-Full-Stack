@@ -1,14 +1,28 @@
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { IoIosArrowDropdown } from "react-icons/io";
+import YouTube from 'react-youtube';
 import axios from "axios";
 const moviesRoute = "movies",
     tvShowsRoute = "tvShows",
     usersRoute = "users";
 
+// const opts = {
+//     height: "390",
+//     width: "50%",
+//     playerVars: {
+//         autoplay: 1,
+//         origin: 'https://localhost:3000'
+//     }
+// }
+
 export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
+        // <section key={str === "searchResults" ? media.imdbID : media.id}>
+
         <section key={media.id}>
+            {/* <img src={str === "searchResults" ? media.Poster : media.posterUrl} alt={media.title} /> */}
+
             <img src={media.posterUrl} alt={media.title} />
             <article className="details" >
                 <article className="buttonsCont">
@@ -30,13 +44,24 @@ export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, set
                         <button onClick={() => removeFromList(media.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
+                    {str === "searchResults" ? <>
+                        <button onClick={() => addToList(data, media.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(data, media.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
+                    </> : ""}
                 </article>
                 <article className="textDetailsCont">
+                    {/* <p>{str = "searchResult" ? media.Title : media.title}</p> */}
+
                     <p>{media.title}</p>
                     <p>{media.actors}</p>
                     <p>{media.year}</p>
                 </article>
             </article>
+
+            {/* <YouTube videoId={"6hB3S9bIaco"} opts={opts} /> */}
+
+            {/* <YouTube videoId={media.video} opts={opts} /> */}
         </section >
     )
     return elements;
@@ -95,15 +120,17 @@ export function getDataById(route, id) {
 }
 
 export function insertNewUser(route, authId, authEmail) {
-    // e.preventDefault();
-    const user = {
-        localId: authId,
-        email: authEmail,
-        watchList: [],
-        favoritesList: []
-    };
+    const localId = authId,
+        email = authEmail,
+        watchList = [],
+        favoritesList = [];
 
-    axios.post(`/${route}`, { user })
+    axios.post(`/${route}`, {
+        localId,
+        email,
+        watchList,
+        favoritesList
+    })
         .then(response => {
             console.log(response.data);
             alert("Your user account created successfully");

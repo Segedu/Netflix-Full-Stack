@@ -32,27 +32,28 @@ const Home = ({ movies, tvShows, watchList, setWatchList, setMovieDetails, setMo
     const tvShowsElements = mainCardsDisplay("tvShows", tvShows, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const watchListElements = mainCardsDisplay("watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, favoritesList, setFavoritesList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const favoritesElements = mainCardsDisplay("favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    // const searchResultsElements = mainCardsDisplay(searchResults, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    // const searchResultsElements = mainCardsDisplay("searchResults", searchResults, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
 
 
     const searchInputHandler = (searchTerm) => {
         setSearchTerm(searchTerm);
     }
 
-    // const searchResultsElements = searchResults.map((movie) =>
-    //     <section key={movie.imdbID}>
-    //         <img src={movie.Poster} />
-    //         <article className="details">
-    //             <h4>{movie.Title}</h4>
-    //             <article className="buttonsCont">
-    //                 <button onClick={() => playVideo(movie.video, setMovieToPlay, data, setIsRedirectToVideoPlayer)}><BsPlayCircle fontSize="xx-large" color="white" /></button>
-    //                 <button onClick={() => addToList(data, movie.id, watchList, setWatchList, "watchList")}> <HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
-    //                 <button onClick={() => removeFromList(movie.id, watchList, setWatchList, "watchList")}> <HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
-    //                 <button onClick={() => addToList(data, movie.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-    //             </article>
-    //         </article>
-    //     </section>
-    // )
+    const searchResultsElements = searchResults.map((movie) =>
+        <section key={movie.imdbID}>
+            <img src={movie.Poster} />
+            <article className="details">
+                <h4>{movie.Title}</h4>
+                <article className="buttonsCont">
+                    <button onClick={() => playVideo(movie.video, setMovieToPlay, searchResults, setIsRedirectToVideoPlayer)}><BsPlayCircle fontSize="xx-large" color="white" /></button>
+                    <button onClick={() => addToList(searchResults, movie.id, watchList, setWatchList, "watchList")}> <HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
+                    <button onClick={() => removeFromList(movie.id, watchList, setWatchList, "watchList")}> <HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
+                    <button onClick={() => addToList(searchResults, movie.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
+                </article>
+            </article>
+        </section>
+    )
+
 
     return (
         <div className="cardsContainer">
@@ -61,8 +62,8 @@ const Home = ({ movies, tvShows, watchList, setWatchList, setMovieDetails, setMo
                 <input onChange={(e) => searchInputHandler(e.target.value)} value={searchTerm} className={styles.searchInput} type="text" inputMode="search" placeholder="Type movie / Tv series..." autoComplete="true" />
                 <button onClick={() => getMovies(searchTerm)} className={styles.searchBtn}>Search</button>
             </div>
+            <div className="cards" >{searchTerm ? searchResultsElements : ""}</div>
             <h1>Movies</h1>
-            {/* <div className="cards" >{searchTerm ? searchResultsElements : moviesElements, tvShowsElements}</div> */}
             <div className="cards" >{moviesElements}</div>
             <h1>TV shows</h1>
             <div className="cards" >{tvShowsElements}</div>
