@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { addToList, removeFromList, showObjDetails, playVideo, mainCardsDisplay } from '../../clientUtils/clientUtils';
-// import { showObjDetails, mainCardsDisplay } from '../../clientUtils/clientUtils';
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { Redirect } from "react-router-dom";

@@ -29,7 +29,7 @@ function getDataById(req, res, collectionName) {
         const currentDB = db.db(dbName);
         currentDB
             .collection(collectionName)
-            .findOne({ _id: ObjectId(objId) }, (err, user) => {
+            .findOne({ _id: objId }, (err, user) => {
                 if (err) throw err;
                 res.status(200).send(user);
                 console.log({ user });

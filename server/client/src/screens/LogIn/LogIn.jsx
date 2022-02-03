@@ -30,6 +30,7 @@ const LogIn = ({ setAuth, auth }) => {
                 password,
             })
             .then(function (response) {
+                getDataById(`users/${response.data.localId}`);
                 setLoading(false)
                 setAuth(response.data)
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));

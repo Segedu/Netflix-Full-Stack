@@ -110,23 +110,23 @@ export function getData(route, setData) {
 export function getDataById(route, id) {
     axios
         .get(`/${route}/${id}`)
-        .then(function (response) {
-            console.log(response.data)
+        .then(response => {
+            console.log(response.data);
         })
-        .catch(function (error) {
+        .catch(error => {
             console.log("you are in get user/media by id catch");
             console.log(error);
         });
 }
 
-export function insertNewUser(route, authId, authEmail) {
-    const localId = authId,
+export function insertNewUser(route, localId, authEmail) {
+    const _id = localId,
         email = authEmail,
         watchList = [],
         favoritesList = [];
 
     axios.post(`/${route}`, {
-        localId,
+        _id,
         email,
         watchList,
         favoritesList
