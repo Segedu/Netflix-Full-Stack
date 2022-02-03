@@ -3,6 +3,7 @@ import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { IoIosArrowDropdown } from "react-icons/io";
 import YouTube from 'react-youtube';
 import axios from "axios";
+import { updateUserListById } from "../../../serverUtils";
 const moviesRoute = "movies",
     tvShowsRoute = "tvShows",
     usersRoute = "users";
@@ -18,10 +19,7 @@ const moviesRoute = "movies",
 
 export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
-        // <section key={str === "searchResults" ? media.imdbID : media.id}>
-
         <section key={media.id}>
-            {/* <img src={str === "searchResults" ? media.Poster : media.posterUrl} alt={media.title} /> */}
 
             <img src={media.posterUrl} alt={media.title} />
             <article className="details" >
@@ -51,16 +49,12 @@ export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, set
                     </> : ""}
                 </article>
                 <article className="textDetailsCont">
-                    {/* <p>{str = "searchResult" ? media.Title : media.title}</p> */}
-
                     <p>{media.title}</p>
                     <p>{media.actors}</p>
                     <p>{media.year}</p>
                 </article>
             </article>
-
             {/* <YouTube videoId={"6hB3S9bIaco"} opts={opts} /> */}
-
             {/* <YouTube videoId={media.video} opts={opts} /> */}
         </section >
     )
@@ -68,28 +62,26 @@ export function mainCardsDisplay(str, data, showObjDetails, setMovieDetails, set
 }
 
 export function addToList(dataArray, objId, listCategory, setFunction, listKeyName) {
-    // axios
-    //     .patch("/user/:id/watchList/:movie_id", {
-    //         _id: objId,
-    //     })
-    //     .then(function (response) {
-    //         console.log(response);
-    //         alert("movie/Tv show added successfully");
-    //     })
-    //     .catch(function (error) {
-    //         console.log("you are in add to watch list catch");
-    //         console.log(error);
-    //     });
-
     const foundObj = dataArray.find(obj => obj.id === objId);
     if (listCategory.indexOf(foundObj) > -1) {
         alert(`already in your ${listKeyName}`)
-    }
-    else {
+    } else {
         const updatedArray = [foundObj, ...listCategory];
         setFunction(updatedArray);
-        localStorage.setItem(listKeyName, JSON.stringify(updatedArray));
     }
+    axios
+        .patch(`/users/add/${auth.localId}`, {
+            watchList: updatedArray,
+            favoritesList: updatedArray,
+        })
+        .then(function (response) {
+            console.log(response);
+            alert("movie/Tv show added successfully");
+
+        })
+        .catch(function (error) {
+            console.log(error, "you are in add to watch list /favorites catch");
+        });
 }
 
 //! movies...
@@ -103,8 +95,6 @@ export function getData(route, setData) {
             console.log(error.message, "you are in getting movies/Tv shows catch");
         });
 }
-
-
 
 //!user/:id, movie/tvShow/:id
 export function getDataById(route, id) {

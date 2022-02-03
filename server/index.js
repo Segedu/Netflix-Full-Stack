@@ -5,7 +5,8 @@ const app = express(),
   tvShowsRoute = "tvShows",
   usersRoute = "users",
   {
-    getDataById,
+    updateUserListById,
+    getUserDataById,
     getData,
     insertNewUser,
   } = require('./serverUtils');
@@ -16,9 +17,16 @@ app.get(`/${moviesRoute}`, (req, res) => {
   getData(req, res, moviesRoute);
 });
 
-
 app.get(`/${tvShowsRoute}`, (req, res) => {
   getData(req, res, tvShowsRoute);
+});
+
+app.post(`/${usersRoute}`, (req, res) => {
+  insertNewUser(req, res, usersRoute)
+});
+
+app.get(`/${usersRoute}/:id`, (req, res) => {
+  getUserDataById(req, res, usersRoute);
 });
 
 // app.get(`/${moviesRoute}/:id`, (req, res) => {
@@ -26,23 +34,11 @@ app.get(`/${tvShowsRoute}`, (req, res) => {
 // });
 
 // app.get(`/${tvShowsRoute}/:id`, (req, res) => {
-//   getDataById(req, res, tvShowsRoute);
+//   getUserDataById(req, res, tvShowsRoute);
 // });
 
-app.get(`/${usersRoute}/:id`, (req, res) => {
-  getDataById(req, res, usersRoute);
-});
-
-app.post(`/${usersRoute}`, (req, res) => {
-  insertNewUser(req, res, usersRoute)
-});
-
-app.get(`/${usersRoute}/:id/:watchList`, (req, res) => {
-  getDataById(req, res, usersRoute);
-
-});
-
-app.patch(`/${usersRoute}/:id/:watchList/:movie_id`, (req, res) => {
+app.patch(`/${usersRoute}/:id`, (req, res) => {
+  updateUserListById(req, res, usersRoute)
 });
 
 const PORT = process.env.PORT || 5000;

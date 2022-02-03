@@ -31,3 +31,11 @@ content-type: application/json
 }
 
 ###
+
+PATCH  http://localhost:5000/users/qtuGIkVmV8XWcXYD6OpTeYEqvqy2
+content-type: application/json
+
+{
+    
+    "watchList": ["spiderman", "suits"]
+}
