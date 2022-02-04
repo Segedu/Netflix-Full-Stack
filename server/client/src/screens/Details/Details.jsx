@@ -19,8 +19,8 @@ const Details = ({ movies, tvShows, movieDetails, watchList, setWatchList, favor
                 <p>{movieDetails.actors}</p>
                 <p>{movieDetails.plot}</p>
                 <button onClick={() => playVideo(data, movieDetails.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
-                <button onClick={() => addToList(data, movieDetails.id, watchList, setWatchList, "watchList")}><HiOutlinePlusCircle title="Add to watch List" fontSize="xx-large" color="white" /></button>
-                <button onClick={() => addToList(data, movieDetails.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Add to favorites List" fontSize="xx-large" color="white" /></button>
+                <button onClick={() => addToList(data, movieDetails.id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch List" fontSize="xx-large" color="white" /></button>
+                <button onClick={() => addToList(data, movieDetails.id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Add to favorites List" fontSize="xx-large" color="white" /></button>
             </article>
             {isRedirectToVideoPlayer ? <Redirect to="/VideoPlayer" /> : ""}
         </div>)
