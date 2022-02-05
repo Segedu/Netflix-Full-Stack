@@ -91,20 +91,31 @@ function updateUserListById(req, res, collectionName) {
     });
 }
 
+function deleteOneMediaById(req, res, dataCollection, collectionName) {
+    MongoClient.connect(url, (err, db) => {
+        if (err) throw err;
+        const currentDB = db.db(dbName),
+            mediaObjId = req.body.id,
+            userId = req.params.id;
+        currentDB
+            .collection(dataCollection)
+            .findOne({ id: mediaObjId }, (err, media) => {
+                console.log(media);
+                if (err) {
+                    throw err;
+                }
+                currentDB
+                    .collection(collectionName)
+                    .updateOne(
+                        { _id: userId },
+                        { $pull: { watchList: media } },
+                        (err, data) => {
+                            if (err) throw err;
+                            res.send(data);
+                        }
+                    );
+            });
+    });
+}
 
-// function updateUserList(dataValues, collectionName) {
-// MongoClient.connect(url, function (err, db) {
-//     if (err) throw err;
-//     const userId = req.body,
-//         currentDB = db.db(dbName),
-//         userToUpdate = { _id: userId },
-//         newValues = { $set: { watchList: dataValues } };
-//     currentDB.collection(collectionName).updateOne(userToUpdate, newValues, function (err, res) {
-//         if (err) throw err;
-//         console.log("1 document updated");
-//         db.close();
-//     });
-// });
-// }
-
-module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaDataById };
+module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaDataById, deleteOneMediaById };

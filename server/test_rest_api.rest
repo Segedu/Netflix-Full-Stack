@@ -39,3 +39,12 @@ content-type: application/json
     
     "watchList": ["spiderman", "suits"]
 }
+
+###
+PATCH  http://localhost:5000/users/delete/qtuGIkVmV8XWcXYD6OpTeYEqvqy2
+content-type: application/json
+ 
+{
+    
+    "id":"tt14833702"
+}

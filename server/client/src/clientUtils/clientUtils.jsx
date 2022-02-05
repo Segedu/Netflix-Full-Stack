@@ -132,6 +132,24 @@ export const removeFromList = (objId, listName, setFunction) => {
     const updatedArrayAfterRemove = [...listName].filter(obj => obj.id !== objId);
     setFunction(updatedArrayAfterRemove);
     return updatedArrayAfterRemove
+
+
+    // function deleteProdFromCart(productId) {
+    //     axios
+    //       .patch(`/carts/delete/6183162cd7907e590851e05a`, {
+    //         _id: productId,
+    //       })
+    //       .then(function (response) {
+    //         console.log("hey");
+    //         if (response.status == 200) {
+    //           deleteFromCart(productId);
+    //         }
+    //       })
+    //       .catch(function (error) {
+    //         console.log("you are in the delete product from cart catch");
+    //         console.log(error);
+    //       });
+    //   }
 }
 
 export const showObjDetails = (str, dataArray, objId, setFunction, setIsRedirect) => {
