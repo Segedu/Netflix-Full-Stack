@@ -64,7 +64,7 @@ function App() {
           <Route exact path="/UserWatchList" component={() => <UserWatchList setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} />} />
           <Route exact path="/VideoPlayer" component={() => <VideoPlayer movieToPlay={movieToPlay} />} />
           <Route exact path="/Register" component={() => <Register auth={auth} setAuth={setAuth} />} />
-          <Route exact path="/Login" component={() => <Login auth={auth} setAuth={setAuth} />} />
+          <Route exact path="/Login" component={() => <Login setWatchList={setWatchList} auth={auth} setAuth={setAuth} />} />
           <Route exact path="/Chat" component={() => <Chat setAuth={setAuth} />} />
         </Switch>
       </div>

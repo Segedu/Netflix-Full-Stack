@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addToList, removeFromList, showObjDetails, playVideo, mainCardsDisplay } from '../../clientUtils/clientUtils';
+import { addToList, deleteFromUserList, showObjDetails, playVideo, mainCardsDisplay } from '../../clientUtils/clientUtils';
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { Redirect } from "react-router-dom";
@@ -46,7 +46,7 @@ const Home = ({ auth, movies, tvShows, watchList, setWatchList, setMovieDetails,
                 <article className="buttonsCont">
                     <button onClick={() => playVideo(movie.video, setMovieToPlay, searchResults, setIsRedirectToVideoPlayer)}><BsPlayCircle fontSize="xx-large" color="white" /></button>
                     <button onClick={() => addToList(searchResults, movie.id, watchList, setWatchList, "watchList")}> <HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => removeFromList(movie.id, watchList, setWatchList, "watchList")}> <HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
+                    <button onClick={() => deleteFromUserList(movie.id, watchList, setWatchList, "watchList")}> <HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
                     <button onClick={() => addToList(searchResults, movie.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
                 </article>
             </article>

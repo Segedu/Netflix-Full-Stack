@@ -24,31 +24,29 @@ function getData(req, res, collectionName) {
     });
 }
 
-//!users/:id movie/:id, /tvShow/:id
 function getUserDataById(req, res, collectionName) {
     MongoClient.connect(url, (err, db) => {
         if (err) throw err;
-        const objId = req.params.id;
+        const userId = req.params.id;
         const currentDB = db.db(dbName);
         currentDB
             .collection(collectionName)
-            .findOne({ _id: objId }, (err, user) => {
+            .findOne({ _id: userId }, (err, user) => {
                 if (err) throw err;
                 res.status(200).send(user);
-                console.log({ user });
                 db.close();
             });
     });
 }
 
-function getMediaDataById(req, res, collectionName) {
+function getMediaItemsById(req, res, collectionName) {
     MongoClient.connect(url, (err, db) => {
         if (err) throw err;
-        const mediaObjId = req.params.id;
+        const MediaItem = req.params.id;
         const currentDB = db.db(dbName);
         currentDB
             .collection(collectionName)
-            .findOne({ id: mediaObjId }, (err, user) => {
+            .findOne({ id: MediaItem }, (err, user) => {
                 if (err) throw err;
                 res.status(200).send(user);
                 console.log({ user });
@@ -91,31 +89,27 @@ function updateUserListById(req, res, collectionName) {
     });
 }
 
-function deleteOneMediaById(req, res, dataCollection, collectionName) {
-    MongoClient.connect(url, (err, db) => {
+function deleteOneMediaById(req, res, collectionName) {
+    MongoClient.connect(url, function (err, db) {
         if (err) throw err;
-        const currentDB = db.db(dbName),
-            mediaObjId = req.body.id,
-            userId = req.params.id;
+        const MediaItem = req.body,
+            userId = req.params.id,
+            currentDB = db.db(dbName);
         currentDB
-            .collection(dataCollection)
-            .findOne({ id: mediaObjId }, (err, media) => {
-                console.log(media);
-                if (err) {
-                    throw err;
+            .collection(collectionName)
+            .findOneAndUpdate(
+                { _id: userId },
+                { $pull: { watchList: MediaItem } },
+                function (err, updatedResult) {
+                    if (err) throw err;
+                    res.status(201).send(updatedResult);
+                    db.close();
                 }
-                currentDB
-                    .collection(collectionName)
-                    .updateOne(
-                        { _id: userId },
-                        { $pull: { watchList: media } },
-                        (err, data) => {
-                            if (err) throw err;
-                            res.send(data);
-                        }
-                    );
-            });
+            );
     });
+
+
+
 }
 
-module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaDataById, deleteOneMediaById };
+module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaItemsById, deleteOneMediaById };

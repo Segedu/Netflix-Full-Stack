@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { removeFromList, addToList, playVideo } from  '../../clientUtils/clientUtils';
+import { deleteFromUserList, addToList, playVideo } from  '../../clientUtils/clientUtils';
 import { HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { Redirect } from "react-router-dom";
@@ -17,7 +17,7 @@ const UserWatchList = ({ data, watchList, setWatchList, setMovieToPlay, favorite
                 <article className="buttonsCont">
                     <button onClick={() => playVideo(data, watchListObj.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
                     <button onClick={() => addToList(data, watchListObj.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => removeFromList(watchListObj.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
+                    <button onClick={() => deleteFromUserList(watchListObj.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
                 </article>
             </article>
         </section>
@@ -32,7 +32,7 @@ const UserWatchList = ({ data, watchList, setWatchList, setMovieToPlay, favorite
                 <p>{likedItem.year}</p>
                 <article className="buttonsCont">
                     <button onClick={() => addToList(data, likedItem.id, watchList, setWatchList, "watchList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => removeFromList(likedItem.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
+                    <button onClick={() => deleteFromUserList(likedItem.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
                 </article>
             </article>
         </section>

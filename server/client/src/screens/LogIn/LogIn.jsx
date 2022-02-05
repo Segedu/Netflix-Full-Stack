@@ -6,14 +6,15 @@ import firebase from 'firebase';
 import { API_KEY } from '../../logic/key';
 import { useState } from "react";
 import { firebaseAuth } from '../../firebase';
-import { getDataById } from "../../clientUtils/clientUtils";
+import { getUserOrMediaDataById } from "../../clientUtils/clientUtils";
 
-const LogIn = ({ setAuth, auth }) => {
+const LogIn = ({ setAuth, auth, setWatchList }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorFromServer, setErrorFromServer] = useState(false);
     const [loading, setLoading] = useState(false);
     const LOCAL_STORAGE_AUTH_KEY = "auth";
+    let usersRoute = 'users';
 
     function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider()
@@ -30,7 +31,7 @@ const LogIn = ({ setAuth, auth }) => {
                 password,
             })
             .then(function (response) {
-                getDataById(`users/${response.data.localId}`);
+                getUserOrMediaDataById(usersRoute, response.data.localId, setWatchList);
                 setLoading(false)
                 setAuth(response.data)
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
@@ -40,15 +41,14 @@ const LogIn = ({ setAuth, auth }) => {
                 setErrorFromServer(error)
             });
     }
-    // let usersRoute = "users",
-    //     id = "61fa7f06bd5bceb4976c00a0";
+
     return (
         <div className="Form">
             <section>{loading ? <Spinner /> : ""}</section>
             <form onSubmit={e => {
                 e.preventDefault();
                 login()
-                // getDataById(`${usersRoute}/${id}`)
+                // getUserOrMediaDataById(`${usersRoute}/${id}`)
             }} >
                 <h1>Login</h1>
                 <input className={styles.input} type="email" placeholder="Enter Your Email" onChange={(e) => { setEmail(e.target.value) }} /><br></br>

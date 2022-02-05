@@ -7,7 +7,7 @@ const app = express(),
   {
     deleteOneMediaById,
     updateUserListById,
-    getMediaDataById,
+    getMediaItemsById,
     getUserDataById,
     getData,
     insertNewUser,
@@ -32,11 +32,11 @@ app.get(`/${usersRoute}/:id`, (req, res) => {
 });
 
 app.get(`/${moviesRoute}/:id`, (req, res) => {
-  getMediaDataById(req, res, moviesRoute);
+  getMediaItemsById(req, res, moviesRoute);
 });
 
 app.get(`/${tvShowsRoute}/:id`, (req, res) => {
-  getMediaDataById(req, res, tvShowsRoute);
+  getMediaItemsById(req, res, tvShowsRoute);
 });
 
 app.patch(`/${usersRoute}/:id`, (req, res) => {
@@ -44,7 +44,7 @@ app.patch(`/${usersRoute}/:id`, (req, res) => {
 });
 
 app.patch(`/${usersRoute}/delete/:id`, (req, res) => {
-  deleteOneMediaById(req, res, tvShowsRoute, usersRoute);
+  deleteOneMediaById(req, res, usersRoute);
 })
 
 const PORT = process.env.PORT || 5000;

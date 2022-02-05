@@ -32,13 +32,13 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                     {str === "watchList" ? <>
                         <button onClick={() => showObjDetails(str, data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
                         <button onClick={() => addToList(auth.localId, data, media.id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => removeFromList(media.id, watchList, setWatchList)}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => deleteFromUserList(auth.localId, media._id, watchList, setWatchList)}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "favoritesList" ? <>
                         <button onClick={() => showObjDetails(str, data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
                         <button onClick={() => addToList(auth.localId, data, media.id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => removeFromList(media.id, favoritesList, setFavoritesList)}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => deleteFromUserList(auth.localId, media._id, favoritesList, setFavoritesList)}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "searchResults" ? <>
@@ -61,17 +61,16 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
 }
 
 export function addToList(authLocalId, dataArray, objId, listName, setFunction) {
-    let updatedArray = [];
+    let updatedArrayAfterAdding = [];
     const foundObj = dataArray.find(obj => obj.id === objId);
     if (listName.indexOf(foundObj) > -1) {
         alert(`already in your ${listName}`);
     } else {
-        updatedArray = [foundObj, ...listName];
-        setFunction(updatedArray);
-
+        updatedArrayAfterAdding = [foundObj, ...listName];
+        setFunction(updatedArrayAfterAdding);
         axios
             .patch(`/users/${authLocalId}`, {
-                watchList: updatedArray
+                watchList: updatedArrayAfterAdding
             })
             .then(function (response) {
                 console.log(response);
@@ -83,7 +82,6 @@ export function addToList(authLocalId, dataArray, objId, listName, setFunction) 
     }
 }
 
-//! movies
 export function getData(route, setData) {
     axios
         .get(`/${route}`)
@@ -95,12 +93,11 @@ export function getData(route, setData) {
         });
 }
 
-//!user/:id, movie/tvShow/:id
-export function getDataById(route, id) {
+export function getUserOrMediaDataById(route, id, setWatchList) {
     axios
         .get(`/${route}/${id}`)
         .then(response => {
-            console.log(response.data);
+            setWatchList(response.data)
         })
         .catch(error => {
             console.log(error, "you are in get user/media by id catch");
@@ -128,35 +125,28 @@ export function insertNewUser(route, localId, authEmail) {
         });
 }
 
-export const removeFromList = (objId, listName, setFunction) => {
+export const deleteFromUserList = (authLocalId, objId, listName, setFunction) => {
     const updatedArrayAfterRemove = [...listName].filter(obj => obj.id !== objId);
     setFunction(updatedArrayAfterRemove);
+    axios
+        .patch(`/users/delete/${authLocalId}`, {
+            _id: objId,
+        })
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log("you are in the delete media item catch");
+            console.log(error);
+        });
     return updatedArrayAfterRemove
-
-
-    // function deleteProdFromCart(productId) {
-    //     axios
-    //       .patch(`/carts/delete/6183162cd7907e590851e05a`, {
-    //         _id: productId,
-    //       })
-    //       .then(function (response) {
-    //         console.log("hey");
-    //         if (response.status == 200) {
-    //           deleteFromCart(productId);
-    //         }
-    //       })
-    //       .catch(function (error) {
-    //         console.log("you are in the delete product from cart catch");
-    //         console.log(error);
-    //       });
-    //   }
 }
 
 export const showObjDetails = (str, dataArray, objId, setFunction, setIsRedirect) => {
     const foundObj = dataArray.find(obj => obj.id === objId);
     setFunction(foundObj);
     setIsRedirect(true);
-    getDataById(str, objId);
+    getUserOrMediaDataById(str, objId);
 }
 
 export function searchData(input, dataArray, setArray, setInput) {
