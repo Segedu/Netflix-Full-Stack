@@ -41,6 +41,22 @@ function getUserDataById(req, res, collectionName) {
     });
 }
 
+function getMediaDataById(req, res, collectionName) {
+    MongoClient.connect(url, (err, db) => {
+        if (err) throw err;
+        const mediaObjId = req.params.id;
+        const currentDB = db.db(dbName);
+        currentDB
+            .collection(collectionName)
+            .findOne({ id: mediaObjId }, (err, user) => {
+                if (err) throw err;
+                res.status(200).send(user);
+                console.log({ user });
+                db.close();
+            });
+    });
+}
+
 function insertNewUser(req, res, collectionName) {
     MongoClient.connect(url, (err, db) => {
         if (err) throw err;
@@ -91,4 +107,4 @@ function updateUserListById(req, res, collectionName) {
 // });
 // }
 
-module.exports = { getData, getUserDataById, insertNewUser, updateUserListById };
+module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaDataById };

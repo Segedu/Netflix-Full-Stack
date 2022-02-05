@@ -2,11 +2,11 @@
 GET http://localhost:5000/movies
 
 ###
-Get http://localhost:5000/movies/78
+Get http://localhost:5000/movies/tt10323676
 
 ###
 
-GET http://localhost:5000/tvShows
+GET http://localhost:5000/tvShows/tt1173427
 
 ###
 

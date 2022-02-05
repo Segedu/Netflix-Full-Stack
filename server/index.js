@@ -5,6 +5,7 @@ const app = express(),
   tvShowsRoute = "tvShows",
   usersRoute = "users",
   {
+    getMediaDataById,
     updateUserListById,
     getUserDataById,
     getData,
@@ -29,13 +30,13 @@ app.get(`/${usersRoute}/:id`, (req, res) => {
   getUserDataById(req, res, usersRoute);
 });
 
-// app.get(`/${moviesRoute}/:id`, (req, res) => {
-//   getUserDataById(req, res, tvShowsRoute);
-// });
+app.get(`/${moviesRoute}/:id`, (req, res) => {
+  getMediaDataById(req, res, moviesRoute);
+});
 
-// app.get(`/${tvShowsRoute}/:id`, (req, res) => {
-//   getUserDataById(req, res, tvShowsRoute);
-// });
+app.get(`/${tvShowsRoute}/:id`, (req, res) => {
+  getMediaDataById(req, res, tvShowsRoute);
+});
 
 app.patch(`/${usersRoute}/:id`, (req, res) => {
   updateUserListById(req, res, usersRoute)
