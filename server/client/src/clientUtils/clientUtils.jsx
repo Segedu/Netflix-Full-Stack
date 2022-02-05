@@ -32,13 +32,13 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                     {str === "watchList" ? <>
                         <button onClick={() => showObjDetails(str, data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
                         <button onClick={() => addToList(auth.localId, data, media.id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => removeFromList(media.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => removeFromList(media.id, watchList, setWatchList)}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "favoritesList" ? <>
                         <button onClick={() => showObjDetails(str, data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
                         <button onClick={() => addToList(auth.localId, data, media.id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => removeFromList(media.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => removeFromList(media.id, favoritesList, setFavoritesList)}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "searchResults" ? <>
@@ -128,10 +128,9 @@ export function insertNewUser(route, localId, authEmail) {
         });
 }
 
-export const removeFromList = (objId, listName, setFunction, listKeyName) => {
+export const removeFromList = (objId, listName, setFunction) => {
     const updatedArrayAfterRemove = [...listName].filter(obj => obj.id !== objId);
     setFunction(updatedArrayAfterRemove);
-    localStorage.setItem(listKeyName, JSON.stringify(updatedArrayAfterRemove));
     return updatedArrayAfterRemove
 }
 
