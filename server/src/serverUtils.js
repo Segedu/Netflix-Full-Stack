@@ -89,7 +89,7 @@ function updateUserListById(req, res, collectionName) {
     });
 }
 
-function deleteOneMediaById(req, res, collectionName) {
+function deleteMediaItemFromWatchListById(req, res, collectionName) {
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         const MediaItem = req.body,
@@ -107,9 +107,26 @@ function deleteOneMediaById(req, res, collectionName) {
                 }
             );
     });
-
-
-
+}
+function deleteMediaItemFromFavoritesById(req, res, collectionName) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        const MediaItem = req.body,
+            userId = req.params.id,
+            currentDB = db.db(dbName);
+        currentDB
+            .collection(collectionName)
+            .findOneAndUpdate(
+                { _id: userId },
+                { $pull: { favoritesList: MediaItem } },
+                function (err, updatedResult) {
+                    if (err) throw err;
+                    res.status(201).send(updatedResult);
+                    db.close();
+                }
+            );
+    });
 }
 
-module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaItemsById, deleteOneMediaById };
+
+module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaItemsById, deleteMediaItemFromWatchListById, deleteMediaItemFromFavoritesById };

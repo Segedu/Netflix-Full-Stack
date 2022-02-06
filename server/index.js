@@ -4,8 +4,8 @@ const app = express(),
   moviesRoute = "movies",
   tvShowsRoute = "tvShows",
   usersRoute = "users",
-  {
-    deleteOneMediaById,
+  { deleteMediaItemFromFavoritesById,
+    deleteMediaItemFromWatchListById,
     updateUserListById,
     getMediaItemsById,
     getUserDataById,
@@ -43,8 +43,11 @@ app.patch(`/${usersRoute}/:id`, (req, res) => {
   updateUserListById(req, res, usersRoute);
 });
 
-app.patch(`/${usersRoute}/delete/:id`, (req, res) => {
-  deleteOneMediaById(req, res, usersRoute);
+app.patch(`/${usersRoute}/delete/watchList/:id`, (req, res) => {
+  deleteMediaItemFromWatchListById(req, res, usersRoute);
+})
+app.patch(`/${usersRoute}/delete/favoritesList/:id`, (req, res) => {
+  deleteMediaItemFromFavoritesById(req, res, usersRoute);
 })
 
 const PORT = process.env.PORT || 5000;

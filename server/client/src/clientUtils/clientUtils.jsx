@@ -25,25 +25,25 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                 <article className="buttonsCont">
                     {str === "tvShows" || str === "movies" ? <>
                         <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className="icons" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media._id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" className="icons" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media._id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" className="icons" /></button>
+                        <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch list" className="icons" /></button>
+                        <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Like" className="icons" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
                     </> : ""}
                     {str === "watchList" ? <>
                         <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" className="icons" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media._id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" className="icons" /></button>
-                        <button onClick={() => deleteFromUserList(auth.localId, media._id, watchList, setWatchList)}><HiOutlineMinusCircle title="Remove from watch list" className="icons" /></button>
+                        <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Like" className="icons" /></button>
+                        <button onClick={() => deleteFromUserList(auth.localId, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlineMinusCircle title="Remove from watch list" className="icons" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
                     </> : ""}
                     {str === "favoritesList" ? <>
                         <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" className="icons" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media._id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" className="icons" /></button>
-                        <button onClick={() => deleteFromUserList(auth.localId, media._id, favoritesList, setFavoritesList)}><HiOutlineMinusCircle title="Remove from watch list" className="icons" /></button>
+                        <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch list" className="icons" /></button>
+                        <button onClick={() => deleteFromUserList(auth.localId, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><HiOutlineMinusCircle title="Remove from watch list" className="icons" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
                     </> : ""}
                     {str === "searchResults" ? <>
-                        <button onClick={() => addToList(auth.localId, data, media._id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" className="icons" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media._id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" className="icons" /></button>
+                        <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" className="icons" /></button>
+                        <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" className="icons" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
                     </> : ""}
                 </article>
@@ -60,7 +60,7 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
     return elements;
 }
 
-export function addToList(authLocalId, dataArray, objId, listName, setFunction) {
+export function addToUserList(authLocalId, dataArray, objId, listName, setFunction, watchList, favoritesList) {
     let updatedArrayAfterAdding = [];
     const foundObj = dataArray.find(obj => obj._id === objId);
     if (listName.indexOf(foundObj) > -1) {
@@ -68,18 +68,40 @@ export function addToList(authLocalId, dataArray, objId, listName, setFunction) 
     } else {
         updatedArrayAfterAdding = [foundObj, ...listName];
         setFunction(updatedArrayAfterAdding);
-        axios
-            .patch(`/users/${authLocalId}`, {
-                watchList: updatedArrayAfterAdding
-            })
-            .then(function (response) {
-                console.log(response.data.value);
-                alert(`movie/Tv show added successfully to ${listName}`);
-            })
-            .catch(function (error) {
-                console.log(error, `you are in add to ${listName} catch`);
-            });
+        if (listName === watchList) {
+            addToWatchList(authLocalId, updatedArrayAfterAdding)
+        } else if (listName === favoritesList) {
+            addToFavoritesList(authLocalId, updatedArrayAfterAdding)
+        }
     }
+}
+
+export function addToWatchList(authLocalId, updatedArrayAfterAdding) {
+    axios
+        .patch(`/users/${authLocalId}`, {
+            watchList: updatedArrayAfterAdding
+        })
+        .then(function (response) {
+            console.log(response.data.value);
+            alert(`movie/Tv show added successfully to watch list`);
+        })
+        .catch(function (error) {
+            console.log(error, `you are in add to watch list catch`);
+        });
+}
+
+export function addToFavoritesList(authLocalId, updatedArrayAfterAdding) {
+    axios
+        .patch(`/users/${authLocalId}`, {
+            favoritesList: updatedArrayAfterAdding
+        })
+        .then(function (response) {
+            console.log(response.data.value);
+            alert(`movie/Tv show added successfully to favorites list`);
+        })
+        .catch(function (error) {
+            console.log(error, `you are in add to favorites list catch`);
+        });
 }
 
 export function getData(route, setData) {
@@ -97,7 +119,6 @@ export function getUserOrMediaDataById(route, id, setWatchList, setFavoritesList
     axios
         .get(`/${route}/${id}`)
         .then(response => {
-            console.log(response.data);
             setWatchList(response.data.watchList);
             setFavoritesList(response.data.favoritesList)
         })
@@ -127,15 +148,37 @@ export function insertNewUser(route, localId, authEmail) {
         });
 }
 
-export const deleteFromUserList = (authLocalId, objId, listName, setFunction) => {
+export const deleteFromUserList = (authLocalId, objId, listName, setFunction, watchList, favoritesList) => {
     const updatedArrayAfterRemove = [...listName].filter(obj => obj._id !== objId);
     setFunction(updatedArrayAfterRemove);
+    if (listName == watchList) {
+        deleteFromWatchList(authLocalId, objId)
+    } else if (listName == favoritesList) {
+        deleteFromFavorites(authLocalId, objId)
+    }
+}
+
+export function deleteFromWatchList(authLocalId, objId) {
     axios
-        .patch(`/users/delete/${authLocalId}`, {
+        .patch(`/users/delete/watchList/${authLocalId}`, {
             _id: objId,
         })
         .then(function (response) {
-            setFunction(response.data.value.watchList);
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log("you are in the delete media item catch");
+            console.log(error);
+        })
+}
+
+export function deleteFromFavorites(authLocalId, objId) {
+    axios
+        .patch(`/users/delete/favoritesList/${authLocalId}`, {
+            _id: objId,
+        })
+        .then(function (response) {
+            console.log(response.data);
         })
         .catch(function (error) {
             console.log("you are in the delete media item catch");
