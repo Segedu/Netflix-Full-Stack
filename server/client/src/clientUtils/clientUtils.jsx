@@ -20,30 +20,30 @@ const moviesRoute = "movies",
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
         <section key={media.id}>
-            <img src={media.posterUrl} alt={media.title} />
+            <img src={media.posterUrl ? media.posterUrl : ""} alt={media.title} />
             <article className="details" >
                 <article className="buttonsCont">
                     {str === "tvShows" || str === "movies" ? <>
-                        <button onClick={() => showObjDetails(str, data, media.id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media.id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media.id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media._id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media._id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "watchList" ? <>
-                        <button onClick={() => showObjDetails(str, data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media.id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media._id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
                         <button onClick={() => deleteFromUserList(auth.localId, media._id, watchList, setWatchList)}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "favoritesList" ? <>
-                        <button onClick={() => showObjDetails(str, data, media.id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media.id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media._id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => deleteFromUserList(auth.localId, media._id, favoritesList, setFavoritesList)}><HiOutlineMinusCircle title="Remove from watch list" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                     {str === "searchResults" ? <>
-                        <button onClick={() => addToList(auth.localId, data, media.id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
-                        <button onClick={() => addToList(auth.localId, data, media.id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media._id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" fontSize="x-large" color="white" /></button>
+                        <button onClick={() => addToList(auth.localId, data, media._id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" fontSize="x-large" color="white" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="x-large" color="white" /></button>
                     </> : ""}
                 </article>
@@ -62,7 +62,7 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
 
 export function addToList(authLocalId, dataArray, objId, listName, setFunction) {
     let updatedArrayAfterAdding = [];
-    const foundObj = dataArray.find(obj => obj.id === objId);
+    const foundObj = dataArray.find(obj => obj._id === objId);
     if (listName.indexOf(foundObj) > -1) {
         alert(`already in your ${listName}`);
     } else {
@@ -73,7 +73,7 @@ export function addToList(authLocalId, dataArray, objId, listName, setFunction) 
                 watchList: updatedArrayAfterAdding
             })
             .then(function (response) {
-                console.log(response);
+                console.log(response.data.value);
                 alert(`movie/Tv show added successfully to ${listName}`);
             })
             .catch(function (error) {
@@ -93,11 +93,13 @@ export function getData(route, setData) {
         });
 }
 
-export function getUserOrMediaDataById(route, id, setWatchList) {
+export function getUserOrMediaDataById(route, id, setWatchList, setFavoritesList) {
     axios
         .get(`/${route}/${id}`)
         .then(response => {
-            setWatchList(response.data)
+            console.log(response.data);
+            setWatchList(response.data.watchList);
+            setFavoritesList(response.data.favoritesList)
         })
         .catch(error => {
             console.log(error, "you are in get user/media by id catch");
@@ -126,20 +128,19 @@ export function insertNewUser(route, localId, authEmail) {
 }
 
 export const deleteFromUserList = (authLocalId, objId, listName, setFunction) => {
-    const updatedArrayAfterRemove = [...listName].filter(obj => obj.id !== objId);
+    const updatedArrayAfterRemove = [...listName].filter(obj => obj._id !== objId);
     setFunction(updatedArrayAfterRemove);
     axios
         .patch(`/users/delete/${authLocalId}`, {
             _id: objId,
         })
         .then(function (response) {
-            console.log(response.data);
+            setFunction(response.data.value.watchList);
         })
         .catch(function (error) {
             console.log("you are in the delete media item catch");
             console.log(error);
-        });
-    return updatedArrayAfterRemove
+        })
 }
 
 export const showObjDetails = (str, dataArray, objId, setFunction, setIsRedirect) => {

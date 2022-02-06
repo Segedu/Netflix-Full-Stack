@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import useFetch from './hooks/useFetch';
 import Home from './screens/Home/Home';
 import Logout from './components/LogOut';
-import Login from './screens/LogIn/LogIn';
-import Register from './screens/Register/Register';
+import SignIn from './screens/SignIn/SignIn';
+import SignUp from './screens/SignUp/SignUp';
 import UserWatchList from './screens/UserWatchList/UserWatchList';
 import Movies from './screens/Movies/Movies';
 import TvShows from './screens/TvShows/TvShows';
@@ -42,7 +42,7 @@ function App() {
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
               <Link to="/Chat">Chat</Link>
-              <Logout setAuth={setAuth} />
+              <Logout setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />
             </>
           ) : <Redirect to="/" />}
           {!auth ? (
@@ -50,21 +50,21 @@ function App() {
               <Link to="/"><img src={netflixLogo} alt="" /></Link>
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
-              <Link to="/LogIn">Login</Link>
-              <Link to="/Register">Register</Link>
+              <Link to="/SignIn">SignIn</Link>
+              <Link to="/SignUp">SignUp</Link>
               <Redirect to="/" />
             </>
           ) : <Redirect to="/" />}
         </nav>
         <Switch>
           <Route exact path="/" component={() => <Home auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
-          <Route exact path="/Movies" component={() => <Movies setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
-          <Route exact path="/TvShows" component={() => <TvShows setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
+          <Route exact path="/Movies" component={() => <Movies auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
+          <Route exact path="/TvShows" component={() => <TvShows auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
           <Route exact path="/Details" component={() => <Details setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} movies={movies} tvShows={tvShows} />} />
           <Route exact path="/UserWatchList" component={() => <UserWatchList setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} />} />
           <Route exact path="/VideoPlayer" component={() => <VideoPlayer movieToPlay={movieToPlay} />} />
-          <Route exact path="/Register" component={() => <Register auth={auth} setAuth={setAuth} />} />
-          <Route exact path="/Login" component={() => <Login setWatchList={setWatchList} auth={auth} setAuth={setAuth} />} />
+          <Route exact path="/SignUp" component={() => <SignUp auth={auth} setAuth={setAuth} />} />
+          <Route exact path="/SignIn" component={() => <SignIn setWatchList={setWatchList} setFavoritesList={setFavoritesList} setAuth={setAuth} />} />
           <Route exact path="/Chat" component={() => <Chat setAuth={setAuth} />} />
         </Switch>
       </div>

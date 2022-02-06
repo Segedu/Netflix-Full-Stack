@@ -1,13 +1,13 @@
 import Spinner from "../../components/Spinner/Spinner";
 import { useState } from "react";
-import { showObjDetails, mainCardsDisplay } from  '../../clientUtils/clientUtils';
+import { showObjDetails, mainCardsDisplay } from '../../clientUtils/clientUtils';
 import { Redirect } from "react-router-dom";
 
-const Movies = ({ movies, error, isLoading, watchList, setWatchList, setMovieToPlay, setMovieDetails, favoritesList, setFavoritesList }) => {
+const Movies = ({auth, movies, error, isLoading, watchList, setWatchList, setMovieToPlay, setMovieDetails, favoritesList, setFavoritesList }) => {
     const [isRedirect, setIsRedirect] = useState(false);
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
 
-    const elements = mainCardsDisplay(movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const elements = mainCardsDisplay(auth, "movies", movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
 
     return (
         <div className="cardsContainer">

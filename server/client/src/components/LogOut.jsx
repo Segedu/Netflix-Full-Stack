@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-const Logout = ({ setAuth }) => {
+const Logout = ({ setAuth, setFavoritesList, setWatchList }) => {
 
     setTimeout(() => {
         localStorage.removeItem("auth");
@@ -9,6 +9,8 @@ const Logout = ({ setAuth }) => {
     return (<Fragment>
         <button className="LogOutBtn" onClick={() => {
             setAuth(null)
+            setWatchList([]);
+            setFavoritesList([]);
             localStorage.removeItem("auth");
         }}>Logout</button>
     </Fragment >)
