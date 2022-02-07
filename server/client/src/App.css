@@ -73,14 +73,6 @@ a .watchListCounter{
   overflow-y: hidden;
   position: relative;
 }
-.cards{
-  /* display: flex;
-  justify-content: flex-start;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  padding: 20px; */
-  
-}
 .cards::-webkit-scrollbar{
   display: none;
 }
