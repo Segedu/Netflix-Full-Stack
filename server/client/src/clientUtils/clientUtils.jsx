@@ -24,19 +24,19 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
             <article className="details" >
                 <article className="buttonsCont">
                     {str === "tvShows" || str === "movies" ? <>
-                        <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className="icons" /></button>
+                        <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className="icons" /></button>
                         <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch list" className="icons" /></button>
                         <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Like" className="icons" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
                     </> : ""}
                     {str === "watchList" ? <>
-                        <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" className="icons" /></button>
+                        <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" className="icons" /></button>
                         <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Like" className="icons" /></button>
                         <button onClick={() => deleteFromUserList(auth.localId, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlineMinusCircle title="Remove from watch list" className="icons" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
                     </> : ""}
                     {str === "favoritesList" ? <>
-                        <button onClick={() => showObjDetails(str, data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" className="icons" /></button>
+                        <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" className="icons" /></button>
                         <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch list" className="icons" /></button>
                         <button onClick={() => deleteFromUserList(auth.localId, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><HiOutlineMinusCircle title="Remove from watch list" className="icons" /></button>
                         <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
@@ -127,6 +127,12 @@ export function getUserOrMediaDataById(route, id, setWatchList, setFavoritesList
         });
 }
 
+export const showObjDetails = (dataArray, objId, setFunction, setIsRedirect) => {
+    const foundObj = dataArray.find(obj => obj._id === objId);
+    setFunction(foundObj);
+    setIsRedirect(true);
+}
+
 export function insertNewUser(route, localId, authEmail) {
     const _id = localId,
         email = authEmail,
@@ -186,12 +192,6 @@ export function deleteFromFavorites(authLocalId, objId) {
         })
 }
 
-export const showObjDetails = (str, dataArray, objId, setFunction, setIsRedirect) => {
-    const foundObj = dataArray.find(obj => obj.id === objId);
-    setFunction(foundObj);
-    setIsRedirect(true);
-    getUserOrMediaDataById(str, objId);
-}
 
 export function searchData(input, dataArray, setArray, setInput) {
     if (input) {

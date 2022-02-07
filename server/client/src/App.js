@@ -41,7 +41,7 @@ function App() {
               <Link to="/UserWatchList">My Watch List <p className='watchListCounter'>{watchList.length ? watchList.length : ""}</p></Link>
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
-              <Link to="/Chat">Chat</Link>
+              {/* <Link to="/Chat">Chat</Link> */}
               <Logout setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />
             </>
           ) : <Redirect to="/" />}
