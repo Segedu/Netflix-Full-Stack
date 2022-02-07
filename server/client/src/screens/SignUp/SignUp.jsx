@@ -50,11 +50,11 @@ const SignUp = ({ setAuth, auth }) => {
                 e.preventDefault();
                 { password === confirmPassword ? signUp() : alert("passwords doesn't match") }
             }}>
-                <h1>SignUp</h1>
+                <h1>Sign-Up</h1>
                 <input type="email" onChange={(e) => { emailValidation(e) }} placeholder="Enter Email" /><br></br>
                 <input type="password" autoComplete="on" onChange={(e) => { passwordValidation(e, setPassword) }} placeholder="Enter Password" /><br></br>
                 <input type="password" autoComplete="on" onChange={(e) => { passwordValidation(e, setConfirmPassword) }} placeholder="Confirm Password" />
-                <input type="submit" value="SignUp" onClick={() => {
+                <input type="submit" value="Sign-Up" onClick={() => {
                 }} />
             <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>
