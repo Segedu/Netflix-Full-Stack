@@ -28,7 +28,7 @@ const SignUp = ({ setAuth, auth }) => {
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
             })
             .catch(function (error) {
-                setErrorFromServer(error.message)
+                setErrorFromServer(error.response.data.error.message);
             });
     }
 
@@ -48,11 +48,7 @@ const SignUp = ({ setAuth, auth }) => {
             <section>{loading ? <Spinner /> : ""}</section>
             <form onSubmit={(e) => {
                 e.preventDefault();
-                if (password === confirmPassword) {
-                    signUp();
-                } else {
-                    alert("incorrect password")
-                }
+                { password === confirmPassword ? signUp() : alert("passwords doesn't match") }
             }}>
                 <h1>SignUp</h1>
                 <input type="email" onChange={(e) => { emailValidation(e) }} placeholder="Enter Email" /><br></br>
@@ -60,8 +56,8 @@ const SignUp = ({ setAuth, auth }) => {
                 <input type="password" autoComplete="on" onChange={(e) => { passwordValidation(e, setConfirmPassword) }} placeholder="Confirm Password" />
                 <input type="submit" value="SignUp" onClick={() => {
                 }} />
+            <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>
-            <h3>{errorFromServer ? "Error from server during Registration" : ""}</h3>
         </div>
     )
 }

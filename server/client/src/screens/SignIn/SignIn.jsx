@@ -37,8 +37,7 @@ const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
             })
             .catch(function (error) {
-                console.log(error)
-                setErrorFromServer(error)
+                setErrorFromServer(error.response.data.error.message)
             });
     }
 
@@ -47,16 +46,17 @@ const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
             <section>{loading ? <Spinner /> : ""}</section>
             <form onSubmit={e => {
                 e.preventDefault();
-                signIn()
+                signIn();
             }} >
                 <h1>Sign-In</h1>
                 <input className={styles.input} type="email" placeholder="Enter Your Email" onChange={(e) => { setEmail(e.target.value) }} /><br></br>
                 <input className={styles.input} type="password" placeholder="Enter Your Password" onChange={(e) => { setPassword(e.target.value) }} /><br></br>
                 <input className={styles.button} type="submit" value="Sign-In" />
                 <button onClick={signInWithGoogle}>Sign-In with Google</button>
+                <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>
-            <h3>{errorFromServer ? "Error from server during Sign-In" : ""}</h3>
-        </div >)
+        </div >
+    )
 }
 
 export default SignIn;

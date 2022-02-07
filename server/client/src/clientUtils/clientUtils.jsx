@@ -6,8 +6,7 @@ import axios from "axios";
 const moviesRoute = "movies",
     tvShowsRoute = "tvShows",
     usersRoute = "users";
-
-//?works?
+    
 // const opts = {
 //     height: "390",
 //     width: "50%",
@@ -16,6 +15,7 @@ const moviesRoute = "movies",
 //         origin: 'https://localhost:3000'
 //     }
 // }
+
 
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
