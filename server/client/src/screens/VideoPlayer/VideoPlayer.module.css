@@ -1,8 +1,4 @@
-iframe{
+.videoPlayer{
     width: 99vw;
-    height: 60vh;
-}
-video{
-    width: 100vw;
-    height: 100vh;
+    height:100vh;
 }
