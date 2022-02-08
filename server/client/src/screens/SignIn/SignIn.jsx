@@ -1,12 +1,12 @@
 import axios from "axios";
-import Spinner from '../../components/Spinner/Spinner';
-import styles from './SignIn.module.css';
+import Spinner from '../../components/Spinner';
 import React from 'react';
 import firebase from 'firebase';
 import { API_KEY } from '../../logic/key';
 import { useState } from "react";
 import { firebaseAuth } from '../../firebase';
 import { getUserOrMediaDataById } from "../../clientUtils/clientUtils";
+import style from './SignIn.module.css';
 
 const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
     const [email, setEmail] = useState("");
@@ -42,17 +42,17 @@ const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
     }
 
     return (
-        <div className="Form">
-            <section>{loading ? <Spinner /> : ""}</section>
-            <form onSubmit={e => {
+        <div className={style.Form}>
+            <form className={style.signInAndUpForm} onSubmit={(e) => {
                 e.preventDefault();
                 signIn();
             }} >
                 <h1>Sign-In</h1>
-                <input className={styles.input} type="email" placeholder="Enter Your Email" onChange={(e) => { setEmail(e.target.value) }} /><br></br>
-                <input className={styles.input} type="password" placeholder="Enter Your Password" onChange={(e) => { setPassword(e.target.value) }} /><br></br>
-                <input className={styles.button} type="submit" value="Sign-In" />
+                <input className={style.input} type="email" placeholder="Enter Your Email" onChange={(e) => { setEmail(e.target.value) }} /><br></br>
+                <input className={style.input} type="password" placeholder="Enter Your Password" onChange={(e) => { setPassword(e.target.value) }} /><br></br>
+                <input className={style.button} type="submit" value="Sign-In" />
                 <button onClick={signInWithGoogle}>Sign-In with Google</button>
+                <section>{loading ? <Spinner /> : ""}</section>
                 <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>
         </div >
