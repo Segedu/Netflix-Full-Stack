@@ -2,6 +2,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import { useState } from "react";
 import { showObjDetails, mainCardsDisplay } from '../../clientUtils/clientUtils';
 import { Redirect } from "react-router-dom";
+import MainBanner from "../../components/MainBanner";
 
 const Movies = ({auth, movies, error, isLoading, watchList, setWatchList, setMovieToPlay, setMovieDetails, favoritesList, setFavoritesList }) => {
     const [isRedirect, setIsRedirect] = useState(false);
@@ -11,6 +12,7 @@ const Movies = ({auth, movies, error, isLoading, watchList, setWatchList, setMov
 
     return (
         <div className="cardsContainer">
+            <MainBanner />
             <div className="cards">{isLoading ? <Spinner /> : elements}</div>
             {error ? <p style={{ color: "red" }} > error</p> : ""}
             {isRedirect ? <Redirect to="/Details" /> : ""}
