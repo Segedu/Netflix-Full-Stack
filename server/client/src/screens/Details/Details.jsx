@@ -4,7 +4,6 @@ import { HiOutlinePlusCircle } from "react-icons/hi";
 import { Redirect } from "react-router-dom";
 import { addToUserList, playVideo } from '../../clientUtils/clientUtils';
 import style from './Details.module.css';
-import '../../App.css';
 
 const Details = ({ movies, tvShows, movieDetails, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay }) => {
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
@@ -19,9 +18,11 @@ const Details = ({ movies, tvShows, movieDetails, watchList, setWatchList, favor
                 <h3>{movieDetails.year}</h3>
                 <p>{movieDetails.actors}</p>
                 <p>{movieDetails.plot}</p>
-                <button onClick={() => playVideo(data, movieDetails.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
-                <button onClick={() => addToUserList(data, movieDetails._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch List" className="icons" /></button>
-                <button onClick={() => addToUserList(data, movieDetails._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Add to favorites List" className="icons" /></button>
+                <article className={style.buttonsCont}>
+                    <button onClick={() => playVideo(data, movieDetails.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className="icons" /></button>
+                    <button onClick={() => addToUserList(data, movieDetails._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch List" className="icons" /></button>
+                    <button onClick={() => addToUserList(data, movieDetails._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Add to favorites List" className="icons" /></button>
+                </article>
             </article>
             {isRedirectToVideoPlayer ? <Redirect to="/VideoPlayer" /> : ""}
         </div>)
