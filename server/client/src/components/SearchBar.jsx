@@ -1,5 +1,5 @@
 import React from 'react';
-import { getMovies, searchInputHandler } from '../utils/utils';
+import { getMovies, searchInputHandler } from '../clientUtils/clientUtils';
 import styles from '../screens/Home/Home.module.css';
 
 function SearchBar({ searchTerm, setSearchTerm, setSearchResults }) {

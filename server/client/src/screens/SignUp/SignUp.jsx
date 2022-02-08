@@ -1,5 +1,5 @@
 import axios from "axios";
-import Spinner from "../../components/Spinner/Spinner.jsx";
+import Spinner from "../../components/Spinner.jsx";
 import style from '../SignIn/SignIn.module.css';
 import { useEffect, useState } from "react";
 import { API_KEY } from '../../logic/key';
