@@ -44,9 +44,8 @@ const SignUp = ({ setAuth, auth }) => {
     }
 
     return (
-        <div className="Form">
-            <section>{loading ? <Spinner /> : ""}</section>
-            <form onSubmit={(e) => {
+        <div className={style.Form}>
+            <form className={style.signInAndUpForm} onSubmit={(e) => {
                 e.preventDefault();
                 { password === confirmPassword ? signUp() : alert("passwords doesn't match") }
             }}>
@@ -54,9 +53,9 @@ const SignUp = ({ setAuth, auth }) => {
                 <input type="email" onChange={(e) => { emailValidation(e) }} placeholder="Enter Email" /><br></br>
                 <input type="password" autoComplete="on" onChange={(e) => { passwordValidation(e, setPassword) }} placeholder="Enter Password" /><br></br>
                 <input type="password" autoComplete="on" onChange={(e) => { passwordValidation(e, setConfirmPassword) }} placeholder="Confirm Password" />
-                <input type="submit" value="Sign-Up" onClick={() => {
-                }} />
-            <h3>{errorFromServer ? errorFromServer : ""}</h3>
+                <input type="submit" value="Sign-Up" />
+                <p>{loading ? <Spinner className={style.spinner} /> : ""}</p>
+                <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>
         </div>
     )
