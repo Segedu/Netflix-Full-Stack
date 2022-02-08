@@ -13,7 +13,8 @@ import VideoPlayer from './screens/VideoPlayer/VideoPlayer';
 import netflixLogo from './video/netflix.png.png'
 import Chat from './components/Chat';
 import { getData } from './clientUtils/clientUtils';
-import './App.css';
+import SearchBar from './components/SearchBar';
+import style from './App.css';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : null);
@@ -24,7 +25,9 @@ function App() {
   const [tvShows, setTvShows] = useState([]);
   const [watchList, setWatchList] = useState([]);
   const [favoritesList, setFavoritesList] = useState([]);
-
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  
   useEffect(() => {
     getData('movies', setMovies);
     getData('tvShows', setTvShows);
@@ -52,12 +55,17 @@ function App() {
               <Link to="/TvShows">TV Shows</Link>
               <Link to="/SignIn">SignIn</Link>
               <Link to="/SignUp">SignUp</Link>
+              <article>
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} />
+              </article>
               <Redirect to="/" />
             </>
           ) : <Redirect to="/" />}
         </nav>
         <Switch>
-          <Route exact path="/" component={() => <Home auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
+        {/* <Route exact path="/" component={() => <Home searchResults={searchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} setMovieDetails={setMovieDetails} data={data} watchList={watchList} setWatchList={setWatchList} />} /> */}
+
+          <Route exact path="/" component={() => <Home searchResults={searchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
           <Route exact path="/Movies" component={() => <Movies auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
           <Route exact path="/TvShows" component={() => <TvShows auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
           <Route exact path="/Details" component={() => <Details setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} movies={movies} tvShows={tvShows} />} />

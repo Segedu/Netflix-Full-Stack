@@ -3,10 +3,7 @@ import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { IoIosArrowDropdown } from "react-icons/io";
 import YouTube from 'react-youtube';
 import axios from "axios";
-const moviesRoute = "movies",
-    tvShowsRoute = "tvShows",
-    usersRoute = "users";
-    
+
 // const opts = {
 //     height: "390",
 //     width: "50%",
@@ -19,10 +16,10 @@ const moviesRoute = "movies",
 
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
-        <section key={media.id}>
+        <section className={style.cardsSection} key={media.id}>
             <img src={media.posterUrl ? media.posterUrl : ""} alt={media.title} />
-            <article className="details" >
-                <article className="buttonsCont">
+            <article className={style.details} >
+                <article className={style.buttonsCont}>
                     {!auth ? <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className="icons" /></button>
                         : <>
                             {str === "tvShows" || str === "movies" ? <>
@@ -52,7 +49,7 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                     }
 
                 </article>
-                <article className="textDetailsCont">
+                <article className={style.textDetailsCont}>
                     <p>{media.title}</p>
                     <p>{media.actors}</p>
                     <p>{media.year}</p>
@@ -63,6 +60,22 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
         </section >
     )
     return elements;
+}
+
+export function getMovies(searchTerm, setSearchResults, API_KEY_MOVIES) {
+    const url = `http://www.omdbapi.com/?s=${searchTerm}&apikey=${API_KEY_MOVIES}`;
+    axios.get(url)
+        .then(response => {
+            if (response.data.Search) {
+                setSearchResults(response.data.Search);
+            }
+        }).catch(error => {
+            console.log(error);
+        })
+}
+
+export const searchInputHandler = (searchTerm, setSearchTerm) => {
+    setSearchTerm(searchTerm);
 }
 
 export function addToUserList(authLocalId, dataArray, objId, listName, setFunction, watchList, favoritesList) {

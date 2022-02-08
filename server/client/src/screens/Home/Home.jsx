@@ -1,42 +1,24 @@
 import { useState } from "react";
-import { addToUserList, deleteFromUserList, showObjDetails, playVideo, mainCardsDisplay } from '../../clientUtils/clientUtils';
+import { getMovies, addToUserList, deleteFromUserList, showObjDetails, playVideo, mainCardsDisplay } from '../../clientUtils/clientUtils';
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { Redirect } from "react-router-dom";
 import { API_KEY_MOVIES } from '../../logic/key';
-import styles from './Home.module.css';
-import axios from "axios";
+import MainBanner from "../../components/MainBanner";
+import style from './Home.module.css';
 
-const Home = ({ auth, movies, tvShows, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
-    const [searchResults, setSearchResults] = useState([])
+const Home = ({ searchTerm, setSearchTerm, searchResults, setSearchResults, auth, movies, tvShows, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
     const [isRedirect, setIsRedirect] = useState(false);
-    const [searchTerm, setSearchTerm] = useState("");
     const [suggestions, setSuggestions] = useState("");
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
 
-    function getMovies(searchTerm) {
-        const url = `http://www.omdbapi.com/?s=${searchTerm}&apikey=${API_KEY_MOVIES}`;
-        axios.get(url)
-            .then(response => {
-                console.log(response.data);
-                if (response.data.Search) {
-                    setSearchResults(response.data.Search);
-                }
-            }).catch(error => {
-                console.log(error);
-            })
-    }
+    getMovies(searchTerm, setSearchResults, API_KEY_MOVIES);
 
     const moviesElements = mainCardsDisplay(auth, "movies", movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const tvShowsElements = mainCardsDisplay(auth, "tvShows", tvShows, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const watchListElements = mainCardsDisplay(auth, "watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const favoritesElements = mainCardsDisplay(auth, "favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     // const searchResultsElements = mainCardsDisplay("searchResults", searchResults, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-
-
-    const searchInputHandler = (searchTerm) => {
-        setSearchTerm(searchTerm);
-    }
 
     const searchResultsElements = searchResults.map(media =>
         <section key={media.imdbID}>
@@ -54,21 +36,17 @@ const Home = ({ auth, movies, tvShows, watchList, setWatchList, setMovieDetails,
     )
 
     return (
-        <div className="cardsContainer">
-            <div className="HomePageTrailer"><iframe width="1366" height="625" src="https://www.youtube-nocookie.com/embed/GV3HUDMQ-F8?autoplay=1&mute=1" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
-            <div className="searchNav">
-                <input onChange={(e) => searchInputHandler(e.target.value)} value={searchTerm} className={styles.searchInput} type="text" inputMode="search" placeholder="Type movie / Tv series..." autoComplete="true" />
-                <button onClick={() => getMovies(searchTerm)} className={styles.searchBtn}>Search</button>
-            </div>
-            <div className="cards" >{searchTerm ? searchResultsElements : ""}</div>
+        <div className={style.cardsContainer}>
+            <MainBanner />
+            <div className={style.cardsRow} >{searchTerm ? searchResultsElements : ""}</div>
             <h1>Movies</h1>
-            <div className="cards" >{moviesElements}</div>
+            <div className={style.cardsRow} ><section className={style.slider}>{moviesElements}</section></div>
             <h1>TV shows</h1>
-            <div className="cards" >{tvShowsElements}</div>
+            <div className={style.cardsRow} ><section className={style.slider}>{tvShowsElements}</section></div>
             <h1>Your Watch List</h1>
-            <div className="watchListCards">{watchListElements}</div>
+            <div className={style.watchListCards}>{watchListElements}</div>
             <h1>Your Favorites</h1>
-            <div className="favoritesCards"> {favoritesElements}</div>
+            <div className={style.favoritesCards}> {favoritesElements}</div>
             {isRedirect ? <Redirect to="/Details" /> : ""}
             {isRedirectToVideoPlayer ? <Redirect to="/VideoPlayer" /> : ""}
         </div >
