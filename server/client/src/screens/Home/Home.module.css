@@ -58,10 +58,10 @@
  
 }
 
-.cardsRow::-webkit-scrollbar{
+/* .cardsRow::-webkit-scrollbar{ */
   /* display: none; */
   
-}
+/* } */
 
 .slider{
   display: flex;
