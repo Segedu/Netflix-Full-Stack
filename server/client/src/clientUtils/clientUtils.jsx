@@ -19,55 +19,25 @@ import style from '../screens/Home/Home.module.css';
 
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
-        <section className={style.cardsSection} key={media.id}>
-            <img src={media.posterUrl ? media.posterUrl : ""} alt={media.title} />
+        <section className={style.cardsSection} key={media._id}>
+            <img src={`https://image.tmdb.org/t/p/original${media.backdrop_path}`} alt={media.title ? media.title : media.name} />
             <article className={style.details} >
                 <article className={style.buttonsCont}>
                     {!auth ? <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className={style.icons} /></button>
                         : <>
                             {str === "tvShows" || str === "movies" ? <>
-                                {/* <Tooltip title="Details" placement="top">
-                                    <IoIosArrowDropdown className={style.icons} onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)} />
-                                </Tooltip>
-                                <Tooltip title="Add To Watch List" placement="top">
-                                    <HiOutlinePlusCircle className={style.icons} onClick={() => addToUserList( auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)} />
-                                </Tooltip>
-                                <Tooltip title="Like" placement="top">
-                                    <BsHandThumbsUp className={style.icons} onClick={() => addToUserList( auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)} />
-                                </Tooltip>
-                                <Tooltip title="Play video" placement="top">
-                                    <BsPlayCircle className={style.icons} onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)} />
-                                </Tooltip> */}
-
                                 <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className={style.icons} /></button>
                                 <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch list" className={style.icons} /></button>
                                 <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Like" className={style.icons} /></button>
                                 <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className={style.icons} /></button>
                             </> : ""}
                             {str === "watchList" ? <>
-                                {/* <Tooltip title="Details" placement="top">
-                                    <IoIosArrowDropdown onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)} /></Tooltip>
-                                <Tooltip title="Like" placement="top">
-                                    <BsHandThumbsUp onClick={() => addToUserList( auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)} /></Tooltip>
-                                <Tooltip title="Remove from watch list" placement="top">
-                                    <HiOutlineMinusCircle onClick={() => deleteFromUserList(auth.localId, media._id, watchList, setWatchList, watchList, favoritesList)} /></Tooltip>
-                                <Tooltip title="Play video" placement="top">
-                                    <BsPlayCircle onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)} /></Tooltip> */}
-
                                 <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" className={style.icons} /></button>
                                 <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Like" className={style.icons} /></button>
                                 <button onClick={() => deleteFromUserList(auth.localId, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlineMinusCircle title="Remove from watch list" className={style.icons} /></button>
                                 <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className={style.icons} /></button>
                             </> : ""}
                             {str === "favoritesList" ? <>
-                                {/* <Tooltip title="Details" placement="top">
-                                    <IoIosArrowDropdown onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)} /></Tooltip>
-                                <Tooltip title="Add To Watch List" placement="top">
-                                    <HiOutlinePlusCircle onClick={() => addToUserList( auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)} /></Tooltip>
-                                <Tooltip title="Remove From Favorites" placement="top">
-                                    <HiOutlineMinusCircle onClick={() => deleteFromUserList(auth.localId, media._id, favoritesList, setFavoritesList, watchList, favoritesList)} /></Tooltip>
-                                <Tooltip title="Play video" placement="top">
-                                    <BsPlayCircle onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)} /></Tooltip> */}
 
                                 <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}><IoIosArrowDropdown title="Details" className={style.icons} /></button>
                                 <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch list" className={style.icons} /></button>
@@ -75,10 +45,6 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                                 <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className={style.icons} /></button>
                             </> : ""}
                             {str === "searchResults" ? <>
-                                {/* <Tooltip title="Like" placement="top"><Button><BsHandThumbsUp  onClick={() => addToUserList( auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)} /></Button></Tooltip>
-                                <Tooltip title="Add To Watch List" placement="top"><Button><HiOutlinePlusCircle  onClick={() => addToUserList( auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)} /></Button></Tooltip>
-                                <Tooltip title="Play video" placement="top"> <Button><BsPlayCircle  onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)} /></Button></Tooltip> */}
-
                                 <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList)}><HiOutlinePlusCircle title="Add to watch list" className={style.icons} /></button>
                                 <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList)}><BsHandThumbsUp title="Like" className={style.icons} /></button>
                                 <button onClick={() => playVideo(data, media.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" className={style.icons} /></button>
@@ -88,9 +54,9 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
 
                 </article>
                 <article className={style.textDetailsCont}>
-                    <p>{media.title}</p>
-                    <p>{media.actors}</p>
-                    <p>{media.year}</p>
+                    <p>{media.title ? media.title : media.name}</p>
+                    <p>{media.overview}</p>
+                    <p>{media.vote_average}</p>
                 </article>
             </article>
             {/* <YouTube videoId={"6hB3S9bIaco"} opts={opts} /> */}
@@ -115,18 +81,33 @@ export function getMovies(searchTerm, setSearchResults, API_KEY_MOVIES) {
 }
 
 export function filterByGenres(filterCategory, mainMediaArray) {
-    const filteredResult = mainMediaArray.filter((item) => (item.genres ? item.genres.indexOf(filterCategory) >= 0 : ""));
+    const filteredResult = mainMediaArray.filter((item) => (item.genre_ids ? item.genre_ids.indexOf(filterCategory) >= 0 : ""));
     return filteredResult
 }
 
-export function filterByTitle(filterCategory, mainMediaArray) {
-    const filteredResult = mainMediaArray.filter((item) => (item.Title ? item.Title.indexOf(filterCategory) >= 0 : ""));
-    return filteredResult
+// export function filterByTitle(filterCategory, mainMediaArray) {
+//     const filteredResult = mainMediaArray.filter((item) => (item.Title ? item.Title.indexOf(filterCategory) >= 0 : ""));
+//     return filteredResult
+// }
+
+export function getData(route, setData, setIsLoading) {
+    // export function getData(setIsLoading, setData) {
+
+    setIsLoading(true);
+    axios
+        // .get('/json.json')
+        .get(`/${route}`)
+        .then(response => {
+            console.log(response.data);
+            setData(response.data)
+            setIsLoading(false);
+        })
+        .catch(error => {
+            console.log(error.message, "you are in getting movies/Tv shows catch");
+        });
 }
 
-export const searchInputHandler = (searchTerm, setSearchTerm) => {
-    setSearchTerm(searchTerm);
-}
+
 
 export function addToUserList(authLocalId, dataArray, objId, listName, setFunction, watchList, favoritesList) {
     let updatedArrayAfterAdding = [];
@@ -169,19 +150,6 @@ export function addToFavoritesList(authLocalId, updatedArrayAfterAdding) {
         })
         .catch(function (error) {
             console.log(error, `you are in add to favorites list catch`);
-        });
-}
-
-export function getData(route, setData, setIsLoading) {
-    setIsLoading(true);
-    axios
-        .get(`/${route}`)
-        .then(response => {
-            setData(response.data)
-            setIsLoading(false);
-        })
-        .catch(error => {
-            console.log(error.message, "you are in getting movies/Tv shows catch");
         });
 }
 
@@ -271,6 +239,10 @@ export function searchData(input, dataArray, setArray, setInput) {
         setArray(search_result);
         setInput(input);
     }
+}
+
+export const searchInputHandler = (searchTerm, setSearchTerm) => {
+    setSearchTerm(searchTerm);
 }
 
 export function playVideo(dataArray, videoUrl, setClickedObj, setRedirect) {

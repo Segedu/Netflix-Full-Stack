@@ -17,11 +17,13 @@
     color: white;
     float: left;
 }
+
 .App nav a:hover{
  font-size: 20px;
  font-weight: bold;
  color: rgb(180, 0, 0);
 }
+
 .App nav {
   display: flex;
   position: fixed;

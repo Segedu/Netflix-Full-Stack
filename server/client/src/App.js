@@ -20,7 +20,6 @@ function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : null);
   // const [data, error, isLoading] = useFetch("");
   const [isLoading, setIsLoading] = useState(false);
-
   const [movieDetails, setMovieDetails] = useState("");
   const [movieToPlay, setMovieToPlay] = useState("");
   const [movies, setMovies] = useState([]);
