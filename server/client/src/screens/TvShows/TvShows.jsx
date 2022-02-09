@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import MainBanner from "../../components/MainBanner";
 import style from '../Home/Home.module.css';
 
-const TvShows = ({ auth, tvShows, error, isLoading, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
+const TvShows = ({ isLoading, auth, tvShows, error, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
     const [isRedirect, setIsRedirect] = useState(false);
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
 

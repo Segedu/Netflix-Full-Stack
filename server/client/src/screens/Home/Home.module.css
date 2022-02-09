@@ -3,8 +3,8 @@
   padding: 0%;
 }
 
-.searchInput{
-  width: 65rem;
+.searchInput {
+  width: 46rem;
   padding: 1rem;
   margin: 1rem;
 }
@@ -50,8 +50,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: red; 
-  border-radius: 10px;
+  background: #483c3c2e;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff010163;
+ 
 }
 
 .cardsRow::-webkit-scrollbar{
@@ -61,8 +65,8 @@
 
 .slider{
   display: flex;
-  width: calc(272px*257);
-  animation: scroll 300s linear infinite;
+  width: calc(272px*30);
+  animation: scroll 350s linear infinite;
 }
 
 .slider:hover{

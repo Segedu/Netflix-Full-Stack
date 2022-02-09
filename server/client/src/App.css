@@ -22,18 +22,19 @@
  font-weight: bold;
  color: rgb(180, 0, 0);
 }
-.App nav{
- display: block;
- position: fixed;
- width: 100%;
- z-index: 1;
+.App nav {
+  display: flex;
+  position: fixed;
+  background-color: #5c5c5c7d;
+  width: 100%;
+  z-index: 1;
+  align-items: center;
+  filter: drop-shadow(2px 4px 6px black);
+  justify-content: space-between;
 }
-.App a img{
-    width: 8rem;
-    height: 4rem;
-    margin: 0;
-    margin-top: -1rem;
-    float: left;
+
+.App a img {
+  width: 8rem;
 }
 
 a .watchListCounter{
