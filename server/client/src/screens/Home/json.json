@@ -1,0 +1,418 @@
+[
+    {
+        "adult": false,
+        "backdrop_path": "/3G1Q5xF40HkUBJXxt2DQgQzKTp5.jpg",
+        "genre_ids": [
+            16,
+            35,
+            10751,
+            14
+        ],
+        "id": 568124,
+        "original_language": "en",
+        "original_title": "Encanto",
+        "overview": "The tale of an extraordinary family, the Madrigals, who live hidden in the mountains of Colombia, in a magical house, in a vibrant town, in a wondrous, charmed place called an Encanto. The magic of the Encanto has blessed every child in the family with a unique gift from super strength to the power to heal—every child except one, Mirabel. But when she discovers that the magic surrounding the Encanto is in danger, Mirabel decides that she, the only ordinary Madrigal, might just be her exceptional family's last hope.",
+        "popularity": 3954.072,
+        "poster_path": "/4j0PNHkMr5ax3IA8tjtxcmPU3QT.jpg",
+        "release_date": "2021-11-24",
+        "title": "Encanto",
+        "video": false,
+        "vote_average": 7.8,
+        "vote_count": 4063
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/eG0oOQVsniPAuecPzDD1B1gnYWy.jpg",
+        "genre_ids": [
+            16,
+            35,
+            12,
+            10751
+        ],
+        "id": 774825,
+        "original_language": "en",
+        "original_title": "The Ice Age Adventures of Buck Wild",
+        "overview": "The fearless one-eyed weasel Buck teams up with mischievous possum brothers Crash & Eddie as they head off on a new adventure into Buck's home: The Dinosaur World.",
+        "popularity": 3937.905,
+        "poster_path": "/zzXFM4FKDG7l1ufrAkwQYv2xvnh.jpg",
+        "release_date": "2022-01-28",
+        "title": "The Ice Age Adventures of Buck Wild",
+        "video": false,
+        "vote_average": 7.3,
+        "vote_count": 440
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/qBLEWvJNVsehJkEJqIigPsWyBse.jpg",
+        "genre_ids": [
+            16,
+            10751,
+            14,
+            35,
+            12
+        ],
+        "id": 585083,
+        "original_language": "en",
+        "original_title": "Hotel Transylvania: Transformania",
+        "overview": "When Van Helsing's mysterious invention, the \"Monsterfication Ray,\" goes haywire, Drac and his monster pals are all transformed into humans, and Johnny becomes a monster. In their new mismatched bodies, Drac and Johnny must team up and race across the globe to find a cure before it's too late, and before they drive each other crazy.",
+        "popularity": 3141.792,
+        "poster_path": "/teCy1egGQa0y8ULJvlrDHQKnxBL.jpg",
+        "release_date": "2022-01-13",
+        "title": "Hotel Transylvania: Transformania",
+        "video": false,
+        "vote_average": 7.6,
+        "vote_count": 1600
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/EnDlndEvw6Ptpp8HIwmRcSSNKQ.jpg",
+        "genre_ids": [
+            14,
+            35,
+            12
+        ],
+        "id": 425909,
+        "original_language": "en",
+        "original_title": "Ghostbusters: Afterlife",
+        "overview": "When a single mom and her two kids arrive in a small town, they begin to discover their connection to the original Ghostbusters and the secret legacy their grandfather left behind.",
+        "popularity": 2671.325,
+        "poster_path": "/sg4xJaufDiQl7caFEskBtQXfD4x.jpg",
+        "release_date": "2021-11-11",
+        "title": "Ghostbusters: Afterlife",
+        "video": false,
+        "vote_average": 7.7,
+        "vote_count": 1874
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/tutaKitJJIaqZPyMz7rxrhb4Yxm.jpg",
+        "genre_ids": [
+            35,
+            16,
+            10751,
+            10402
+        ],
+        "id": 438695,
+        "original_language": "en",
+        "original_title": "Sing 2",
+        "overview": "Buster and his new cast now have their sights set on debuting a new show at the Crystal Tower Theater in glamorous Redshore City. But with no connections, he and his singers must sneak into the Crystal Entertainment offices, run by the ruthless wolf mogul Jimmy Crystal, where the gang pitches the ridiculous idea of casting the lion rock legend Clay Calloway in their show. Buster must embark on a quest to find the now-isolated Clay and persuade him to return to the stage.",
+        "popularity": 2152.788,
+        "poster_path": "/aWeKITRFbbwY8txG5uCj4rMCfSP.jpg",
+        "release_date": "2021-12-01",
+        "title": "Sing 2",
+        "video": false,
+        "vote_average": 8.2,
+        "vote_count": 1734
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/dK12GIdhGP6NPGFssK2Fh265jyr.jpg",
+        "genre_ids": [
+            28,
+            35,
+            80,
+            53
+        ],
+        "id": 512195,
+        "original_language": "en",
+        "original_title": "Red Notice",
+        "overview": "An Interpol-issued Red Notice is a global alert to hunt and capture the world's most wanted. But when a daring heist brings together the FBI's top profiler and two rival criminals, there's no telling what will happen.",
+        "popularity": 1968.805,
+        "poster_path": "/lAXONuqg41NwUMuzMiFvicDET9Y.jpg",
+        "release_date": "2021-11-04",
+        "title": "Red Notice",
+        "video": false,
+        "vote_average": 6.8,
+        "vote_count": 2933
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/q1NXVYTqSStNQsnKrCvtU6NPzEk.jpg",
+        "genre_ids": [
+            16,
+            35,
+            10751,
+            37
+        ],
+        "id": 892153,
+        "original_language": "en",
+        "original_title": "Tom and Jerry: Cowboy Up!",
+        "overview": "This time, the rivals team up to help a cowgirl and her brother save their homestead from a greedy land-grabber, and they’re going to need some help! Jerry’s three precocious nephews are all ready for action, and Tom is rounding up a posse of prairie dogs. But can a ragtag band of varmints defeat a deceitful desperado determined to deceive a damsel in distress? No matter what happens with Tom and Jerry in the saddle, it’ll be a rootin’ tootin’ good time!",
+        "popularity": 1160.57,
+        "poster_path": "/muIaHotSaSUQr0KZCIJOYQEe7y2.jpg",
+        "release_date": "2022-01-24",
+        "title": "Tom and Jerry: Cowboy Up!",
+        "video": false,
+        "vote_average": 7.3,
+        "vote_count": 74
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/hk4PwhKhT7q7jp1lvA8aiYqDluy.jpg",
+        "genre_ids": [
+            16,
+            18,
+            35,
+            27
+        ],
+        "id": 926899,
+        "original_language": "en",
+        "original_title": "The House",
+        "overview": "Across different eras, a poor family, an anxious developer and a fed-up landlady become tied to the same mysterious house in this animated dark comedy.",
+        "popularity": 1292.118,
+        "poster_path": "/iZjMFSKCrleKolC1gYcz5Rs8bk1.jpg",
+        "release_date": "2022-01-14",
+        "title": "The House",
+        "video": false,
+        "vote_average": 7.1,
+        "vote_count": 295
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/1Wlwnhn5sXUIwlxpJgWszT622PS.jpg",
+        "genre_ids": [
+            16,
+            35,
+            10751,
+            14
+        ],
+        "id": 585245,
+        "original_language": "en",
+        "original_title": "Clifford the Big Red Dog",
+        "overview": "As Emily struggles to fit in at home and at school, she discovers a small red puppy who is destined to become her best friend. When Clifford magically undergoes one heck of a growth spurt, becomes a gigantic dog and attracts the attention of a genetics company, Emily and her Uncle Casey have to fight the forces of greed as they go on the run across New York City. Along the way, Clifford affects the lives of everyone around him and teaches Emily and her uncle the true meaning of acceptance and unconditional love.",
+        "popularity": 931.514,
+        "poster_path": "/oifhfVhUcuDjE61V5bS5dfShQrm.jpg",
+        "release_date": "2021-11-10",
+        "title": "Clifford the Big Red Dog",
+        "video": false,
+        "vote_average": 7.3,
+        "vote_count": 990
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/A6K6Y39vYsYboyKiiXwcPR6Q6tM.jpg",
+        "genre_ids": [
+            10770,
+            9648,
+            53,
+            35
+        ],
+        "id": 922885,
+        "original_language": "es",
+        "original_title": "Laura y el misterio del asesino inesperado",
+        "overview": "After years of leave, Laura Lebrel returns to action. Lydia asks him for help on a case: Eugenio Ortiz, Laura's former instructor, has been murdered. But a new detective, Hector, finds evidence that incriminates Laura. She asks to be allowed to find the killer and Lydia gives her 24 hours to solve the case before arresting her.",
+        "popularity": 811.148,
+        "poster_path": "/p6T9g5a227cUs4rlTlaxo8QAqIf.jpg",
+        "release_date": "2022-01-13",
+        "title": "Laura y el misterio del asesino inesperado",
+        "video": false,
+        "vote_average": 7.4,
+        "vote_count": 7
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/c8Woa2lNy3RuWW2IVEiOud3kevh.jpg",
+        "genre_ids": [
+            10751,
+            35
+        ],
+        "id": 817648,
+        "original_language": "en",
+        "original_title": "Home Team",
+        "overview": "Two years after a Super Bowl win when NFL head coach Sean Payton is suspended, he goes back to his hometown and finds himself reconnecting with his 12-year-old son by coaching his Pop Warner football team.",
+        "popularity": 722.803,
+        "poster_path": "/zTwfMV1hm1DIrMo8BGyZKskhSPr.jpg",
+        "release_date": "2022-01-28",
+        "title": "Home Team",
+        "video": false,
+        "vote_average": 6.9,
+        "vote_count": 207
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/pxOiKwRvNp3zFOiuwpYpzlbmEgC.jpg",
+        "genre_ids": [
+            16,
+            35,
+            12,
+            10751
+        ],
+        "id": 459151,
+        "original_language": "en",
+        "original_title": "The Boss Baby: Family Business",
+        "overview": "The Templeton brothers — Tim and his Boss Baby little bro Ted — have become adults and drifted away from each other. But a new boss baby with a cutting-edge approach and a can-do attitude is about to bring them together again … and inspire a new family business.",
+        "popularity": 675.987,
+        "poster_path": "/kv2Qk9MKFFQo4WQPaYta599HkJP.jpg",
+        "release_date": "2021-07-01",
+        "title": "The Boss Baby: Family Business",
+        "video": false,
+        "vote_average": 7.6,
+        "vote_count": 1739
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg",
+        "genre_ids": [
+            35,
+            28,
+            12,
+            878
+        ],
+        "id": 550988,
+        "original_language": "en",
+        "original_title": "Free Guy",
+        "overview": "A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon go offline.",
+        "popularity": 646.412,
+        "poster_path": "/xmbU4JTUm8rsdtn7Y3Fcm30GpeT.jpg",
+        "release_date": "2021-08-11",
+        "title": "Free Guy",
+        "video": false,
+        "vote_average": 7.7,
+        "vote_count": 4863
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/mv4lRdLy201m3pndE68MuIKofpt.jpg",
+        "genre_ids": [
+            10749,
+            35
+        ],
+        "id": 790142,
+        "original_language": "en",
+        "original_title": "The Royal Treatment",
+        "overview": "Isabella runs her own salon and isn’t afraid to speak her mind, while Prince Thomas runs his own country and is about to marry for duty rather than love. When Izzy and her fellow stylists get the opportunity of a lifetime to do the hair for the royal wedding, she and Prince Thomas learn that taking control of their own destiny requires following their hearts.",
+        "popularity": 599.055,
+        "poster_path": "/lKQMvvaHSt0clfeKyqX20p05aVN.jpg",
+        "release_date": "2022-01-20",
+        "title": "The Royal Treatment",
+        "video": false,
+        "vote_average": 6.8,
+        "vote_count": 280
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/qqthj8EUL4QKlDBoMcPqeWvi6Ya.jpg",
+        "genre_ids": [
+            16,
+            14,
+            10402,
+            12,
+            35,
+            10751
+        ],
+        "id": 756403,
+        "original_language": "en",
+        "original_title": "Riverdance: The Animated Adventure",
+        "overview": "A young Irish boy named Keegan and Spanish girl named Moya journey into a magical world of the Megaloceros Giganteus who teach them to appreciate Riverdance as a celebration of life. Based on the stage show phenomenon of the same name and featuring Bill Whelan’s multi-platinum Grammy Award-winning music.",
+        "popularity": 581.334,
+        "poster_path": "/i6TRDlVuuEXMyLSlIkDd8YhBN0r.jpg",
+        "release_date": "2021-05-28",
+        "title": "Riverdance: The Animated Adventure",
+        "video": false,
+        "vote_average": 5.6,
+        "vote_count": 23
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/620hnMVLu6RSZW6a5rwO8gqpt0t.jpg",
+        "genre_ids": [
+            16,
+            35,
+            10751,
+            14
+        ],
+        "id": 508943,
+        "original_language": "en",
+        "original_title": "Luca",
+        "overview": "Luca and his best friend Alberto experience an unforgettable summer on the Italian Riviera. But all the fun is threatened by a deeply-held secret: they are sea monsters from another world just below the water’s surface.",
+        "popularity": 569.72,
+        "poster_path": "/jTswp6KyDYKtvC52GbHagrZbGvD.jpg",
+        "release_date": "2021-06-17",
+        "title": "Luca",
+        "video": false,
+        "vote_average": 8,
+        "vote_count": 5711
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/dIibeeq4QMay5bTJ2vjr72IFFRo.jpg",
+        "genre_ids": [
+            14,
+            12,
+            35
+        ],
+        "id": 589754,
+        "original_language": "ru",
+        "original_title": "Последний богатырь: Корень зла",
+        "overview": "Peace and tranquility have set in Belogorie. The evil was defeated and Ivan is now enjoying his well-deserved fame. He is surrounded by his family, friends and small wonders from the modern world that help him lead a comfortable life. Luckily, he has his Magic Sword to cut a gap between the worlds to get some supplies quite regularly. But when an ancient evil rises and the existence of the magic world is put to danger, Ivan has to team up with his old friends and his new rivals. They will set out on a long journey beyond the known world to find a way to defeat the enemies and to return peace to Belogorie.",
+        "popularity": 556.384,
+        "poster_path": "/4qE7mvUYGY5epfcgeJpM6EfHgq5.jpg",
+        "release_date": "2020-12-31",
+        "title": "The Last Warrior: Root of Evil",
+        "video": false,
+        "vote_average": 7.1,
+        "vote_count": 82
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/1zgob2Z8xVE3RZUgOKnHKcVPzOE.jpg",
+        "genre_ids": [
+            16,
+            35,
+            14
+        ],
+        "id": 877183,
+        "original_language": "en",
+        "original_title": "The Simpsons in Plusaversary",
+        "overview": "The Simpsons host a Disney+ Day party and everyone is on the list… except Homer. With friends from across the service and music fit for a Disney Princess, Plusaversary is Springfield's event of the year.",
+        "popularity": 529.55,
+        "poster_path": "/p5jzbffrXuBTjsiwrQ3aOMTrvCj.jpg",
+        "release_date": "2021-11-12",
+        "title": "The Simpsons in Plusaversary",
+        "video": false,
+        "vote_average": 6.6,
+        "vote_count": 234
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/sdL37sfUBth7mdkAolI83bXAl7L.jpg",
+        "genre_ids": [
+            16,
+            878,
+            10751,
+            35
+        ],
+        "id": 482321,
+        "original_language": "en",
+        "original_title": "Ron's Gone Wrong",
+        "overview": "In a world where walking, talking, digitally connected bots have become children's best friends, an 11-year-old finds that his robot buddy doesn't quite work the same as the others do.",
+        "popularity": 516.462,
+        "poster_path": "/7M0uwPgwvPONdFG0jk8TPK09xJU.jpg",
+        "release_date": "2021-10-15",
+        "title": "Ron's Gone Wrong",
+        "video": false,
+        "vote_average": 8.2,
+        "vote_count": 835
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/a17F3zXnmuwqxfiDa46mtlosjrv.jpg",
+        "genre_ids": [
+            16,
+            10751,
+            12,
+            35
+        ],
+        "id": 675445,
+        "original_language": "en",
+        "original_title": "PAW Patrol: The Movie",
+        "overview": "Ryder and the pups are called to Adventure City to stop Mayor Humdinger from turning the bustling metropolis into a state of chaos.",
+        "popularity": 509.385,
+        "poster_path": "/ic0intvXZSfBlYPIvWXpU1ivUCO.jpg",
+        "release_date": "2021-08-09",
+        "title": "PAW Patrol: The Movie",
+        "video": false,
+        "vote_average": 7.5,
+        "vote_count": 821
+    }
+]

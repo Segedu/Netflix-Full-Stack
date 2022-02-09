@@ -114,8 +114,13 @@ export function getMovies(searchTerm, setSearchResults, API_KEY_MOVIES) {
         })
 }
 
-export function filterByGenres(filterCategory, mainMoviesArray) {
-    const filteredResult = mainMoviesArray.filter((item) => (item.genres ? item.genres.indexOf(filterCategory) >= 0 : ""));
+export function filterByGenres(filterCategory, mainMediaArray) {
+    const filteredResult = mainMediaArray.filter((item) => (item.genres ? item.genres.indexOf(filterCategory) >= 0 : ""));
+    return filteredResult
+}
+
+export function filterByTitle(filterCategory, mainMediaArray) {
+    const filteredResult = mainMediaArray.filter((item) => (item.Title ? item.Title.indexOf(filterCategory) >= 0 : ""));
     return filteredResult
 }
 

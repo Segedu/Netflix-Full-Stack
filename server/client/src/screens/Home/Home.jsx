@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getMovies, addToUserList, deleteFromUserList, showObjDetails, playVideo, mainCardsDisplay, filterByGenres } from '../../clientUtils/clientUtils';
+import { getMovies, addToUserList, deleteFromUserList, showObjDetails, playVideo, mainCardsDisplay, filterByGenres, filterByTitle } from '../../clientUtils/clientUtils';
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { Redirect } from "react-router-dom";
@@ -7,6 +7,7 @@ import { API_KEY_MOVIES } from '../../logic/key';
 import Spinner from '../../components/Spinner';
 import MainBanner from "../../components/MainBanner";
 import style from './Home.module.css';
+import axios from "axios";
 
 const Home = ({ isLoading, searchTerm, setSearchTerm, searchResults, setSearchResults, auth, movies, tvShows, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
     const [isRedirect, setIsRedirect] = useState(false);
@@ -21,11 +22,10 @@ const Home = ({ isLoading, searchTerm, setSearchTerm, searchResults, setSearchRe
     const Comedy = filterByGenres('Comedy', movies);
     const Adventure = filterByGenres('Adventure', movies);
 
-    const Animation = filterByGenres('Animation', tvShows);
-    const Family = filterByGenres('Family', tvShows);
-    const Horror = filterByGenres('Horror', tvShows);
-    const Romance = filterByGenres('Romance', tvShows);
-
+    const Animation = filterByTitle('Animation', tvShows);
+    const Family = filterByTitle('Family', tvShows);
+    const Horror = filterByTitle('Horror', tvShows);
+    const Romance = filterByTitle('Romance', tvShows);
 
     const actionElements = mainCardsDisplay(auth, "movies", Action, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const dramaElements = mainCardsDisplay(auth, "movies", Drama, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
@@ -57,12 +57,36 @@ const Home = ({ isLoading, searchTerm, setSearchTerm, searchResults, setSearchRe
     //         </article>
     //     </section>
     // )
+    const key = "33e1714f2326d0c1e81bf46cf96bace4";
+    function getttt(num) {
+        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=${num}`)
+            .then((response) => {
+                console.log(response.data);
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
+
+    // axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${key}&language=en-US`)
+    // axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US`)
+    // axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${key}&with_networks=213`)
+
+
+    getttt(35);//!comedy
+    // getttt(28);//action
+    // getttt(27);//horror
+    // getttt(10749);//romance
+    // getttt(99);//docomentarie
+    // getttt();
+    // getttt();
 
     return (
         <div className={style.cardsContainer}>
             <MainBanner />
             {/* <div className={style.cardsRow} ><section className={style.slider}>{moviesElements}</section></div> */}
             {/* <div className={style.cardsRow} >{searchTerm ? searchResultsElements : ""}</div> */}
+            <h1>Top Rated</h1>
+
             <h1>Action</h1>
             <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{actionElements}</section>}</div>
             <h1>Drama</h1>
