@@ -6,6 +6,7 @@ import { API_KEY } from '../../logic/key';
 import { useState } from "react";
 import { firebaseAuth } from '../../firebase';
 import { getUserOrMediaDataById } from "../../clientUtils/clientUtils";
+import { Link } from "react-router-dom";
 import style from './SignIn.module.css';
 
 const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
@@ -52,6 +53,7 @@ const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
                 <input className={style.input} type="password" placeholder="Enter Your Password" onChange={(e) => { setPassword(e.target.value) }} /><br></br>
                 <input className={style.button} type="submit" value="Sign-In" />
                 <button onClick={signInWithGoogle}>Sign-In with Google</button>
+                <Link to="/SignUp">SignUp</Link>
                 <section>{loading ? <Spinner /> : ""}</section>
                 <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>

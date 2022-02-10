@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useFetch from './hooks/useFetch';
 import Home from './screens/Home/Home';
-import Logout from './components/LogOut';
+import SignOut from './components/SignOut';
 import SignIn from './screens/SignIn/SignIn';
 import SignUp from './screens/SignUp/SignUp';
 import UserWatchList from './screens/UserWatchList/UserWatchList';
@@ -15,6 +15,7 @@ import Chat from './components/Chat';
 import { getData } from './clientUtils/clientUtils';
 import SearchBar from './components/SearchBar';
 import style from './App.css';
+
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : null);
@@ -45,8 +46,12 @@ function App() {
               <Link to="/UserWatchList">My Watch List <p className='watchListCounter'>{watchList.length ? watchList.length : ""}</p></Link>
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
+              <article>
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} />
+              </article>
               {/* <Link to="/Chat">Chat</Link> */}
-              <Logout setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />
+              <p className={style.currentUser}>{auth.email}</p>
+              <SignOut setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />
             </>
           ) : <Redirect to="/" />}
           {!auth ? (
@@ -54,19 +59,15 @@ function App() {
               <Link to="/"><img src={netflixLogo} alt="" /></Link>
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
+
               <Link to="/SignIn">SignIn</Link>
-              <Link to="/SignUp">SignUp</Link>
-              <article>
-                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} />
-              </article>
               <Redirect to="/" />
             </>
           ) : <Redirect to="/" />}
         </nav>
         <Switch>
           {/* <Route exact path="/" component={() => <Home searchResults={searchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} setMovieDetails={setMovieDetails} data={data} watchList={watchList} setWatchList={setWatchList} />} /> */}
-
-          <Route exact path="/" component={() => <Home isLoading={isLoading} searchResults={searchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
+          <Route exact path="/" component={() => <Home auth={auth} isLoading={isLoading} searchResults={searchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
           <Route exact path="/Movies" component={() => <Movies isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
           <Route exact path="/TvShows" component={() => <TvShows isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
           <Route exact path="/Details" component={() => <Details setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} movies={movies} tvShows={tvShows} />} />

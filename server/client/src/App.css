@@ -55,7 +55,7 @@ a .watchListCounter{
   justify-content: center;
 }
 
-.LogOutBtn{
+.SignOutBtn{
   background-color: rgb(180, 0, 0);
   border-radius: 0.5rem;
   padding: 0.3rem;
@@ -63,6 +63,11 @@ a .watchListCounter{
   font-size: large;
   display: inline;
   float: right;
+}
+.currentUser{
+  margin: 0;
+  padding: 0;
+  display: contents;
 }
 
 @media (max-width:340px) {
@@ -85,7 +90,7 @@ a .watchListCounter{
   margin-top: -0.3rem;
 
   }
-  .LogOutBtn{
+  .SignOutBtn{
     padding: 0.3rem;
     font-size: small;
   }

@@ -2,6 +2,7 @@ import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { IoIosArrowDropdown } from "react-icons/io";
 import YouTube from 'react-youtube';
+import { BsStar } from "react-icons/bs";
 import axios from "axios";
 import style from '../screens/Home/Home.module.css';
 // import Tooltip from '@mui/material/Tooltip';
@@ -20,7 +21,10 @@ import style from '../screens/Home/Home.module.css';
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
         <section className={style.cardsSection} key={media._id}>
-            <img src={`https://image.tmdb.org/t/p/original${media.backdrop_path}`} alt={media.title ? media.title : media.name} />
+            <article className={style.cardImage}>
+                <h2>{media.title ? media.title : media.name}</h2>
+                <img src={`https://image.tmdb.org/t/p/original${media.backdrop_path}`} alt={media.title ? media.title : media.name} />
+            </article>
             <article className={style.details} >
                 <article className={style.buttonsCont}>
                     {!auth ? <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className={style.icons} /></button>
@@ -54,9 +58,8 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
 
                 </article>
                 <article className={style.textDetailsCont}>
-                    <p>{media.title ? media.title : media.name}</p>
-                    <p>{media.overview}</p>
-                    <p>{media.vote_average}</p>
+                    {/* <p>{media.overview}</p> */}
+                    <h3><BsStar /> {media.vote_average}</h3>
                 </article>
             </article>
             {/* <YouTube videoId={"6hB3S9bIaco"} opts={opts} /> */}

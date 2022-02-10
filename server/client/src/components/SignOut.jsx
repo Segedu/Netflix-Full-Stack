@@ -1,22 +1,22 @@
 import { Fragment } from "react";
 
-const Logout = ({ setAuth, setFavoritesList, setWatchList }) => {
+const SignOut = ({ setAuth, setFavoritesList, setWatchList }) => {
 
     setTimeout(() => {
         localStorage.removeItem("auth");
     }, 1200000)
 
     return (<Fragment>
-        <button className="LogOutBtn" onClick={() => {
+        <button className="SignOutBtn" onClick={() => {
             setAuth(null)
             setWatchList([]);
             setFavoritesList([]);
             localStorage.removeItem("auth");
-        }}>Logout</button>
+        }}>Sign-Out</button>
     </Fragment >)
 }
 
-export default Logout;
+export default SignOut;
 
 
 // import React from 'react';
