@@ -3,7 +3,7 @@ import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { BsStar } from "react-icons/bs";
 import axios from "axios";
-import netflixTrailer from '../video/netflixTrailer.mp4';
+import netflixTrailer from '../video/trailersCollection.mp4';
 import style from '../screens/Home/Home.module.css';
 
 
