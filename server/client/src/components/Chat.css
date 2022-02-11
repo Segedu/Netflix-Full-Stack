@@ -60,12 +60,14 @@ p {
   background-color: #fafafa;
 }
 
-.messages {
+.messagesCont {
   margin: 110px 0;
   display: flex;
   flex-direction: column;
 }
-
+.messageRow{
+background-color: aqua;
+}
 
 @media (max-width: 775px) {
   p {

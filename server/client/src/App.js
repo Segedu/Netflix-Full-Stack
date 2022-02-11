@@ -56,7 +56,7 @@ function App() {
               <article>
                 <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setSuggestions={setSuggestions} movies={movies} />
               </article>
-              {/* <Link to="/Chat">Chat</Link> */}
+              <Link to="/Chat">Chat</Link>
               <p className={style.currentUser}>{auth.email}</p>
               <SignOut setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />
             </>
