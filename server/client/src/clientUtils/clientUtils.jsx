@@ -4,26 +4,31 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import YouTube from 'react-youtube';
 import { BsStar } from "react-icons/bs";
 import axios from "axios";
+import vid from '../video/homepagetrailer.mp4';
 import style from '../screens/Home/Home.module.css';
-// import Tooltip from '@mui/material/Tooltip';
-// import Button from '@mui/material/Button';
 
-// const opts = {
-//     height: "390",
-//     width: "50%",
-//     playerVars: {
-//         autoplay: 1,
-//         origin: 'https://localhost:3000'
-//     }
-// }
+const stopMovie = (e) => {
+    e.target.pause();
+}
 
+const playMovie = (e) => {
+    e.target.play();
+}
 
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
         <section className={style.cardsSection} key={media._id}>
             <article className={style.cardImage}>
                 <h2>{media.title ? media.title : media.name}</h2>
-                <img src={`https://image.tmdb.org/t/p/original${media.backdrop_path}`} alt={media.title ? media.title : media.name} />
+                {/* <img src={`https://image.tmdb.org/t/p/original${media.backdrop_path}`} alt={media.title ? media.title : media.name} /> */}
+                <video
+                    onMouseOver={playMovie}
+                    onMouseOut={stopMovie}
+                    src={vid}
+                    poster={`https://image.tmdb.org/t/p/original${media.backdrop_path}`}
+                    preload='none'
+                    loop />
+
             </article>
             <article className={style.details} >
                 <article className={style.buttonsCont}>
@@ -55,15 +60,11 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                             </> : ""}
                         </>
                     }
-
                 </article>
                 <article className={style.textDetailsCont}>
-                    {/* <p>{media.overview}</p> */}
                     <h3><BsStar /> {media.vote_average}</h3>
                 </article>
             </article>
-            {/* <YouTube videoId={"6hB3S9bIaco"} opts={opts} /> */}
-            {/* <YouTube videoId={media.video} opts={opts} /> */}
         </section >
     )
     return elements;
@@ -109,8 +110,6 @@ export function getData(route, setData, setIsLoading) {
             console.log(error.message, "you are in getting movies/Tv shows catch");
         });
 }
-
-
 
 export function addToUserList(authLocalId, dataArray, objId, listName, setFunction, watchList, favoritesList) {
     let updatedArrayAfterAdding = [];
