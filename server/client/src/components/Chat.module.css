@@ -15,28 +15,30 @@ p {
   overflow-wrap: break-word;
 }
 
+.Chat{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
 .message {
   display: flex;
   padding: 20px 10px 0 20px;
-  margin: 20px;
   border-radius: 3000px;
-  box-shadow: 0 0 10px rgb(164, 164, 164);
+  box-shadow: 0 0 10px rgb(164 164 164);
   align-items: center;
 }
-
 .sent {
   background-color: rgba(180, 0, 0, 0.431);
   color: white;
   border-top-right-radius: 1000px;
   flex-direction: row-reverse;
-  padding: 20px 20px 0 10px;
   text-align: end;
+  margin: 1rem;
   float: right;
   margin-left: auto;
   max-width: 12rem;
 }
-
-
 .received {
   border: 1px solid rgba(63, 62, 62, 0.685);
   background-color:rgba(63, 62, 62, 0.685);
@@ -44,30 +46,51 @@ p {
   float: left;
   margin-right: auto;
   max-width: 12rem;
-
-}
-
-.sendMessage {
-  position: fixed;
-  display: flex;
-  width: 100%;
-  bottom: 0;
-  z-index: 1;
-  border-top: 1px solid rgba(63, 62, 62, 0.685);
-  margin-left: -5px;
-  padding: 10px;
-  padding-bottom: 30px;
-  background-color: #fafafa;
+  margin: 1rem;
 }
 
 .messagesCont {
-  margin: 110px 0;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
+  background-color: brown;
+  margin-top: 8rem;
+  width: 35%;
+  height: 75vh;
+  border-radius: 0.3rem;
+
 }
-.messageRow{
-background-color: aqua;
+
+.messageBoard{
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  width: 35%;
+  height: 12vh;
+  border-radius: 0.3rem;
+  bottom: 20px;
+  z-index: 1;
+  border-top: 1px solid rgba(63, 62, 62, 0.685);
+  padding: 10px;
+  padding-bottom: 30px;
+  background-color: #4e4a4aa1;
 }
+.sendMessage {
+  width:100%;
+ }
+
+input{  
+  padding: 0.8rem;
+  margin: 0.3rem;
+  width: 90%;
+  border-radius: 0.3rem;
+}
+.icons{
+  cursor: pointer;
+  color: white;
+  font-size: xx-large;
+}
+
 
 @media (max-width: 775px) {
   p {

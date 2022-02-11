@@ -40,21 +40,32 @@ const Home = ({ isLoading, searchResults, auth, movies, tvShows, watchList, setW
 
     return (
         <div className={style.cardsContainer}>
-            <MainBanner />
-            <div className={style.cardsRow} >{searchResultsElements ? searchResultsElements : ""}</div>
-            <h1>Top Rated</h1>
-            {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div> */}
-            <h1>Popular</h1>
-            {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div> */}
-            <h1>Your Watch List</h1>
-            <div className={style.watchListCards}>{isLoading ? <Spinner /> : watchListElements}</div>
-            <h1>Your Favorites</h1>
-            <div className={style.favoritesCards}>{isLoading ? <Spinner /> : favoritesElements}</div>
-            <h1>Movies</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{moviesElements}</section>}</div>
-            <h1>TV shows</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{tvShowsElements}</section>}</div>
-
+            {auth ? <>
+                <MainBanner />
+                <h1>Top Rated</h1>
+                {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div> */}
+                <h1>Popular</h1>
+                {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div> */}
+                <div className={style.cardsRow} >{searchResultsElements ? searchResultsElements : ""}</div>
+                <h1>My Watch List</h1>
+                <div className={style.watchListCards}>{isLoading ? <Spinner /> : watchListElements}</div>
+                <h1>My Favorites</h1>
+                <div className={style.favoritesCards}>{isLoading ? <Spinner /> : favoritesElements}</div>
+                <h1>Movies</h1>
+                <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{moviesElements}</section>}</div>
+                <h1>TV shows</h1>
+                <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{tvShowsElements}</section>}</div>
+            </> : <>
+                <MainBanner />
+                <h1>Top Rated</h1>
+                {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div> */}
+                <h1>Popular</h1>
+                {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div> */}
+                <h1>Movies</h1>
+                <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{moviesElements}</section>}</div>
+                <h1>TV shows</h1>
+                <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{tvShowsElements}</section>}</div>
+            </>}
             {isRedirect ? <Redirect to="/Details" /> : ""}
             {isRedirectToVideoPlayer ? <Redirect to="/VideoPlayer" /> : ""}
         </div >

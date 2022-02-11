@@ -1,4 +1,6 @@
 import { Fragment } from "react";
+import { BiLogOutCircle } from "react-icons/bi";
+import style from './SignOut.module.css';
 
 const SignOut = ({ setAuth, setFavoritesList, setWatchList }) => {
 
@@ -7,12 +9,12 @@ const SignOut = ({ setAuth, setFavoritesList, setWatchList }) => {
     }, 1200000)
 
     return (<Fragment>
-        <button className="SignOutBtn" onClick={() => {
+        <button className={style.SignOutBtn} onClick={() => {
             setAuth(null)
             setWatchList([]);
             setFavoritesList([]);
             localStorage.removeItem("auth");
-        }}>Sign-Out</button>
+        }}><BiLogOutCircle className={style.icons} /></button>
     </Fragment >)
 }
 

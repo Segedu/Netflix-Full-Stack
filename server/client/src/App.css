@@ -1,15 +1,16 @@
-
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 .App {
   background-color: black;
   color: white;
   text-align: center;
   height: 100%;
 }
+
 .App nav a{
   text-decoration: none;
     font-size: 20px;
@@ -55,19 +56,16 @@ a .watchListCounter{
   justify-content: center;
 }
 
-.SignOutBtn{
-  background-color: rgb(180, 0, 0);
-  border-radius: 0.5rem;
-  padding: 0.3rem;
-  color: green;
-  font-size: large;
-  display: inline;
-  float: right;
-}
 .currentUser{
   margin: 0;
   padding: 0;
   display: contents;
+}
+  
+.icons{
+  cursor: pointer;
+  color: white;
+  font-size: xx-large;
 }
 
 @media (max-width:340px) {
@@ -77,22 +75,20 @@ a .watchListCounter{
     width: 100%;
     z-index: 1;
   }
+
   .MainContainer{
 
     padding: 0;
   } 
+
   .App nav a{
     padding: 0.3rem;
     font-size: small;
   }
+
  .App nav a img{
   width: 3.5rem;
   margin-top: -0.3rem;
-
   }
-  .SignOutBtn{
-    padding: 0.3rem;
-    font-size: small;
-  }
-
 }
+

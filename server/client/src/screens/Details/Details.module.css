@@ -42,3 +42,9 @@
     border: none;
   }
   
+  .icons{
+    cursor: pointer;
+    color: white;
+    font-size: xx-large;
+  }
+  

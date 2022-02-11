@@ -1,47 +1,20 @@
 import { useState } from "react";
-import { deleteFromUserList, addToUserList, playVideo } from '../../clientUtils/clientUtils';
+import { showObjDetails, mainCardsDisplay } from '../../clientUtils/clientUtils';
 import { HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { Redirect } from "react-router-dom";
 import style from '../Home/Home.module.css';
 
-const UserWatchList = ({ data, watchList, setWatchList, setMovieToPlay, favoritesList, setFavoritesList }) => {
+const UserWatchList = ({ auth, watchList, setWatchList, setMovieToPlay, favoritesList, setFavoritesList, setMovieDetails, setIsRedirect }) => {
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
 
-    const watchListElements = watchList.map(watchListObj =>
-        <section key={watchListObj.id}>
-            <img src={watchListObj.posterUrl} alt={watchListObj.title} />
-            <article className={style.displayCont}>
-                <h4>{watchListObj.title}</h4>
-                <h4>{watchListObj.year}</h4>
-                <article className={style.buttonsCont}>
-                    <button onClick={() => playVideo(data, watchListObj.video, setMovieToPlay, setIsRedirectToVideoPlayer)}><BsPlayCircle title="play video" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => addToUserList(data, watchListObj.id, favoritesList, setFavoritesList, "favoritesList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => deleteFromUserList(watchListObj.id, watchList, setWatchList, "watchList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
-                </article>
-            </article>
-        </section>
-    )
-
-    const favoritesElements = favoritesList.map(likedItem =>
-        <section key={likedItem.id}>
-            <img src={likedItem.posterUrl} alt={likedItem.title} />
-            <article className={style.displayCont}>
-                <h4>{likedItem.title}</h4>
-                <p>{likedItem.year}</p>
-                <article className={style.buttonsCont}>
-                    <button onClick={() => addToUserList(data, likedItem.id, watchList, setWatchList, "watchList")}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-                    <button onClick={() => deleteFromUserList(likedItem.id, favoritesList, setFavoritesList, "favoritesList")}><HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
-                </article>
-            </article>
-        </section>
-    )
-
+    const watchListElements = mainCardsDisplay(auth, "watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const favoritesElements = mainCardsDisplay(auth, "favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     return (
         <div className={style.cardsContainer}>
-            <h1>Watch List</h1>
+            <h1>My Watch List</h1>
             <div className={style.watchListCards}> {watchListElements}</div>
-            <h1>Favorites</h1>
+            <h1>My Favorites</h1>
             <div className={style.favoritesCards}> {favoritesElements}</div>
             {isRedirectToVideoPlayer ? <Redirect to="/VideoPlayer" /> : ""}
         </div>

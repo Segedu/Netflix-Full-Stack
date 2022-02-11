@@ -6,7 +6,6 @@ import axios from "axios";
 import netflixTrailer from '../video/trailersCollection.mp4';
 import style from '../screens/Home/Home.module.css';
 
-
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
         <section className={style.cardsSection} key={media._id}>
@@ -96,13 +95,11 @@ export function filterByGenres(filterCategory, mainMediaArray) {
 
 export function getData(route, setData, setIsLoading) {
     // export function getData(setIsLoading, setData) {
-
     setIsLoading(true);
     axios
         // .get('/json.json')
         .get(`/${route}`)
         .then(response => {
-            console.log(response.data);
             setData(response.data)
             setIsLoading(false);
         })

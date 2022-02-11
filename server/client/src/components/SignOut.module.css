@@ -1,0 +1,24 @@
+.SignOutBtn{
+    padding: 0.3rem;
+    background-color: transparent;
+    font-size: large;
+    border: none;
+    display: inline;
+    float: right;
+    color: white;
+    width: 5rem;
+}
+
+.icons{
+    cursor: pointer;
+    color: white;
+    font-size: xx-large;
+  }
+
+@media (max-width:340px) {
+    .SignOutBtn{
+      padding: 0.3rem;
+      font-size: small;
+    }
+    }
+    

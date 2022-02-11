@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { db, firebaseAuth } from '../firebase';
 import firebase from 'firebase';
-import './Chat.css';
+import { IoIosSend } from 'react-icons/io';
+import style from './Chat.module.css';
 
 function SendMessage() {
     const [message, setMessage] = useState('');
@@ -20,12 +21,10 @@ function SendMessage() {
     }
 
     return (
-        <div>
-            <div className="sendMessage">
-                <input type="text" value={message} onChange={(e) => { setMessage(e.target.value) }} placeholder='Message...' />
-                <button onClick={(e) => { sendMessage(e) }}>Send</button>
-            </div>
-        </div >
+        <div className={style.sendMessage}>
+            <input type="text" value={message} onChange={(e) => { setMessage(e.target.value) }} placeholder='Message...' />
+            <button onClick={(e) => { sendMessage(e) }}><IoIosSend className={style.icons} /></button>
+        </div>
     )
 
 }
