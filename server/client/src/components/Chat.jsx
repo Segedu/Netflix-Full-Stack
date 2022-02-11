@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { firebaseAuth, db } from '../firebase';
 import SendMessage from './SendMessage';
-import style from './Chat.module.css';
+import './Chat.css';
 
+// `message ${uid == firebaseAuth.currentUser.uid ? 'sent' : 'received'}`
+// {style.message {uid == firebaseAuth.currentUser.uid ? style.sent: style.received}}
 function Chat() {
     const [messages, setMessages] = useState([]);
     // const [scroll] = useRef()
@@ -20,11 +22,11 @@ function Chat() {
     )
 
     return (
-        <div className={style.Chat}>
-            <div className={style.messagesCont}>
+        <div className={"Chat"}>
+            <div className={"messagesCont"}>
                 {elements}
             </div>
-            <div className={style.messageBoard}>
+            <div className={"messageBoard"}>
                 <SendMessage />
                 {/* < SendMessage scroll={scroll} /> */}
             </div>

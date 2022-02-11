@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { API_KEY } from '../../logic/key';
 import { insertNewUser } from "../../clientUtils/clientUtils.jsx";
 
-const SignUp = ({ setAuth, auth }) => {
+const SignUp = ({ setAuth }) => {
     const [userEmail, setUserEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState()

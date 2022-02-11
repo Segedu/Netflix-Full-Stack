@@ -33,7 +33,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState("");
 
-
   useEffect(() => {
     getData('movies', setMovies, setIsLoading);
     getData('tvShows', setTvShows, setIsLoading);

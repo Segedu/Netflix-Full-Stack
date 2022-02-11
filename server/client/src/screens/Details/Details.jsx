@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom";
 import { addToUserList, playVideo } from '../../clientUtils/clientUtils';
 import { BsStar } from "react-icons/bs";
 import style from './Details.module.css';
-// import style from '../../App.css'
 
 const Details = ({ auth, movies, tvShows, movieDetails, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay }) => {
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);

@@ -18,7 +18,6 @@ const Movies = ({ isLoading, auth, movies, error, watchList, setWatchList, setMo
     const romance = filterByGenres(10749, movies)
     const documentary = filterByGenres(99, movies)
 
-    // const elements = mainCardsDisplay(auth, "movies", movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const actionElements = mainCardsDisplay(auth, "movies", action, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const dramaElements = mainCardsDisplay(auth, "movies", drama, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const crimeElements = mainCardsDisplay(auth, "movies", crime, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
@@ -32,7 +31,6 @@ const Movies = ({ isLoading, auth, movies, error, watchList, setWatchList, setMo
     return (
         <div className={style.cardsContainer}>
             <MainBanner />
-            {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{elements}</section>}</div> */}
             <h1>Action</h1>
             <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{actionElements}</section>}</div>
             <h1>Drama</h1>
