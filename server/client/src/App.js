@@ -27,12 +27,19 @@ function App() {
   const [tvShows, setTvShows] = useState([]);
   const [watchList, setWatchList] = useState([]);
   const [favoritesList, setFavoritesList] = useState([]);
+  const [topRated, setTopRated] = useState([]);
+  const [popular, setPopular] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState("");
+
 
   useEffect(() => {
     getData('movies', setMovies, setIsLoading);
     getData('tvShows', setTvShows, setIsLoading);
+    // getData('topRated', setTopRated, setIsLoading);
+    // getData('popular', setPopular, setIsLoading);
+
   }, []);
 
   return (
@@ -43,11 +50,11 @@ function App() {
             <>
               <Redirect to="UserWatchList" />
               <Link to="/"><img src={netflixLogo} alt="" /></Link>
-              <Link to="/UserWatchList">My Watch List <p className='watchListCounter'>{watchList.length ? watchList.length : ""}</p></Link>
+              <Link to="/UserWatchList">My Watch List <p className={style.watchListCounter}>{watchList.length ? watchList.length : ""}</p></Link>
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
               <article>
-                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} />
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setSuggestions={setSuggestions} movies={movies} />
               </article>
               {/* <Link to="/Chat">Chat</Link> */}
               <p className={style.currentUser}>{auth.email}</p>
@@ -56,18 +63,16 @@ function App() {
           ) : <Redirect to="/" />}
           {!auth ? (
             <>
-              <Link to="/"><img src={netflixLogo} alt="" /></Link>
+              <Link to="/"><img src={netflixLogo} alt="appLogo" /></Link>
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
-
               <Link to="/SignIn">SignIn</Link>
               <Redirect to="/" />
             </>
           ) : <Redirect to="/" />}
         </nav>
         <Switch>
-          {/* <Route exact path="/" component={() => <Home searchResults={searchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} setMovieDetails={setMovieDetails} data={data} watchList={watchList} setWatchList={setWatchList} />} /> */}
-          <Route exact path="/" component={() => <Home auth={auth} isLoading={isLoading} searchResults={searchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
+          <Route exact path="/" component={() => <Home auth={auth} isLoading={isLoading} searchResults={searchResults} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
           <Route exact path="/Movies" component={() => <Movies isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
           <Route exact path="/TvShows" component={() => <TvShows isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
           <Route exact path="/Details" component={() => <Details setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} movies={movies} tvShows={tvShows} />} />

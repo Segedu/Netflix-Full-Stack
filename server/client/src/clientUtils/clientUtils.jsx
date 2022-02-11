@@ -1,32 +1,24 @@
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { IoIosArrowDropdown } from "react-icons/io";
-import YouTube from 'react-youtube';
 import { BsStar } from "react-icons/bs";
 import axios from "axios";
-import vid from '../video/homepagetrailer.mp4';
+import netflixTrailer from '../video/netflixTrailer.mp4';
 import style from '../screens/Home/Home.module.css';
 
-const stopMovie = (e) => {
-    e.target.pause();
-}
-
-const playMovie = (e) => {
-    e.target.play();
-}
 
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data.map(media =>
         <section className={style.cardsSection} key={media._id}>
             <article className={style.cardImage}>
                 <h2>{media.title ? media.title : media.name}</h2>
-                {/* <img src={`https://image.tmdb.org/t/p/original${media.backdrop_path}`} alt={media.title ? media.title : media.name} /> */}
                 <video
                     onMouseOver={playMovie}
                     onMouseOut={stopMovie}
-                    src={vid}
+                    src={netflixTrailer}
                     poster={`https://image.tmdb.org/t/p/original${media.backdrop_path}`}
                     preload='none'
+                    muted
                     loop />
 
             </article>
@@ -70,19 +62,27 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
     return elements;
 }
 
-export function getMovies(searchTerm, setSearchResults, API_KEY_MOVIES) {
-    const url = `http://www.omdbapi.com/?s=${searchTerm}&apikey=${API_KEY_MOVIES}`;
-    // setIsLoading(true)
-    axios.get(url)
-        .then(response => {
-            if (response.data.Search) {
-                setSearchResults(response.data.Search);
-                // setIsLoading(false);
-            }
-        }).catch(error => {
-            console.log(error);
-        })
+export const stopMovie = (e) => {
+    e.target.pause();
 }
+
+export const playMovie = (e) => {
+    e.target.play();
+}
+
+// export function getMovies(searchTerm, setSearchResults, API_KEY_MOVIES) {
+//     const url = `http://www.omdbapi.com/?s=${searchTerm}&apikey=${API_KEY_MOVIES}`;
+//     // setIsLoading(true)
+//     axios.get(url)
+//         .then(response => {
+//             if (response.data.Search) {
+//                 setSearchResults(response.data.Search);
+//                 // setIsLoading(false);
+//             }
+//         }).catch(error => {
+//             console.log(error);
+//         })
+// }
 
 export function filterByGenres(filterCategory, mainMediaArray) {
     const filteredResult = mainMediaArray.filter((item) => (item.genre_ids ? item.genre_ids.indexOf(filterCategory) >= 0 : ""));

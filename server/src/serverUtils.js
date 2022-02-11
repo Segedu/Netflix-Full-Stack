@@ -8,7 +8,6 @@ const mongoDB = require("mongodb"),
 // url = process.env.MONGO_URL || 
 const dbName = "Netflix";
 
-//! get movies, get tvShows
 function getData(req, res, collectionName) {
     MongoClient.connect(url, (err, db) => {
         if (err) throw err;

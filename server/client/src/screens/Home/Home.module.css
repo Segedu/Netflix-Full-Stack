@@ -169,9 +169,6 @@ transform: translateX(calc(-272px*128));
 
 .favoritesCards, .watchListCards {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-content: center;
 }
 
 @media (max-width:340px){

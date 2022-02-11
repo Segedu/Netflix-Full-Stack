@@ -1,12 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 import style from '../screens/Home/Home.module.css';
+import movieTrailer from '../video/trailersCollection.mp4';
+import { stopMovie, playMovie } from '../clientUtils/clientUtils';
 
 function MainBanner() {
   return (
     <div>
-      {/* <iframe className={style.HomePageTrailer} width="1366" height="625" src={"https://www.youtube-nocookie.com/embed/P9mwtI82k6E?autoplay=1&mute=1"} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
-    </div>
+      <video className={style.HomePageTrailer}
+        width="1366" height="625"
+        onMouseOver={playMovie}
+        onMouseOut={stopMovie}
+        src={movieTrailer}
+        poster="https://image.tmdb.org/t/p/original/c6H7Z4u73ir3cIoCteuhJh7UCAR.jpg"
+        preload='none'
+        muted
+        loop
+      />
+    </div >
   )
 }
 
