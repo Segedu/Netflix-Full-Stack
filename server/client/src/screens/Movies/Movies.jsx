@@ -1,8 +1,8 @@
-import Spinner from "../../components/Spinner";
-import { useState } from "react";
+import { useState } from 'react';
 import { showObjDetails, mainCardsDisplay, filterByGenres } from '../../clientUtils/clientUtils';
-import { Redirect } from "react-router-dom";
-import MainBanner from "../../components/MainBanner";
+import { Redirect } from 'react-router-dom';
+import MainBanner from '../../components/MainBanner';
+import Spinner from '../../components/Spinner/Spinner';
 import style from '../Home/Home.module.css';
 
 const Movies = ({ isLoading, auth, movies, error, watchList, setWatchList, setMovieToPlay, setMovieDetails, favoritesList, setFavoritesList }) => {

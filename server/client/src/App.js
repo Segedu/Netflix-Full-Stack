@@ -1,26 +1,23 @@
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import useFetch from './hooks/useFetch';
 import Home from './screens/Home/Home';
-import SignOut from './components/SignOut';
-import SignIn from './screens/SignIn/SignIn';
-import SignUp from './screens/SignUp/SignUp';
 import UserWatchList from './screens/UserWatchList/UserWatchList';
+import SignOut from './components/SignOut/SignOut';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
 import Movies from './screens/Movies/Movies';
 import TvShows from './screens/TvShows/TvShows';
 import Details from './screens/Details/Details';
 import VideoPlayer from './screens/VideoPlayer/VideoPlayer';
 import netflixLogo from './video/netflix.png.png'
-import Chat from './components/Chat';
+import Chat from './components/Chat/Chat';
 import { getData } from './clientUtils/clientUtils';
-import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBar/SearchBar';
 import { BsChat, BsPersonCircle } from 'react-icons/bs';
-// import style from './screens/Home/Home.module.css';
 import style from './App.css';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : null);
-  // const [data, error, isLoading] = useFetch("");
   const [isLoading, setIsLoading] = useState(false);
   const [movieDetails, setMovieDetails] = useState("");
   const [movieToPlay, setMovieToPlay] = useState("");

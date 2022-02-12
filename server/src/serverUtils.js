@@ -124,5 +124,4 @@ function deleteMediaItemFromFavoritesById(req, res, collectionName) {
     });
 }
 
-
 module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaItemsById, deleteMediaItemFromWatchListById, deleteMediaItemFromFavoritesById };

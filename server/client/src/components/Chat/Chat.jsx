@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { firebaseAuth, db } from '../../firebase';
-import SendMessage from '../SendMessage';
+import SendMessage from './SendMessage';
 import './Chat.css';
 
 function Chat() {
