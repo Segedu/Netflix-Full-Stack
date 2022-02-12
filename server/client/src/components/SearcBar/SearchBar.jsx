@@ -1,5 +1,5 @@
 import React from 'react';
-import { searchData, searchInputHandler } from '../clientUtils/clientUtils';
+import { searchData, searchInputHandler } from '../../clientUtils/clientUtils';
 import { IoIosSearch } from 'react-icons/io';
 import style from './SearchBar.module.css';
 

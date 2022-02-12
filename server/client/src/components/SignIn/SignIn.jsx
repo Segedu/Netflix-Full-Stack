@@ -1,5 +1,5 @@
 import axios from "axios";
-import Spinner from '../../components/Spinner';
+import Spinner from '../Spinner/Spinner';
 import React from 'react';
 import firebase from 'firebase';
 import { API_KEY } from '../../logic/key';
