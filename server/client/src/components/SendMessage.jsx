@@ -21,8 +21,8 @@ function SendMessage() {
     }
 
     return (
-        <div className={"sendMessage"}>
-            <input type="text" value={message} onChange={(e) => { setMessage(e.target.value) }} placeholder='Message...' />
+        <div className="sendMessage">
+            <input className='chatMessageInput' type="text" value={message} onChange={(e) => { setMessage(e.target.value) }} placeholder='Message...' />
             <button onClick={(e) => { sendMessage(e) }}><IoIosSend className={style.icons} /></button>
         </div>
     )

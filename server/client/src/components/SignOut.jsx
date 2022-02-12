@@ -14,7 +14,7 @@ const SignOut = ({ setAuth, setFavoritesList, setWatchList }) => {
             setWatchList([]);
             setFavoritesList([]);
             localStorage.removeItem("auth");
-        }}><BiLogOutCircle className={style.icons} /></button>
+        }}><BiLogOutCircle className={style.icons} title="SignOut" /></button>
     </Fragment >)
 }
 

@@ -50,12 +50,6 @@ a .watchListCounter{
   display: inline;
 }
 
-.searchNav{
-  display: flex;
-  align-content: center;
-  justify-content: center;
-}
-
 .currentUser{
   margin: 0;
   padding: 0;
@@ -68,20 +62,18 @@ a .watchListCounter{
   font-size: xx-large;
 }
 
-@media (max-width:340px) {
+
+@media (max-width:1440px) {
+
   .App nav{
-    display: block;
     position: fixed;
     width: 100%;
     z-index: 1;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
-  .MainContainer{
-
-    padding: 0;
-  } 
-
-  .App nav a{
+    .App nav a{
     padding: 0.3rem;
     font-size: small;
   }
@@ -90,5 +82,40 @@ a .watchListCounter{
   width: 3.5rem;
   margin-top: -0.3rem;
   }
-}
 
+  
+}
+@media (max-width:340px) {
+
+ /* .App nav{
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+    */
+
+  /* .App nav a{
+    padding: 0.3rem;
+    font-size: small;
+  }
+
+ .App nav a img{
+  width: 3.5rem;
+  margin-top: -0.3rem;
+  } */
+
+  .MainContainer{
+    padding: 0;
+  } 
+
+  .HomePageTrailer iframe{
+    position: relative;
+    width: 82vw;
+  }
+
+  .icons{
+    font-size: x-large;
+  }
+}

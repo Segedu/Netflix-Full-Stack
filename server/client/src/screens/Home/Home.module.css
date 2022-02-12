@@ -3,18 +3,6 @@
   padding: 0%;
 }
 
-.searchInput {
-  width: 46rem;
-  padding: 1rem;
-  margin: 1rem;
-}
-.searchBtn{
-  padding: 0.5rem;
-    font-size: larger;
-    border-radius: 0.5rem;
-    margin-top: 1.5rem;
-}
-
 .HomePageTrailer{
   width: 100%;
   height: 70vh;
@@ -29,7 +17,7 @@
   display: flex;
   align-items: flex-end;
  color:white;
-  margin-left: 3rem;
+  margin-left: 1rem;
 } 
 
 .cardsRow {
@@ -58,15 +46,10 @@
  
 }
 
-/* .cardsRow::-webkit-scrollbar{ */
-  /* display: none; */
-  
-/* } */
-
 .slider{
   display: flex;
   width: calc(272px*30);
-  animation: scroll 350s linear infinite;
+  animation: scroll 400s linear infinite;
 }
 
 .slider:hover{
@@ -78,7 +61,7 @@ animation-play-state: paused;
   transition: transform 1.5s;
   transition: transform 1.5s, -webkit-transform 1.5s;
   height: 25rem;
-  padding: 0.8rem;
+  padding: 1rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -171,18 +154,48 @@ transform: translateX(calc(-272px*128));
   display: flex;
 }
 
-@media (max-width:340px){
-  .searchInput{
-    width: 10rem;
-    padding: 0.5rem;
-    margin: 1rem;
+@media (max-width:786px){
+
+.cardsContainer h1{
+font-size: small;
+}
+
+.cardsRow{
+  width: 100vw;
+}
+.slider{
+  display: flex;
+  width:  calc(272px*30);
+  animation: scroll 350s linear infinite;
+}
+
+.cardsSection{
+  width: 10rem;
+  height: 10rem;
+  padding: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.cardImage h2{
+  position: absolute;
+font-size: small;
+width: 8rem;
+}
+.genreTitle{
+  font-size: large;
+  margin-left: 0;
+}
+
+@keyframes scroll {
+  0%{
+ transform: translateX(0);
+  } 
+  100%{
+ transform: translateX(calc(-272px*128));
   }
-  .HomePageTrailer iframe{
-    position: relative;
-    width: 82vw;
-  }
-  .searchBtn{
-    font-size: small;
-    margin-top: 2rem;
-  }
+ }
+}
+
+@media (max-width:1440px){
+  
 }

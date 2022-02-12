@@ -49,11 +49,11 @@ const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
                 signIn();
             }} >
                 <h1>Sign-In</h1>
-                <input className={style.input} type="email" placeholder="Enter Your Email" onChange={(e) => { setEmail(e.target.value) }} /><br></br>
-                <input className={style.input} type="password" placeholder="Enter Your Password" onChange={(e) => { setPassword(e.target.value) }} /><br></br>
+                <input className={style.signInInput} type="email" placeholder="Enter Your Email" onChange={(e) => { setEmail(e.target.value) }} /><br></br>
+                <input className={style.signInInput} type="password" placeholder="Enter Your Password" onChange={(e) => { setPassword(e.target.value) }} /><br></br>
                 <input className={style.button} type="submit" value="Sign-In" />
-                <button onClick={signInWithGoogle}>Sign-In with Google</button>
-                <Link to="/SignUp">SignUp</Link>
+                {/* <button onClick={signInWithGoogle}>Sign-In with Google</button> */}
+                <Link to="/SignUp"> Click here to SignUp</Link>
                 <section>{loading ? <Spinner /> : ""}</section>
                 <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>

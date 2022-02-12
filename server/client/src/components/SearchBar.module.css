@@ -1,0 +1,39 @@
+
+.searchNav{
+  display: flex;
+}
+
+.searchInput {
+    width: 35rem;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    background-color: black;
+
+}
+.searchInput:placeholder-shown{
+font-size: larger;
+font-weight: bold;
+}
+.searchBtn{
+    border: none;
+    background-color: transparent;
+} 
+.icons{
+    cursor: pointer;
+    color: white;
+    font-size: xx-large;
+  }
+  
+
+
+
+@media (max-width:340px) {
+
+.searchInput{
+    width:6rem;
+    padding: 0.5rem;
+  }
+  .searchBtn{
+    font-size: small;
+  }
+}
