@@ -37,9 +37,8 @@ function App() {
   useEffect(() => {
     getData('movies', setMovies, setIsLoading);
     getData('tvShows', setTvShows, setIsLoading);
-    // getData('topRated', setTopRated, setIsLoading);
-    // getData('popular', setPopular, setIsLoading);
-
+    getData('topRated', setTopRated, setIsLoading);
+    getData('popular', setPopular, setIsLoading);
   }, []);
 
   return (
@@ -72,7 +71,7 @@ function App() {
           ) : <Redirect to="/" />}
         </nav>
         <Switch>
-          <Route exact path="/" component={() => <Home auth={auth} isLoading={isLoading} searchResults={searchResults} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
+          <Route exact path="/" component={() => <Home auth={auth} isLoading={isLoading} searchResults={searchResults} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} popular={popular} topRated={topRated} />} />
           <Route exact path="/Movies" component={() => <Movies isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
           <Route exact path="/TvShows" component={() => <TvShows isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
           <Route exact path="/Details" component={() => <Details auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} movies={movies} tvShows={tvShows} />} />

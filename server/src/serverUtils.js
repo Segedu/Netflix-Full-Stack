@@ -1,11 +1,8 @@
 const mongoDB = require("mongodb"),
     MongoClient = mongoDB.MongoClient,
     ObjectId = mongoDB.ObjectId,
-    moviesRoute = "movies",
-    tvShowsRoute = "tvShows",
-    usersRoute = "users",
-    url = "mongodb://localhost:27017/";
-// url = process.env.MONGO_URL || 
+    url = process.env.MONGO_URL || "mongodb://localhost:27017/";
+
 const dbName = "Netflix";
 
 function getData(req, res, collectionName) {

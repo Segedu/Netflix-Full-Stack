@@ -1,10 +1,14 @@
 console.log("app is loading");
 const express = require("express");
+require("dotenv").config();
 const app = express(),
   moviesRoute = "movies",
   tvShowsRoute = "tvShows",
   usersRoute = "users",
-  { deleteMediaItemFromFavoritesById,
+  popularRoute = "popular",
+  topRatedRoute = "topRated",
+  {
+    deleteMediaItemFromFavoritesById,
     deleteMediaItemFromWatchListById,
     updateUserListById,
     getMediaItemsById,
@@ -21,6 +25,14 @@ app.get(`/${moviesRoute}`, (req, res) => {
 
 app.get(`/${tvShowsRoute}`, (req, res) => {
   getData(req, res, tvShowsRoute);
+});
+
+app.get(`/${popularRoute}`, (req, res) => {
+  getData(req, res, popularRoute);
+});
+
+app.get(`/${topRatedRoute}`, (req, res) => {
+  getData(req, res, topRatedRoute);
 });
 
 app.post(`/${usersRoute}`, (req, res) => {

@@ -9,13 +9,13 @@ import MainBanner from "../../components/MainBanner";
 import style from './Home.module.css';
 import axios from "axios";
 
-const Home = ({ isLoading, searchResults, auth, movies, tvShows, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
+const Home = ({ isLoading, searchResults, auth, movies, tvShows, topRated, popular, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
     const [isRedirect, setIsRedirect] = useState(false);
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
 
     const searchResultsElements = mainCardsDisplay(auth, "searchResults", searchResults, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    // const topRatedElements = mainCardsDisplay(auth, "topRated", topRated, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    // const popularElements = mainCardsDisplay(auth, "popular", popular, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const topRatedElements = mainCardsDisplay(auth, "topRated", topRated, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const popularElements = mainCardsDisplay(auth, "popular", popular, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
 
     const watchListElements = mainCardsDisplay(auth, "watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const favoritesElements = mainCardsDisplay(auth, "favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
@@ -43,9 +43,9 @@ const Home = ({ isLoading, searchResults, auth, movies, tvShows, watchList, setW
             {auth ? <>
                 <MainBanner />
                 <h1>Top Rated</h1>
-                {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div> */}
+                <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div>
                 <h1>Popular</h1>
-                {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div> */}
+                <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div>
                 <div className={style.cardsRow} >{searchResultsElements ? searchResultsElements : ""}</div>
                 <h1>My Watch List</h1>
                 <div className={style.watchListCards}>{isLoading ? <Spinner /> : watchListElements}</div>
