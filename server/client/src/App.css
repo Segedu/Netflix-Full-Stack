@@ -64,13 +64,14 @@ a .watchListCounter{
 
 
 @media (max-width:1440px) {
-
   .App nav{
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    flex-wrap: wrap;
-    align-items: center;
+      position: fixed;
+      max-width: 100%;
+      display: flex;
+      z-index: 1;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
   }
 
     .App nav a{
@@ -80,42 +81,15 @@ a .watchListCounter{
 
  .App nav a img{
   width: 3.5rem;
-  margin-top: -0.3rem;
   }
+ 
+}
 
+  @media (max-width:786px) {
+    .icons{
+      font-size:large;
+    }
+  }
   
-}
-@media (max-width:340px) {
+ 
 
- /* .App nav{
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-    */
-
-  /* .App nav a{
-    padding: 0.3rem;
-    font-size: small;
-  }
-
- .App nav a img{
-  width: 3.5rem;
-  margin-top: -0.3rem;
-  } */
-
-  .MainContainer{
-    padding: 0;
-  } 
-
-  .HomePageTrailer iframe{
-    position: relative;
-    width: 82vw;
-  }
-
-  .icons{
-    font-size: x-large;
-  }
-}

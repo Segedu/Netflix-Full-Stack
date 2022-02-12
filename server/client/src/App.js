@@ -15,8 +15,8 @@ import Chat from './components/Chat';
 import { getData } from './clientUtils/clientUtils';
 import SearchBar from './components/SearchBar';
 import { BsChat, BsPersonCircle } from 'react-icons/bs';
-import style from './screens/Home/Home.module.css'
-import './App.css';
+// import style from './screens/Home/Home.module.css';
+import style from './App.css';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : null);

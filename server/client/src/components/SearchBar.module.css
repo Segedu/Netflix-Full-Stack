@@ -25,11 +25,8 @@ font-weight: bold;
     color: white;
     font-size: xx-large;
   }
-  
 
-
-
-@media (max-width:340px) {
+@media (max-width:786px) {
 
 .searchInput{
     width:6rem;
@@ -37,5 +34,8 @@ font-weight: bold;
   }
   .searchBtn{
     font-size: small;
+  }
+  .icons{
+    font-size:large;
   }
 }

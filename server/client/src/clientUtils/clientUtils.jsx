@@ -69,29 +69,10 @@ export const playMovie = (e) => {
     e.target.play();
 }
 
-// export function getMovies(searchTerm, setSearchResults, API_KEY_MOVIES) {
-//     const url = `http://www.omdbapi.com/?s=${searchTerm}&apikey=${API_KEY_MOVIES}`;
-//     // setIsLoading(true)
-//     axios.get(url)
-//         .then(response => {
-//             if (response.data.Search) {
-//                 setSearchResults(response.data.Search);
-//                 // setIsLoading(false);
-//             }
-//         }).catch(error => {
-//             console.log(error);
-//         })
-// }
-
 export function filterByGenres(filterCategory, mainMediaArray) {
     const filteredResult = mainMediaArray.filter((item) => (item.genre_ids ? item.genre_ids.indexOf(filterCategory) >= 0 : ""));
     return filteredResult
 }
-
-// export function filterByTitle(filterCategory, mainMediaArray) {
-//     const filteredResult = mainMediaArray.filter((item) => (item.Title ? item.Title.indexOf(filterCategory) >= 0 : ""));
-//     return filteredResult
-// }
 
 export function getData(route, setData, setIsLoading) {
     setIsLoading(true);

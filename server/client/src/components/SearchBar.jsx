@@ -1,9 +1,8 @@
 import React from 'react';
-import { searchData, searchInputHandler, suggestionHandler } from '../clientUtils/clientUtils';
-// import style from '../screens/Home/Home.module.css';
+import { searchData, searchInputHandler } from '../clientUtils/clientUtils';
 import { IoIosSearch } from 'react-icons/io';
 import style from './SearchBar.module.css';
-import TvShows from '../screens/TvShows/TvShows';
+
 
 function SearchBar({ searchTerm, setSearchTerm, setSearchResults, setSuggestions, movies, tvShows }) {
 
