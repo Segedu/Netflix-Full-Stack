@@ -22,31 +22,15 @@ const Home = ({ isLoading, searchResults, auth, movies, tvShows, topRated, popul
     const moviesElements = mainCardsDisplay(auth, "movies", movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const tvShowsElements = mainCardsDisplay(auth, "tvShows", tvShows, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
 
-
-    // const searchResultsElements = searchResults.map(media =>
-    //     <section key={media.imdbID}>
-    //         <img src={media.Poster} />
-    //         <article className="details">
-    //             <h4>{media.Title}</h4>
-    //             <article className="buttonsCont">
-    //                 <button onClick={() => playVideo(media.video, setMovieToPlay, searchResults, setIsRedirectToVideoPlayer)}><BsPlayCircle fontSize="xx-large" color="white" /></button>
-    //                 <button onClick={() => addToUserList(searchResults, media.id, watchList, setWatchList, watchList, favoritesList)}> <HiOutlinePlusCircle title="Add to watch list" fontSize="xx-large" color="white" /></button>
-    //                 <button onClick={() => deleteFromUserList(auth.localId, media.id, watchList, setWatchList, watchList, favoritesList)}> <HiOutlineMinusCircle title="Remove from watch list" fontSize="xx-large" color="white" /></button>
-    //                 <button onClick={() => addToUserList(searchResults, media.id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Like" fontSize="xx-large" color="white" /></button>
-    //             </article>
-    //         </article>
-    //     </section>
-    // )
-
     return (
         <div className={style.cardsContainer}>
             {auth ? <>
                 <MainBanner />
+                <div className={style.cardsRow} >{searchResultsElements ? searchResultsElements : ""}</div>
                 <h1>Top Rated</h1>
                 <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div>
                 <h1>Popular</h1>
                 <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div>
-                <div className={style.cardsRow} >{searchResultsElements ? searchResultsElements : ""}</div>
                 <h1>My Watch List</h1>
                 <div className={style.watchListCards}>{isLoading ? <Spinner /> : watchListElements}</div>
                 <h1>My Favorites</h1>
@@ -58,9 +42,9 @@ const Home = ({ isLoading, searchResults, auth, movies, tvShows, topRated, popul
             </> : <>
                 <MainBanner />
                 <h1>Top Rated</h1>
-                {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div> */}
+                <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div>
                 <h1>Popular</h1>
-                {/* <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div> */}
+                <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div>
                 <h1>Movies</h1>
                 <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{moviesElements}</section>}</div>
                 <h1>TV shows</h1>

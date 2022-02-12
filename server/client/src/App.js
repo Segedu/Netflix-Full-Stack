@@ -53,7 +53,7 @@ function App() {
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
               <article>
-                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setSuggestions={setSuggestions} movies={movies} />
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setSuggestions={setSuggestions} movies={movies} tvShows={tvShows} />
               </article>
               <Link to="/Chat"><BsChat className={style.icons} title="Chat" /></Link>
               <p className={style.currentUser}>{auth.email}</p>

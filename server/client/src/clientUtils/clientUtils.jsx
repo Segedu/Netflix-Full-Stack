@@ -94,10 +94,8 @@ export function filterByGenres(filterCategory, mainMediaArray) {
 // }
 
 export function getData(route, setData, setIsLoading) {
-    // export function getData(setIsLoading, setData) {
     setIsLoading(true);
     axios
-        // .get('/json.json')
         .get(`/${route}`)
         .then(response => {
             setData(response.data)
@@ -229,13 +227,12 @@ export function deleteFromFavorites(authLocalId, objId) {
         })
 }
 
-export function searchData(input, dataArray, setArray, setInput) {
+export function searchData(input, dataArray, secondDataArr, setArray, setInput) {
     if (input) {
-        const search_result = dataArray.filter(element => {
-            const regex = new RegExp(`${input}`, "gi");
-            return (element.title.match(regex))
-        })
-        setArray(search_result);
+        const search_result_movies = dataArray.filter(item => item.title.toLowerCase().includes(input.toLowerCase()));
+        const search_result_tvShows = secondDataArr.filter(item => item.name.toLowerCase().includes(input.toLowerCase()));
+        let searchesResultArray = search_result_movies.concat(search_result_tvShows)
+        setArray(searchesResultArray);
         setInput(input);
     }
 }
@@ -254,7 +251,3 @@ export const suggestionHandler = (searchTerm, setSearchTerm, setSuggestions) => 
     setSearchTerm(searchTerm);
     setSuggestions([]);
 }
-
-//! additional data
-// searchData(searchTerm, data, setSuggestions, setSearchTerm); //!searchInputHandler function
-{/* <button onClick={() => searchData(searchTerm, data, setSuggestions, setSearchTerm)} className={styles.searchBtn}>Search</button> */ }//!ui search btn
