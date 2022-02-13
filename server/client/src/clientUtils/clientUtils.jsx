@@ -25,7 +25,7 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                 <article className={style.buttonsCont}>
                     {!auth ? <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className={style.icons} /></button>
                         : <>
-                            {str === "tvShows" || str === "movies" ? <>
+                            {str === "tvShows" || str === "movies" || str === "popular" || str === "topRated" ? <>
                                 <button onClick={() => showObjDetails(data, media._id, setMovieDetails, setIsRedirect)}>< IoIosArrowDropdown title="Details" className={style.icons} /></button>
                                 <button onClick={() => addToUserList(auth.localId, data, media._id, watchList, setWatchList, watchList, favoritesList)}><HiOutlinePlusCircle title="Add to watch list" className={style.icons} /></button>
                                 <button onClick={() => addToUserList(auth.localId, data, media._id, favoritesList, setFavoritesList, watchList, favoritesList)}><BsHandThumbsUp title="Like" className={style.icons} /></button>
