@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { firebaseAuth, db } from '../../firebase';
+import { firebaseAuth, db } from '../../firebase'
 import SendMessage from './SendMessage';
 import './Chat.css';
 
@@ -18,11 +18,11 @@ function Chat() {
     )
 
     return (
-        <div className={"Chat"}>
-            <div className={"messagesCont"}>
+        <div className="Chat">
+            <div className="messagesCont">
                 {elements}
             </div>
-            <div className={"messageBoard"}>
+            <div className="messageBoard">
                 <SendMessage />
             </div>
         </div>

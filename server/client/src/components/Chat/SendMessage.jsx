@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { db, firebaseAuth } from '../firebase';
+import { db, firebaseAuth } from '../../firebase';
 import firebase from 'firebase';
 import { IoIosSend } from 'react-icons/io';
 import style from './Chat.css';
@@ -23,7 +23,7 @@ function SendMessage() {
     return (
         <div className="sendMessage">
             <input className='chatMessageInput' type="text" value={message} onChange={(e) => { setMessage(e.target.value) }} placeholder='Message...' />
-            <button onClick={(e) => { sendMessage(e) }}><IoIosSend className={style.icons} /></button>
+            <button onClick={(e) => { sendMessage(e) }}><IoIosSend className={"icons"} /></button>
         </div>
     )
 

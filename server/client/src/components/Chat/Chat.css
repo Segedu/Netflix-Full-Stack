@@ -80,6 +80,10 @@
   color: white;
   font-size: xx-large;
 }
+.sendMessage button{
+  background-color: transparent;
+  border: none;
+}
 
 
 @media (max-width: 775px) {
