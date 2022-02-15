@@ -17,7 +17,6 @@ function SendMessage() {
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         })
         setMessage('');
-        // scroll.current.scrollIntoView({ behavior: 'smooth' })
     }
 
     return (

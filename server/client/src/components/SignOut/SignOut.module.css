@@ -6,7 +6,6 @@
     display: inline;
     float: right;
     color: white;
-    /* width: 5rem; */
 }
 
 .icons{
@@ -23,9 +22,8 @@
   }
 
   .icons{
-
     font-size:medium;
   }
 
-    }
+}
     

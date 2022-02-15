@@ -7,7 +7,6 @@
 }
 
 .signInAndUpForm{
-
         display: flex;
         align-items: center;
         border: none;
@@ -25,7 +24,6 @@
 
  .signInAndUpForm h1{
     color: rgb(180, 0, 0);
-    /* margin: 1rem; */
 }
  .signInInput{
     border-radius: 0.5rem;
@@ -76,8 +74,6 @@ margin-top: 0.3rem;
 
     }
     .signInAndUpForm{
-        /* width: ;/ */
-        /* background-color: aqua; */
-        /* width: 50%; */
+
     }
 }
