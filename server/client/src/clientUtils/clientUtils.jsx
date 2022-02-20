@@ -173,9 +173,9 @@ export function insertNewUser(route, localId, authEmail) {
 export const deleteFromUserList = (authLocalId, objId, listName, setFunction, watchList, favoritesList) => {
     const updatedArrayAfterRemove = [...listName].filter(obj => obj._id !== objId);
     setFunction(updatedArrayAfterRemove);
-    if (listName == watchList) {
+    if (listName === watchList) {
         deleteFromWatchList(authLocalId, objId)
-    } else if (listName == favoritesList) {
+    } else if (listName === favoritesList) {
         deleteFromFavorites(authLocalId, objId)
     }
 }
