@@ -1,7 +1,7 @@
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Home from './screens/Home/Home';
-import UserWatchList from './screens/UserWatchList/UserWatchList';
+import UserWatchList from './screens/MyList/MyList';
 import SignOut from './components/SignOut/SignOut';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
@@ -11,9 +11,9 @@ import Details from './screens/Details/Details';
 import VideoPlayer from './screens/VideoPlayer/VideoPlayer';
 import netflixLogo from './video/netflix.png.png'
 import Chat from './components/Chat/Chat';
-import { getData } from './clientUtils/clientUtils';
 import SearchBar from './components/SearchBar/SearchBar';
 import { BsChat, BsPersonCircle } from 'react-icons/bs';
+import { getData } from './clientUtils/clientUtils';
 import style from './App.css';
 
 function App() {

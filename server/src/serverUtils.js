@@ -1,8 +1,6 @@
 const mongoDB = require("mongodb"),
     MongoClient = mongoDB.MongoClient,
-    ObjectId = mongoDB.ObjectId,
     url = process.env.MONGO_URL || "mongodb://localhost:27017/";
-
 const dbName = "Netflix";
 
 function getData(req, res, collectionName) {
@@ -104,6 +102,7 @@ function deleteMediaItemFromWatchListById(req, res, collectionName) {
             );
     });
 }
+
 function deleteMediaItemFromFavoritesById(req, res, collectionName) {
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;

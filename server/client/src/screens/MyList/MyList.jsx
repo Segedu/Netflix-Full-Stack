@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import style from '../Home/Home.module.css';
 import '../../App.css';
 
-const UserWatchList = ({ auth, watchList, setWatchList, setMovieToPlay, favoritesList, setFavoritesList, setMovieDetails, setIsRedirect }) => {
+const MyList = ({ auth, watchList, setWatchList, setMovieToPlay, favoritesList, setFavoritesList, setMovieDetails, setIsRedirect }) => {
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
 
     const watchListElements = mainCardsDisplay(auth, "watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
@@ -22,5 +22,5 @@ const UserWatchList = ({ auth, watchList, setWatchList, setMovieToPlay, favorite
     )
 }
 
-export default UserWatchList;
+export default MyList;
 
