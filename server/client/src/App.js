@@ -1,7 +1,7 @@
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Home from './screens/Home/Home';
-import UserWatchList from './screens/MyList/MyList';
+import MyList from './screens/MyList/MyList';
 import SignOut from './components/SignOut/SignOut';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
@@ -44,9 +44,9 @@ function App() {
         <nav>
           {auth ? (
             <>
-              <Redirect to="UserWatchList" />
+              <Redirect to="MyList" />
               <Link to="/"><img src={netflixLogo} alt="" /></Link>
-              <Link to="/UserWatchList">My Watch List</Link>
+              <Link to="/MyList">My List</Link>
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
               <article>
@@ -72,7 +72,7 @@ function App() {
           <Route exact path="/Movies" component={() => <Movies isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
           <Route exact path="/TvShows" component={() => <TvShows isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
           <Route exact path="/Details" component={() => <Details auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} movies={movies} tvShows={tvShows} />} />
-          <Route exact path="/UserWatchList" component={() => <UserWatchList auth={auth} setMovieDetails={setMovieDetails} setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} />} />
+          <Route exact path="/MyList" component={() => <MyList auth={auth} setMovieDetails={setMovieDetails} setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} />} />
           <Route exact path="/VideoPlayer" component={() => <VideoPlayer movieToPlay={movieToPlay} />} />
           <Route exact path="/SignUp" component={() => <SignUp auth={auth} setAuth={setAuth} />} />
           <Route exact path="/SignIn" component={() => <SignIn setWatchList={setWatchList} setFavoritesList={setFavoritesList} setAuth={setAuth} />} />
