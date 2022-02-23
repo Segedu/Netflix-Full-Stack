@@ -1,8 +1,6 @@
 console.log("app is loading");
 // const express = require("express");
 import express from 'express';
-import dotenv from 'dotenv';
-dotenv.config();
 // require("dotenv").config();
 const app = express(),
   moviesRoute = "movies",
