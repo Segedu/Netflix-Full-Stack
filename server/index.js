@@ -1,7 +1,7 @@
 console.log("app is loading");
 // const express = require("express");
-import express from 'express';
 // require("dotenv").config();
+import express from 'express';
 const app = express(),
   moviesRoute = "movies",
   tvShowsRoute = "tvShows",
@@ -9,27 +9,13 @@ const app = express(),
   popularRoute = "popular",
   topRatedRoute = "topRated";
 import {
-  deleteMediaItemFromFavoritesById,
-  deleteMediaItemFromWatchListById,
-  updateUserListById,
-  getMediaItemsById,
-  getUserDataById,
-  getData,
-  insertNewUser,
+  deleteMediaItemFromFavoritesById, deleteMediaItemFromWatchListById, updateUserListById,
+  getMediaItemsById, getUserDataById, getData, insertNewUser
 } from './src/serverUtils.js';
 import path from "path";
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// {
-//   deleteMediaItemFromFavoritesById,
-//     deleteMediaItemFromWatchListById,
-//     updateUserListById,
-//     getMediaItemsById,
-//     getUserDataById,
-//     getData,
-//     insertNewUser,
-//   } = require('./src/serverUtils');
 
 app.use(express.json());
 
