@@ -1,5 +1,6 @@
-const mongoDB = require("mongodb"),
-    MongoClient = mongoDB.MongoClient,
+import mongoDB from "mongodb";
+// const mongoDB = require("mongodb"),
+const MongoClient = mongoDB.MongoClient,
     url = process.env.MONGO_URL || "mongodb://localhost:27017/";
 const dbName = "Netflix";
 
@@ -123,4 +124,4 @@ function deleteMediaItemFromFavoritesById(req, res, collectionName) {
     });
 }
 
-module.exports = { getData, getUserDataById, insertNewUser, updateUserListById, getMediaItemsById, deleteMediaItemFromWatchListById, deleteMediaItemFromFavoritesById };
+export { getData, getUserDataById, insertNewUser, updateUserListById, getMediaItemsById, deleteMediaItemFromWatchListById, deleteMediaItemFromFavoritesById };

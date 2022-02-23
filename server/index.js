@@ -1,21 +1,37 @@
 console.log("app is loading");
-const express = require("express");
-require("dotenv").config();
+// const express = require("express");
+import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+// require("dotenv").config();
 const app = express(),
   moviesRoute = "movies",
   tvShowsRoute = "tvShows",
   usersRoute = "users",
   popularRoute = "popular",
-  topRatedRoute = "topRated",
-  {
-    deleteMediaItemFromFavoritesById,
-    deleteMediaItemFromWatchListById,
-    updateUserListById,
-    getMediaItemsById,
-    getUserDataById,
-    getData,
-    insertNewUser,
-  } = require('./src/serverUtils');
+  topRatedRoute = "topRated";
+import {
+  deleteMediaItemFromFavoritesById,
+  deleteMediaItemFromWatchListById,
+  updateUserListById,
+  getMediaItemsById,
+  getUserDataById,
+  getData,
+  insertNewUser,
+} from './src/serverUtils.js';
+import path from "path";
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// {
+//   deleteMediaItemFromFavoritesById,
+//     deleteMediaItemFromWatchListById,
+//     updateUserListById,
+//     getMediaItemsById,
+//     getUserDataById,
+//     getData,
+//     insertNewUser,
+//   } = require('./src/serverUtils');
 
 app.use(express.json());
 
@@ -57,10 +73,17 @@ app.patch(`/${usersRoute}/:id`, (req, res) => {
 
 app.patch(`/${usersRoute}/delete/watchList/:id`, (req, res) => {
   deleteMediaItemFromWatchListById(req, res, usersRoute);
-})
+});
+
 app.patch(`/${usersRoute}/delete/favoritesList/:id`, (req, res) => {
   deleteMediaItemFromFavoritesById(req, res, usersRoute);
-})
+});
+
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

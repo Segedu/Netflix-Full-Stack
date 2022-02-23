@@ -83,7 +83,7 @@ export function getData(route, setData, setIsLoading) {
             setIsLoading(false);
         })
         .catch(error => {
-            console.log(error.message, "you are in getting movies/Tv shows catch");
+            console.log(error, "you are in getting movies/Tv shows catch");
         });
 }
 
