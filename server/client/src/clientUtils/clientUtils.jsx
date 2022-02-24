@@ -18,7 +18,6 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                     preload='none'
                     muted
                     loop />
-
             </article>
             <article className={style.details} >
                 <article className={style.buttonsCont}>

@@ -26,7 +26,7 @@ const Home = ({ isLoading, searchResults, auth, movies, tvShows, topRated, popul
                 <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{topRatedElements}</section>}</div>
                 <h1>Popular</h1>
                 <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{popularElements}</section>}</div>
-                <h1>My Watch List</h1>
+                <h1>My List</h1>
                 <div className={style.watchListCards}>{isLoading ? <Spinner /> : watchListElements}</div>
                 <h1>My Favorites</h1>
                 <div className={style.favoritesCards}>{isLoading ? <Spinner /> : favoritesElements}</div>

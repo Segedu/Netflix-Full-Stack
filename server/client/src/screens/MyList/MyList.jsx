@@ -12,7 +12,7 @@ const MyList = ({ auth, watchList, setWatchList, setMovieToPlay, favoritesList, 
     return (
         <div className={style.cardsContainer}>
             <div className={style.watchListCont}>
-                <h1>My Watch List</h1>
+                <h1>My List</h1>
                 <div className={style.watchListCards}> {watchListElements}</div>
                 <h1>My Favorites</h1>
                 <div className={style.favoritesCards}> {favoritesElements}</div>

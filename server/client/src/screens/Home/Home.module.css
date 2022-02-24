@@ -2,9 +2,11 @@
   margin: 0;
   padding: 0%;
 }
+
 .bannerCont{
   height: 70vh;
 }
+
 .bannerVideo{
   position: absolute;
   right: 0;
@@ -16,8 +18,8 @@
 .cardsContainer{
   display: flex;
  flex-direction: column;
-
 }
+
 .watchListCont{
   margin-top: 7rem;
 }
@@ -52,7 +54,6 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #ff010163;
- 
 }
 
 .slider{
@@ -66,13 +67,9 @@ animation-play-state: paused;
 }
 
 .cardsSection {
-  transition: -webkit-transform 1.5s;
-  transition: transform 1.5s;
   transition: transform 1.5s, -webkit-transform 1.5s;
-  height: 25rem;
-  padding: 1rem;
-  /* margin-top: 2rem; */
-  /* margin-bottom: 2rem; */
+  height: 18rem;
+  padding: 0.3rem;
 }
 
 .cardsSection:hover{
@@ -86,9 +83,8 @@ animation-play-state: paused;
 .cardImage{
   display: flex;
   height: 70%;
-  width: 28rem;
+  width: 18rem;
   filter: drop-shadow(2px 4px 6px #484848);
-  /* justify-content: center; */
 }
 
 .cardImage h2{
@@ -103,11 +99,10 @@ animation-play-state: paused;
 }
 
 .details {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   transition: 0.5s ease-in-out;
-  width: 27.3rem;
+  width: 22.3rem;
   height: 30%;
   opacity: 0;
   bottom: 0;
