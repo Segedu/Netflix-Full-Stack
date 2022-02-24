@@ -32,22 +32,21 @@ const Movies = ({ isLoading, auth, movies, error, watchList, setWatchList, setMo
         <div className={style.cardsContainer}>
             <MainBanner />
             <h1>Action</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{actionElements}</section>}</div>
+            <div className={style.cardsRow}>{isLoading ? <Spinner /> : <section className={style.slider}>{actionElements}</section>}</div>
             <h1>Drama</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{dramaElements}</section>}</div>
+            <div className={style.cardsRow}>{isLoading ? <Spinner /> : <section className={style.slider}>{dramaElements}</section>}</div>
             <h1>Crime</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{crimeElements}</section>}</div>
+            <div className={style.cardsRow}>{isLoading ? <Spinner /> : <section className={style.slider}>{crimeElements}</section>}</div>
             <h1>Comedy</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{comedyElements}</section>}</div>
+            <div className={style.cardsRow}>{isLoading ? <Spinner /> : <section className={style.slider}>{comedyElements}</section>}</div>
             <h1>Adventure</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{adventureElements}</section>}</div>
+            <div className={style.cardsRow}>{isLoading ? <Spinner /> : <section className={style.slider}>{adventureElements}</section>}</div>
             <h1>Animation</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{animationElements}</section>}</div>
+            <div className={style.cardsRow}>{isLoading ? <Spinner /> : <section className={style.slider}>{animationElements}</section>}</div>
             <h1>Romance</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{romanceElements}</section>}</div>
+            <div className={style.cardsRow}>{isLoading ? <Spinner /> : <section className={style.slider}>{romanceElements}</section>}</div>
             <h1>Documentary</h1>
-            <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{documentaryElements}</section>}</div>
-            {error ? <p style={{ color: "red" }} > error</p> : ""}
+            <div className={style.cardsRow}>{isLoading ? <Spinner /> : <section className={style.slider}>{documentaryElements}</section>}</div>
             {isRedirect ? <Redirect to="/Details" /> : ""}
             {isRedirectToVideoPlayer ? <Redirect to="/VideoPlayer" /> : ""}
         </div>
