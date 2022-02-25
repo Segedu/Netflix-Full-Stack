@@ -33,12 +33,12 @@ const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
             })
             .then(function (response) {
                 getUserOrMediaDataById(usersRoute, response.data.localId, setWatchList, setFavoritesList);
-                setLoading(false)
-                setAuth(response.data)
+                setLoading(false);
+                setAuth(response.data);
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
             })
             .catch(function (error) {
-                setErrorFromServer(error.response.data.error.message)
+                setErrorFromServer(error.response.data.error.message);
             });
     }
 

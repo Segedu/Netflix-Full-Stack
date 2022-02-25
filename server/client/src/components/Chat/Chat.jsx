@@ -19,12 +19,8 @@ function Chat() {
 
     return (
         <div className="Chat">
-            <div className="messagesCont">
-                {elements}
-            </div>
-            <div className="messageBoard">
-                <SendMessage />
-            </div>
+            <div className="messagesCont">{elements}</div>
+            <div className="messageBoard"><SendMessage /></div>
         </div>
     )
 }

@@ -33,7 +33,7 @@ const SignUp = ({ setAuth }) => {
     }
 
     const emailValidation = (e) => {
-        setUserEmail(e.target.value)
+        setUserEmail(e.target.value);
     }
 
     const passwordValidation = (e, setFunction) => {

@@ -14,8 +14,7 @@ function SearchBar({ searchTerm, setSearchTerm, setSearchResults, setSuggestions
             <button className={style.searchBtn} onClick={(e) => {
                 e.preventDefault();
                 searchData(searchTerm, movies, tvShows, setSearchResults, setSearchTerm)
-            }}
-            ><IoIosSearch title="Search" className={style.icons} /></button>
+            }}><IoIosSearch title="Search" className={style.icons} /></button>
         </form >
     )
 }

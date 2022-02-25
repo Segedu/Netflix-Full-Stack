@@ -19,19 +19,3 @@ const SignOut = ({ setAuth, setFavoritesList, setWatchList }) => {
 }
 
 export default SignOut;
-
-
-// import React from 'react';
-// import { auth } from '../firebase';
-
-// function SignOut({ setUser }) {
-//     return <div>
-//         <button onClick={() => {
-//             auth.signOut(),
-//                 setUser(null)
-//         }
-//         }>SignOut</button>
-//     </div>;
-// }
-
-// export default SignOut;
