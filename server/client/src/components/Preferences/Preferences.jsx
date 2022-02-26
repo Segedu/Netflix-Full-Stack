@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Preferences({ showPreferencesDialog, setShowPreferencesDialog }) {
+    
     return (
         <div>
             <dialog open={showPreferencesDialog ? 'open' : 'close'}>
