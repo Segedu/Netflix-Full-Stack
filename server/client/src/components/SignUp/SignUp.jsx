@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import { API_KEY } from '../../logic/key';
 import { insertNewUser } from "../../clientUtils/clientUtils.jsx";
 
-const SignUp = ({ setAuth }) => {
-    const [userEmail, setUserEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState()
-    const [errorFromServer, setErrorFromServer] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const LOCAL_STORAGE_AUTH_KEY = "auth";
+const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) => {
+    const [userEmail, setUserEmail] = useState(""),
+        [password, setPassword] = useState(""),
+        [confirmPassword, setConfirmPassword] = useState(),
+        [errorFromServer, setErrorFromServer] = useState(false),
+        [loading, setLoading] = useState(false),
+        LOCAL_STORAGE_AUTH_KEY = "auth";
 
     function signUp() {
         setLoading(true)
@@ -22,7 +22,7 @@ const SignUp = ({ setAuth }) => {
                 password: password,
             })
             .then(response => {
-                insertNewUser('users', response.data.localId, response.data.email);
+                insertNewUser('users', response.data.localId, response.data.email, showPreferencesDialog, setShowPreferencesDialog);
                 setLoading(false)
                 setAuth(response.data);
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
@@ -54,7 +54,7 @@ const SignUp = ({ setAuth }) => {
                 <input className={style.signInInput} type="password" autoComplete="on" onChange={(e) => { passwordValidation(e, setPassword) }} placeholder="Enter Password" /><br></br>
                 <input className={style.signInInput} type="password" autoComplete="on" onChange={(e) => { passwordValidation(e, setConfirmPassword) }} placeholder="Confirm Password" />
                 <input className={style.button} type="submit" value="Sign-Up" />
-                <p>{loading ? <Spinner className={style.spinner} /> : ""}</p>
+                <article>{loading ? <Spinner className={style.spinner} /> : ""}</article>
                 <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>
         </div>

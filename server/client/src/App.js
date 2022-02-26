@@ -17,18 +17,20 @@ import { getData } from './clientUtils/clientUtils';
 import style from './App.css';
 
 function App() {
-  const [auth, setAuth] = useState(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [movieDetails, setMovieDetails] = useState("");
-  const [movieToPlay, setMovieToPlay] = useState("");
-  const [movies, setMovies] = useState([]);
-  const [tvShows, setTvShows] = useState([]);
-  const [watchList, setWatchList] = useState([]);
-  const [favoritesList, setFavoritesList] = useState([]);
-  const [topRated, setTopRated] = useState([]);
-  const [popular, setPopular] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [auth, setAuth] = useState(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : null),
+    [isLoading, setIsLoading] = useState(false),
+    [movieDetails, setMovieDetails] = useState(""),
+    [movieToPlay, setMovieToPlay] = useState(""),
+    [movies, setMovies] = useState([]),
+    [tvShows, setTvShows] = useState([]),
+    [watchList, setWatchList] = useState([]),
+    [favoritesList, setFavoritesList] = useState([]),
+    [topRated, setTopRated] = useState([]),
+    [popular, setPopular] = useState([]),
+    [searchResults, setSearchResults] = useState([]),
+    [searchTerm, setSearchTerm] = useState(""),
+    [showPreferencesDialog, setShowPreferencesDialog] = useState(true);
+
   const [suggestions, setSuggestions] = useState("");
 
   useEffect(() => {
@@ -41,32 +43,31 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <nav>
-          {auth ? (
-            <>
-              <Redirect to="MyList" />
-              <Link to="/"><img src={netflixLogo} alt="" /></Link>
-              <Link to="/MyList">My List</Link>
-              <Link to="/Movies">Movies</Link>
-              <Link to="/TvShows">TV Shows</Link>
-              <article>
-                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setSuggestions={setSuggestions} movies={movies} tvShows={tvShows} />
-              </article>
-              <Link to="/Chat"><BsChat className={style.icons} title="Chat" /></Link>
-              <p className={style.currentUser}>{auth.email}</p>
-              <SignOut setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />
-            </>
-          ) : <Redirect to="/" />}
-          {!auth ? (
-            <>
+        <header>
+          <nav>
+            {auth ? (
+              <>
+                <Redirect to="/" />
+                <Link to="/"><img src={netflixLogo} alt="appLogo" /></Link>
+                <Link to="/MyList">My List</Link>
+                <Link to="/Movies">Movies</Link>
+                <Link to="/TvShows">TV Shows</Link>
+                <article>
+                  <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setSuggestions={setSuggestions} movies={movies} tvShows={tvShows} />
+                </article>
+                <Link to="/Chat"><BsChat className={style.icons} title="Chat" /></Link>
+                <p className={style.currentUser}>{auth.email}</p>
+                <SignOut setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />
+              </>
+            ) : <>
               <Link to="/"><img src={netflixLogo} alt="appLogo" /></Link>
               <Link to="/Movies">Movies</Link>
               <Link to="/TvShows">TV Shows</Link>
               <Link to="/SignIn"><BsPersonCircle className={style.icons} title="SignIn" /></Link>
               <Redirect to="/" />
-            </>
-          ) : <Redirect to="/" />}
-        </nav>
+            </>}
+          </nav>
+        </header>
         <Switch>
           <Route exact path="/" component={() => <Home auth={auth} isLoading={isLoading} searchResults={searchResults} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} popular={popular} topRated={topRated} />} />
           <Route exact path="/Movies" component={() => <Movies isLoading={isLoading} auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
@@ -74,7 +75,7 @@ function App() {
           <Route exact path="/Details" component={() => <Details auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movieDetails={movieDetails} movies={movies} tvShows={tvShows} />} />
           <Route exact path="/MyList" component={() => <MyList auth={auth} setMovieDetails={setMovieDetails} setMovieToPlay={setMovieToPlay} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} />} />
           <Route exact path="/VideoPlayer" component={() => <VideoPlayer movieToPlay={movieToPlay} />} />
-          <Route exact path="/SignUp" component={() => <SignUp auth={auth} setAuth={setAuth} />} />
+          <Route exact path="/SignUp" component={() => <SignUp auth={auth} setAuth={setAuth} showPreferencesDialog={showPreferencesDialog} setShowPreferencesDialog={setShowPreferencesDialog} />} />
           <Route exact path="/SignIn" component={() => <SignIn setWatchList={setWatchList} setFavoritesList={setFavoritesList} setAuth={setAuth} />} />
           <Route exact path="/Chat" component={() => <Chat setAuth={setAuth} />} />
         </Switch>

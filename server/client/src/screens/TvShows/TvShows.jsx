@@ -9,25 +9,25 @@ const TvShows = ({ isLoading, auth, tvShows, error, watchList, setWatchList, set
     const [isRedirect, setIsRedirect] = useState(false);
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
 
-    const reality = filterByGenres(10764, tvShows);
     const drama = filterByGenres(18, tvShows);
     const crime = filterByGenres(80, tvShows);
     const comedy = filterByGenres(35, tvShows);
+    const family = filterByGenres(10751, tvShows);
+    const reality = filterByGenres(10764, tvShows);
+    const fantasy = filterByGenres(10765, tvShows);
     const mystery = filterByGenres(9648, tvShows);
     const animation = filterByGenres(16, tvShows);
-    const family = filterByGenres(10751, tvShows);
     const documentary = filterByGenres(99, tvShows);
-    const fantasy = filterByGenres(10765, tvShows);
 
-    const realityElements = mainCardsDisplay(auth, "tvShows", reality, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const dramaElements = mainCardsDisplay(auth, "tvShows", drama, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const crimeElements = mainCardsDisplay(auth, "tvShows", crime, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const comedyElements = mainCardsDisplay(auth, "tvShows", comedy, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const mysteryElements = mainCardsDisplay(auth, "tvShows", mystery, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const animationElements = mainCardsDisplay(auth, "tvShows", animation, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const familyElements = mainCardsDisplay(auth, "tvShows", family, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const documentaryElements = mainCardsDisplay(auth, "tvShows", documentary, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const fantasyElements = mainCardsDisplay(auth, "tvShows", fantasy, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const dramaElements = mainCardsDisplay(auth, 'tvShows', drama, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const crimeElements = mainCardsDisplay(auth, 'tvShows', crime, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const comedyElements = mainCardsDisplay(auth, 'tvShows', comedy, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const familyElements = mainCardsDisplay(auth, 'tvShows', family, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const realityElements = mainCardsDisplay(auth, 'tvShows', reality, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const fantasyElements = mainCardsDisplay(auth, 'tvShows', fantasy, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const mysteryElements = mainCardsDisplay(auth, 'tvShows', mystery, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const animationElements = mainCardsDisplay(auth, 'tvShows', animation, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const documentaryElements = mainCardsDisplay(auth, 'tvShows', documentary, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
 
     return (
         <div className={style.cardsContainer}>
@@ -50,7 +50,6 @@ const TvShows = ({ isLoading, auth, tvShows, error, watchList, setWatchList, set
             <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{documentaryElements}</section>}</div>
             <h1>Fantasy</h1>
             <div className={style.cardsRow} >{isLoading ? <Spinner /> : <section className={style.slider}>{fantasyElements}</section>}</div>
-            {error ? <p style={{ color: "red" }} > error</p> : ""}
             {isRedirect ? <Redirect to="/Details" /> : ""}
             {isRedirectToVideoPlayer ? <Redirect to="/VideoPlayer" /> : ""}
         </div>

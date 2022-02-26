@@ -54,7 +54,7 @@ const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
                 <input className={style.button} type="submit" value="Sign-In" />
                 {/* <button onClick={signInWithGoogle}>Sign-In with Google</button> */}
                 <Link to="/SignUp"> Click here to SignUp</Link>
-                <section>{loading ? <Spinner /> : ""}</section>
+                <article>{loading ? <Spinner className={style.spinner} /> : ""}</article>
                 <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>
         </div >

@@ -18,14 +18,14 @@ const Movies = ({ isLoading, auth, movies, error, watchList, setWatchList, setMo
     const romance = filterByGenres(10749, movies)
     const documentary = filterByGenres(99, movies)
 
-    const actionElements = mainCardsDisplay(auth, "movies", action, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const dramaElements = mainCardsDisplay(auth, "movies", drama, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const crimeElements = mainCardsDisplay(auth, "movies", crime, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const comedyElements = mainCardsDisplay(auth, "movies", comedy, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const adventureElements = mainCardsDisplay(auth, "movie", adventure, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const animationElements = mainCardsDisplay(auth, "movies", animation, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const romanceElements = mainCardsDisplay(auth, "movies", romance, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
-    const documentaryElements = mainCardsDisplay(auth, "movies", documentary, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const actionElements = mainCardsDisplay(auth, 'movies', action, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const dramaElements = mainCardsDisplay(auth, 'movies', drama, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const crimeElements = mainCardsDisplay(auth, 'movies', crime, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const adventureElements = mainCardsDisplay(auth, 'movies', adventure, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const animationElements = mainCardsDisplay(auth, 'movies', animation, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const romanceElements = mainCardsDisplay(auth, 'movies', romance, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const comedyElements = mainCardsDisplay(auth, 'movies', comedy, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const documentaryElements = mainCardsDisplay(auth, 'movies', documentary, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
 
 
     return (
