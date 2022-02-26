@@ -4,7 +4,6 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import axios from "axios";
 import netflixTrailer from '../video/trailersCollection.mp4';
 import style from '../screens/Home/Home.module.css';
-import Preferences from "../components/Preferences/Preferences";
 
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
     const elements = data ? data.map(media =>
@@ -148,7 +147,7 @@ export const showObjDetails = (dataArray, objId, setFunction, setIsRedirect) => 
     setIsRedirect(true);
 }
 
-export function insertNewUser(route, localId, authEmail, showPreferencesDialog, setShowPreferencesDialog) {
+export function insertNewUser(route, localId, authEmail) {
     const _id = localId,
         email = authEmail,
         watchList = [],
@@ -164,8 +163,7 @@ export function insertNewUser(route, localId, authEmail, showPreferencesDialog, 
     })
         .then(response => {
             console.log(response.data);
-            <Preferences showPreferencesDialog={showPreferencesDialog} setShowPreferencesDialog={setShowPreferencesDialog} />
-            // alert("Your user account created successfully");
+            alert("Your user account created successfully");
         })
         .catch(error => {
             console.log(error, "you are in the create new user catch");

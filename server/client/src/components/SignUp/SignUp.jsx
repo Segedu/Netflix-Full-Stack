@@ -1,9 +1,10 @@
-import axios from "axios";
-import Spinner from "../Spinner/Spinner.jsx";
+import axios from 'axios';
+import Spinner from '../Spinner/Spinner.jsx';
 import style from '../SignIn/SignIn.module.css';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { API_KEY } from '../../logic/key';
-import { insertNewUser } from "../../clientUtils/clientUtils.jsx";
+import { insertNewUser } from '../../clientUtils/clientUtils.jsx';
+import Preferences from '../Preferences/Preferences.jsx';
 
 const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) => {
     const [userEmail, setUserEmail] = useState(""),
@@ -22,7 +23,7 @@ const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) =>
                 password: password,
             })
             .then(response => {
-                insertNewUser('users', response.data.localId, response.data.email, showPreferencesDialog, setShowPreferencesDialog);
+                insertNewUser('users', response.data.localId, response.data.email);
                 setLoading(false)
                 setAuth(response.data);
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
@@ -43,11 +44,17 @@ const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) =>
         }
     }
 
+
     return (
         <div className={style.Form}>
             <form className={style.signInAndUpForm} onSubmit={(e) => {
                 e.preventDefault();
-                { password === confirmPassword ? signUp() : alert("passwords doesn't match") }
+                {
+                    password === confirmPassword ?
+                        signUp()
+                        // <Preferences showPreferencesDialog={showPreferencesDialog} setShowPreferencesDialog={setShowPreferencesDialog} />
+                        : alert("passwords doesn't match")
+                }
             }}>
                 <h1>Sign-Up</h1>
                 <input className={style.signInInput} type="email" onChange={(e) => { emailValidation(e) }} placeholder="Enter Email" /><br></br>
@@ -57,7 +64,7 @@ const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) =>
                 <article>{loading ? <Spinner className={style.spinner} /> : ""}</article>
                 <h3>{errorFromServer ? errorFromServer : ""}</h3>
             </form>
-        </div>
+        </div >
     )
 }
 
