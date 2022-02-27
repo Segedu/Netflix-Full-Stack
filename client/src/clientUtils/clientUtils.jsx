@@ -6,7 +6,7 @@ import netflixTrailer from '../video/trailersCollection.mp4';
 import style from '../screens/Home/Home.module.css';
 
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
-    const elements = data ? data.map(media =>
+    const elements = data?.map(media =>
         <section className={style.cardsSection} key={media._id}>
             <article className={style.cardImage}>
                 <h2>{media.title ? media.title : media.name}</h2>
@@ -55,7 +55,7 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                 </article>
             </article>
         </section >
-    ) : ""
+    ) 
     return elements;
 }
 
