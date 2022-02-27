@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner.jsx';
 import style from '../SignIn/SignIn.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { API_KEY } from '../../logic/key';
 import { insertNewUser } from '../../clientUtils/clientUtils.jsx';
 import Preferences from '../Preferences/Preferences.jsx';

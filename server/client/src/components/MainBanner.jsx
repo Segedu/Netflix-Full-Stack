@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import style from '../screens/Home/Home.module.css';
 import netflixBanner from '../video/netflixBanner.mp4'
 import { playMovie } from '../clientUtils/clientUtils';
