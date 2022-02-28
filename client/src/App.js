@@ -50,7 +50,7 @@ function App() {
                 <Link to="/MyList">My List</Link>
                 <Link to="/Movies">Movies</Link>
                 <Link to="/TvShows">TV Shows</Link>
-                <article><SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} setSuggestions={setSuggestions} movies={movies} tvShows={tvShows} /></article>
+                <article><SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} suggestions={suggestions} setSuggestions={setSuggestions} movies={movies} tvShows={tvShows} /></article>
                 <Link to="/Chat"><BsChat className={style.icons} title="Chat" /></Link>
                 <p className={style.currentUser}>{auth.email}</p>
                 <SignOut setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />

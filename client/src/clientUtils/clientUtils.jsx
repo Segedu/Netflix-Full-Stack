@@ -55,7 +55,7 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                 </article>
             </article>
         </section >
-    ) 
+    )
     return elements;
 }
 
@@ -217,6 +217,26 @@ export function searchData(input, dataArray, secondDataArr, setArray, setInput) 
         setInput(input);
     }
 }
+export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, secondDataArr) {
+    if (searchTerm) {
+
+        const moviesMatches =
+            searchTerm.length > 0 &&
+            dataArray.filter(media => {
+                const movie = new RegExp(`${searchTerm}`, "gi");
+                return media.title.match(movie);
+            });
+        // const tvShowsMatch =
+        //     searchTerm.length > 0 &&
+        //     secondDataArr.filter(media => {
+        //         const show = new RegExp(`${searchTerm}`, "gi");
+        //         return media.name.match(show);
+        //     });
+
+        setSuggestions(tvShowsMatch && moviesMatches || []);
+    }
+}
+
 
 export const searchInputHandler = (searchTerm, setSearchTerm) => {
     setSearchTerm(searchTerm);
