@@ -217,6 +217,7 @@ export function searchData(input, dataArray, secondDataArr, setArray, setInput) 
         setInput(input);
     }
 }
+
 export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, secondDataArr) {
     if (searchTerm) {
 
@@ -236,7 +237,6 @@ export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, se
         setSuggestions(tvShowsMatch && moviesMatches || []);
     }
 }
-
 
 export const searchInputHandler = (searchTerm, setSearchTerm) => {
     setSearchTerm(searchTerm);
