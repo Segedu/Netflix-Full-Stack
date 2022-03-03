@@ -4,7 +4,6 @@ import style from '../SignIn/SignIn.module.css';
 import { useState } from 'react';
 import { API_KEY } from '../../logic/key';
 import { insertNewUser } from '../../clientUtils/clientUtils.jsx';
-import Preferences from '../Preferences/Preferences.jsx';
 
 const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) => {
     const [userEmail, setUserEmail] = useState(""),
@@ -51,8 +50,7 @@ const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) =>
                 e.preventDefault();
                 {
                     password === confirmPassword ?
-                        signUp()
-                        // <Preferences showPreferencesDialog={showPreferencesDialog} setShowPreferencesDialog={setShowPreferencesDialog} />
+                        signUp()&& setShowPreferencesDialog(true)
                         : alert("passwords doesn't match")
                 }
             }}>

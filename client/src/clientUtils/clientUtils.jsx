@@ -162,7 +162,6 @@ export function insertNewUser(route, localId, authEmail) {
         preferences
     })
         .then(response => {
-            console.log(response.data);
             alert("Your user account created successfully");
         })
         .catch(error => {
@@ -220,7 +219,6 @@ export function searchData(input, dataArray, secondDataArr, setArray, setInput) 
 
 export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, secondDataArr) {
     if (searchTerm) {
-
         const moviesMatches =
             searchTerm.length > 0 &&
             dataArray.filter(media => {
@@ -234,7 +232,7 @@ export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, se
         //         return media.name.match(show);
         //     });
 
-        setSuggestions(tvShowsMatch && moviesMatches || []);
+        setSuggestions(moviesMatches || []);
     }
 }
 

@@ -1,17 +1,18 @@
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Home from './screens/Home/Home';
-import MyList from './screens/MyList/MyList';
+import Preferences from './components/Preferences/Preferences';
+import SearchBar from './components/SearchBar/SearchBar';
 import SignOut from './components/SignOut/SignOut';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
+import Chat from './components/Chat/Chat';
+import Home from './screens/Home/Home';
+import MyList from './screens/MyList/MyList';
 import Movies from './screens/Movies/Movies';
 import TvShows from './screens/TvShows/TvShows';
 import Details from './screens/Details/Details';
 import VideoPlayer from './screens/VideoPlayer/VideoPlayer';
 import netflixLogo from './video/netflix.png.png'
-import Chat from './components/Chat/Chat';
-import SearchBar from './components/SearchBar/SearchBar';
 import { BsChat, BsPersonCircle } from 'react-icons/bs';
 import { getData } from './clientUtils/clientUtils';
 import style from './App.css';
@@ -46,6 +47,7 @@ function App() {
           <nav>
             {auth ? (
               <>
+                <Preferences showPreferencesDialog={showPreferencesDialog} setShowPreferencesDialog={setShowPreferencesDialog} />
                 <Link to="/"><img src={netflixLogo} alt="appLogo" /></Link>
                 <Link to="/MyList">My List</Link>
                 <Link to="/Movies">Movies</Link>
