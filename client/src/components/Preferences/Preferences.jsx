@@ -8,7 +8,7 @@ function Preferences() {
 
     return (
         <div className={style.preferences}>
-            <dialog open={showPreferencesDialog ? 'open' : 'close'}>
+            {/* <dialog open={showPreferencesDialog ? 'open' : 'close'}> */}
                 <form className={style.prefForm} onSubmit={(e) => {
                     e.preventDefault()
                     setShowPreferencesDialog(false);
@@ -66,7 +66,7 @@ function Preferences() {
                     </article>
                     <input type="submit" value="Save" />
                 </form>
-            </dialog>
+            {/* </dialog> */}
 
         </div>
     )

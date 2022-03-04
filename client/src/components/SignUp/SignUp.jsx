@@ -45,7 +45,6 @@ const SignUp = () => {
         }
     }
 
-
     return (
         <div className={style.Form}>
             <form className={style.signInAndUpForm} onSubmit={(e) => {

@@ -31,7 +31,7 @@ function App() {
     [popular, setPopular] = useState([]),
     [searchResults, setSearchResults] = useState([]),
     [searchTerm, setSearchTerm] = useState(""),
-    [showPreferencesDialog, setShowPreferencesDialog] = useState(true),
+    [showPreferencesDialog, setShowPreferencesDialog] = useState(false),
     [suggestions, setSuggestions] = useState("");
 
   useEffect(() => {

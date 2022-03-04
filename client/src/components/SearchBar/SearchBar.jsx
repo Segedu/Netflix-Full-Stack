@@ -4,8 +4,8 @@ import Context from '../context';
 import { IoIosSearch } from 'react-icons/io';
 import style from './SearchBar.module.css';
 
-function SearchBar({ searchTerm, setSearchTerm, setSearchResults, setSuggestions, suggestions }) {
-    const { movies, tvShows } = useContext(Context);
+function SearchBar() {
+    const { movies, tvShows, searchTerm, setSearchTerm, setSearchResults, setSuggestions, suggestions } = useContext(Context);
 
     return (
         <>

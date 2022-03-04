@@ -225,14 +225,16 @@ export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, se
                 const movie = new RegExp(`${searchTerm}`, "gi");
                 return media.title.match(movie);
             });
-        // const tvShowsMatch =
-        //     searchTerm.length > 0 &&
-        //     secondDataArr.filter(media => {
-        //         const show = new RegExp(`${searchTerm}`, "gi");
-        //         return media.name.match(show);
-        //     });
-
         setSuggestions(moviesMatches || []);
+
+    } else {
+        const tvShowsMatch =
+            searchTerm.length > 0 &&
+            secondDataArr.filter(media => {
+                const show = new RegExp(`${searchTerm}`, "gi");
+                return media.name.match(show);
+            });
+        setSuggestions(tvShowsMatch || []);
     }
 }
 
