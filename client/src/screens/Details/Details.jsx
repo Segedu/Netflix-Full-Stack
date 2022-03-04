@@ -8,8 +8,8 @@ import { BsStar } from "react-icons/bs";
 import style from './Details.module.css';
 
 const Details = () => {
-    const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
-    const { auth, movies, tvShows, watchList, favoritesList, movieDetails, setFavoritesList, setWatchList, setMovieToPlay } = useContext(Context);
+    const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false),
+        { auth, movies, tvShows, watchList, favoritesList, movieDetails, setFavoritesList, setWatchList, setMovieToPlay } = useContext(Context);
 
     let data = [];
     { movieDetails.type == "Movie" ? data = movies : data = tvShows }

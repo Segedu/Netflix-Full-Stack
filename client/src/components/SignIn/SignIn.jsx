@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 import style from './SignIn.module.css';
 
 const SignIn = ({ setWatchList, setFavoritesList }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [errorFromServer, setErrorFromServer] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const LOCAL_STORAGE_AUTH_KEY = "auth";
-    const { setAuth } = useContext(Context);
+    const [email, setEmail] = useState(''),
+        [password, setPassword] = useState(''),
+        [errorFromServer, setErrorFromServer] = useState(false),
+        [loading, setLoading] = useState(false),
+        { setAuth } = useContext(Context),
+        LOCAL_STORAGE_AUTH_KEY = 'auth';
 
     let usersRoute = 'users';
 
