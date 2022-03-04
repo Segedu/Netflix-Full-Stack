@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { showObjDetails, mainCardsDisplay, filterByGenres } from '../../clientUtils/clientUtils';
+import Context from '../../components/context';
 import { Redirect } from "react-router-dom";
 import Spinner from '../../components/Spinner/Spinner';
 import MainBanner from '../../components/MainBanner';
 import style from '../Home/Home.module.css';
 
-const TvShows = ({ isLoading, auth, tvShows, error, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
+const TvShows = () => {
     const [isRedirect, setIsRedirect] = useState(false);
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
+    const { auth, isLoading, tvShows, watchList, favoritesList, setFavoritesList, setWatchList, setMovieDetails, setMovieToPlay } = useContext(Context);
 
     const drama = filterByGenres(18, tvShows);
     const crime = filterByGenres(80, tvShows);

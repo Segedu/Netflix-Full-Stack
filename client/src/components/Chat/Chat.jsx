@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { firebaseAuth, db } from '../../firebase'
+import React, { useEffect, useContext, useState } from 'react';
+import Context from '../context';
+import { firebaseAuth, db } from '../../firebase';
 import SendMessage from './SendMessage';
 import './Chat.css';
 
 function Chat() {
     const [messages, setMessages] = useState([]);
+    const { auth } = useContext(Context);
+    
     useEffect(() => {
         db.collection('messages').orderBy('createdAt').limit(50).onSnapshot(snapShot =>
             setMessages(snapShot.docs.map(doc => doc.data())))

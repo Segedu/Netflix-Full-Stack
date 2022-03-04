@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { showObjDetails, mainCardsDisplay } from '../../clientUtils/clientUtils';
+import Context from "../../components/context";
 import { Redirect } from "react-router-dom";
 import Spinner from '../../components/Spinner/Spinner';
 import MainBanner from "../../components/MainBanner";
 import style from './Home.module.css';
 
-const Home = ({ isLoading, searchResults, auth, movies, tvShows, topRated, popular, watchList, setWatchList, setMovieDetails, setMovieToPlay, favoritesList, setFavoritesList }) => {
+const Home = () => {
     const [isRedirect, setIsRedirect] = useState(false);
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
+    const { auth, isLoading, movies, tvShows, watchList, favoritesList, setFavoritesList, setWatchList, setMovieDetails, setMovieToPlay, searchResults, topRated, popular } = useContext(Context);
 
     const searchResultsElements = mainCardsDisplay(auth, "searchResults", searchResults, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const topRatedElements = mainCardsDisplay(auth, "topRated", topRated, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
@@ -16,6 +18,7 @@ const Home = ({ isLoading, searchResults, auth, movies, tvShows, topRated, popul
     const favoritesElements = mainCardsDisplay(auth, "favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const moviesElements = mainCardsDisplay(auth, "movies", movies, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const tvShowsElements = mainCardsDisplay(auth, "tvShows", tvShows, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+
 
     return (
         <div className={style.cardsContainer}>

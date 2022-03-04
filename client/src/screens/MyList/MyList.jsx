@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { showObjDetails, mainCardsDisplay } from '../../clientUtils/clientUtils';
+import Context from '../../components/context';
 import { Redirect } from "react-router-dom";
 import style from '../Home/Home.module.css';
 import '../../App.css';
 
-const MyList = ({ auth, watchList, setWatchList, setMovieToPlay, favoritesList, setFavoritesList, setMovieDetails, setIsRedirect }) => {
+const MyList = ({ setIsRedirect }) => {
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
+    const { auth, watchList, favoritesList, setFavoritesList, setWatchList, setMovieToPlay, setMovieDetails } = useContext(Context);
 
     const watchListElements = mainCardsDisplay(auth, "watchList", watchList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
     const favoritesElements = mainCardsDisplay(auth, "favoritesList", favoritesList, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+
     return (
         <div className={style.cardsContainer}>
             <div className={style.watchListCont}>

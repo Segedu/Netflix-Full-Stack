@@ -1,14 +1,20 @@
 import React from 'react';
 import style from './Preferences.module.css';
+import { useContext } from 'react';
+import Context from '../context.jsx';
 
-function Preferences({ showPreferencesDialog, setShowPreferencesDialog }) {
+function Preferences() {
+    const { showPreferencesDialog, setShowPreferencesDialog } = useContext(Context);
 
     return (
         <div className={style.preferences}>
             <dialog open={showPreferencesDialog ? 'open' : 'close'}>
-                <form className={style.prefForm} onSubmit={() => {
+                <form className={style.prefForm} onSubmit={(e) => {
+                    e.preventDefault()
                     setShowPreferencesDialog(false);
                 }}>
+                    <button onClick={(e) => { e.preventDefault(); setShowPreferencesDialog(false) }}>X</button>
+
                     <h3>For Personalized Recommendations, Share with us your Preferences</h3>
                     <article>
                         <label for="Action">Action</label>
@@ -39,28 +45,29 @@ function Preferences({ showPreferencesDialog, setShowPreferencesDialog }) {
                         <input type="checkbox" value="Documentary" />
                     </article>
                     <article>
-                    <label for="Family">Family</label>
-                    <input type="checkbox" value="Family" />
+                        <label for="Family">Family</label>
+                        <input type="checkbox" value="Family" />
                     </article>
                     <article>
-                    <label for="Fantasy">Fantasy</label>
-                    <input type="checkbox" value="Fantasy" />
+                        <label for="Fantasy">Fantasy</label>
+                        <input type="checkbox" value="Fantasy" />
                     </article>
                     <article>
-                    <label for="Mystery">Mystery</label>
-                    <input type="checkbox" value="Mystery" />
+                        <label for="Mystery">Mystery</label>
+                        <input type="checkbox" value="Mystery" />
                     </article>
                     <article>
-                    <label for="Romance">Romance</label>
-                    <input type="checkbox" value="Romance" />
+                        <label for="Romance">Romance</label>
+                        <input type="checkbox" value="Romance" />
                     </article>
                     <article>
-                    <label for="Reality">Reality</label>
-                    <input type="checkbox" value="Reality" />
+                        <label for="Reality">Reality</label>
+                        <input type="checkbox" value="Reality" />
                     </article>
                     <input type="submit" value="Save" />
                 </form>
             </dialog>
+
         </div>
     )
 }

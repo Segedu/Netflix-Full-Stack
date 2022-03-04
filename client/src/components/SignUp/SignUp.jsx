@@ -1,17 +1,19 @@
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner.jsx';
 import style from '../SignIn/SignIn.module.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { API_KEY } from '../../logic/key';
 import { insertNewUser } from '../../clientUtils/clientUtils.jsx';
+import Context from '../context.jsx';
 
-const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) => {
+const SignUp = () => {
     const [userEmail, setUserEmail] = useState(""),
         [password, setPassword] = useState(""),
         [confirmPassword, setConfirmPassword] = useState(),
         [errorFromServer, setErrorFromServer] = useState(false),
         [loading, setLoading] = useState(false),
-        LOCAL_STORAGE_AUTH_KEY = "auth";
+        LOCAL_STORAGE_AUTH_KEY = "auth",
+        { setAuth, setShowPreferencesDialog } = useContext(Context);
 
     function signUp() {
         setLoading(true)
@@ -50,7 +52,7 @@ const SignUp = ({ setAuth, showPreferencesDialog, setShowPreferencesDialog }) =>
                 e.preventDefault();
                 {
                     password === confirmPassword ?
-                        signUp()&& setShowPreferencesDialog(true)
+                        signUp() && setShowPreferencesDialog(true)
                         : alert("passwords doesn't match")
                 }
             }}>

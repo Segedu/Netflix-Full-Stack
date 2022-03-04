@@ -15,6 +15,7 @@ import VideoPlayer from './screens/VideoPlayer/VideoPlayer';
 import netflixLogo from './video/netflix.png.png'
 import { BsChat, BsPersonCircle } from 'react-icons/bs';
 import { getData } from './clientUtils/clientUtils';
+import Context from './components/context';
 import style from './App.css';
 
 function App() {
@@ -41,45 +42,50 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <header>
-          <nav>
-            {auth ? (
-              <>
-                <Preferences showPreferencesDialog={showPreferencesDialog} setShowPreferencesDialog={setShowPreferencesDialog} />
+    <Context.Provider value={{
+      auth, isLoading, movies, tvShows, watchList, favoritesList, movieDetails, movieToPlay, showPreferencesDialog, searchTerm, suggestions, topRated, popular, searchResults,
+      setSuggestions, setSearchTerm, setSearchResults, setShowPreferencesDialog, setMovieDetails, setMovieToPlay, setWatchList, setFavoritesList, setAuth
+    }}>
+      <BrowserRouter>
+        <div className="App">
+          <header>
+            <nav>
+              {auth ? (
+                <>
+                  <Preferences />
+                  <Link to="/"><img src={netflixLogo} alt="appLogo" /></Link>
+                  <Link to="/MyList">My List</Link>
+                  <Link to="/Movies">Movies</Link>
+                  <Link to="/TvShows">TV Shows</Link>
+                  <article><SearchBar /></article>
+                  <Link to="/Chat"><BsChat className={style.icons} title="Chat" /></Link>
+                  <p className={style.currentUser}>{auth.email}</p>
+                  <SignOut />
+                  <Redirect to="/" />
+                </>
+              ) : <>
                 <Link to="/"><img src={netflixLogo} alt="appLogo" /></Link>
-                <Link to="/MyList">My List</Link>
                 <Link to="/Movies">Movies</Link>
                 <Link to="/TvShows">TV Shows</Link>
-                <article><SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults} suggestions={suggestions} setSuggestions={setSuggestions} movies={movies} tvShows={tvShows} /></article>
-                <Link to="/Chat"><BsChat className={style.icons} title="Chat" /></Link>
-                <p className={style.currentUser}>{auth.email}</p>
-                <SignOut setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />
+                <Link to="/SignIn"><BsPersonCircle className={style.icons} title="SignIn" /></Link>
                 <Redirect to="/" />
-              </>
-            ) : <>
-              <Link to="/"><img src={netflixLogo} alt="appLogo" /></Link>
-              <Link to="/Movies">Movies</Link>
-              <Link to="/TvShows">TV Shows</Link>
-              <Link to="/SignIn"><BsPersonCircle className={style.icons} title="SignIn" /></Link>
-              <Redirect to="/" />
-            </>}
-          </nav>
-        </header>
-        <Switch>
-          <Route exact path="/" component={() => <Home auth={auth} isLoading={isLoading} searchResults={searchResults} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} popular={popular} topRated={topRated} />} />
-          <Route exact path="/Movies" component={() => <Movies auth={auth} isLoading={isLoading} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} />} />
-          <Route exact path="/TvShows" component={() => <TvShows auth={auth} isLoading={isLoading} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} tvShows={tvShows} />} />
-          <Route exact path="/Details" component={() => <Details auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} movieDetails={movieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} movies={movies} tvShows={tvShows} />} />
-          <Route exact path="/MyList" component={() => <MyList auth={auth} setMovieToPlay={setMovieToPlay} setMovieDetails={setMovieDetails} favoritesList={favoritesList} setFavoritesList={setFavoritesList} watchList={watchList} setWatchList={setWatchList} />} />
-          <Route exact path="/SignUp" component={() => <SignUp auth={auth} setAuth={setAuth} showPreferencesDialog={showPreferencesDialog} setShowPreferencesDialog={setShowPreferencesDialog} />} />
-          <Route exact path="/SignIn" component={() => <SignIn setAuth={setAuth} setWatchList={setWatchList} setFavoritesList={setFavoritesList} />} />
-          <Route exact path="/Chat" component={() => <Chat setAuth={setAuth} />} />
-          <Route exact path="/VideoPlayer" component={() => <VideoPlayer movieToPlay={movieToPlay} />} />
-        </Switch>
-      </div>
-    </BrowserRouter >
+              </>}
+            </nav>
+          </header>
+          <Switch>
+            <Route exact path="/" component={() => <Home />} />
+            <Route exact path="/Movies" component={() => <Movies />} />
+            <Route exact path="/TvShows" component={() => <TvShows />} />
+            <Route exact path="/Details" component={() => <Details />} />
+            <Route exact path="/MyList" component={() => <MyList />} />
+            <Route exact path="/SignUp" component={() => <SignUp />} />
+            <Route exact path="/SignIn" component={() => <SignIn />} />
+            <Route exact path="/Chat" component={() => <Chat />} />
+            <Route exact path="/VideoPlayer" component={() => <VideoPlayer />} />
+          </Switch>
+        </div>
+      </BrowserRouter >
+    </Context.Provider>
   )
 }
 

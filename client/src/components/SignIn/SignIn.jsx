@@ -3,18 +3,21 @@ import Spinner from '../Spinner/Spinner';
 import React from 'react';
 import firebase from 'firebase';
 import { API_KEY } from '../../logic/key';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { firebaseAuth } from '../../firebase';
 import { getUserOrMediaDataById } from "../../clientUtils/clientUtils";
+import Context from "../context";
 import { Link } from "react-router-dom";
 import style from './SignIn.module.css';
 
-const SignIn = ({ setAuth, setWatchList, setFavoritesList }) => {
+const SignIn = ({ setWatchList, setFavoritesList }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorFromServer, setErrorFromServer] = useState(false);
     const [loading, setLoading] = useState(false);
     const LOCAL_STORAGE_AUTH_KEY = "auth";
+    const { setAuth } = useContext(Context);
+
     let usersRoute = 'users';
 
     function signInWithGoogle() {

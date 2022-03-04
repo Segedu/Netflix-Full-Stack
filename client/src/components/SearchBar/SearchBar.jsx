@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { searchData, searchInputHandler, getSuggestionsOnSearch } from '../../clientUtils/clientUtils';
+import Context from '../context';
 import { IoIosSearch } from 'react-icons/io';
 import style from './SearchBar.module.css';
 
-function SearchBar({ searchTerm, setSearchTerm, setSearchResults, setSuggestions, suggestions, movies, tvShows }) {
+function SearchBar({ searchTerm, setSearchTerm, setSearchResults, setSuggestions, suggestions }) {
+    const { movies, tvShows } = useContext(Context);
+
     return (
         <>
             <form className={style.searchNav} >

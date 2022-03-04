@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { BsHandThumbsUp, BsPlayCircle } from "react-icons/bs";
 import { HiOutlinePlusCircle } from "react-icons/hi";
 import { Redirect } from "react-router-dom";
 import { addToUserList, playVideo } from '../../clientUtils/clientUtils';
+import Context from "../../components/context";
 import { BsStar } from "react-icons/bs";
 import style from './Details.module.css';
 
-const Details = ({ auth, movies, tvShows, movieDetails, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay }) => {
+const Details = () => {
     const [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false);
+    const { auth, movies, tvShows, watchList, favoritesList, movieDetails, setFavoritesList, setWatchList, setMovieToPlay } = useContext(Context);
+
     let data = [];
     { movieDetails.type == "Movie" ? data = movies : data = tvShows }
 
