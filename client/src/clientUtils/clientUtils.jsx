@@ -217,6 +217,7 @@ export function searchData(input, dataArray, secondDataArr, setArray, setInput) 
     }
 }
 
+//todo: finish search by tvShow function 
 export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, secondDataArr) {
     if (searchTerm) {
         const moviesMatches =
