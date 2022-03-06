@@ -108,7 +108,6 @@ export function addToWatchList(authLocalId, updatedArrayAfterAdding) {
         })
         .then(function (response) {
             console.log(response.data.value);
-            alert(`movie/Tv show added successfully to watch list`);
         })
         .catch(function (error) {
             console.log(error, `you are in add to watch list catch`);
@@ -126,6 +125,19 @@ export function addToFavoritesList(authLocalId, updatedArrayAfterAdding) {
         })
         .catch(function (error) {
             console.log(error, `you are in add to favorites list catch`);
+        });
+}
+
+export function updateUserPreferences(authLocalId, preferencesArr) {
+    axios
+        .patch(`/users/${authLocalId}`, {
+            preferences: preferencesArr
+        })
+        .then(function (response) {
+            console.log(response.data.value);
+        })
+        .catch(function (error) {
+            console.log(error, `you are in update preferences catch`);
         });
 }
 
@@ -219,24 +231,20 @@ export function searchData(input, dataArray, secondDataArr, setArray, setInput) 
 
 //todo: finish search by tvShow function 
 export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, secondDataArr) {
+    let matches = [];
     if (searchTerm) {
-        const moviesMatches =
+        matches =
             searchTerm.length > 0 &&
             dataArray.filter(media => {
                 const movie = new RegExp(`${searchTerm}`, "gi");
-                return media.title.match(movie);
-            });
-        setSuggestions(moviesMatches || []);
-
-    } else {
-        const tvShowsMatch =
-            searchTerm.length > 0 &&
-            secondDataArr.filter(media => {
-                const show = new RegExp(`${searchTerm}`, "gi");
-                return media.name.match(show);
-            });
-        setSuggestions(tvShowsMatch || []);
+                return media.title ? media.title.match(movie) : secondDataArr.filter(media => {
+                    const show = new RegExp(`${searchTerm}`, "gi");
+                    return media.name.match(show);
+                });
+            })
+        setSuggestions(matches);
     }
+
 }
 
 export const searchInputHandler = (searchTerm, setSearchTerm) => {
