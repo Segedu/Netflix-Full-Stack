@@ -5,7 +5,7 @@ import axios from "axios";
 import netflixTrailer from '../video/trailersCollection.mp4';
 import style from '../screens/Home/Home.module.css';
 
-export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer) {
+export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer, preferences) {
     const elements = data?.map(media =>
         <section className={style.cardsSection} key={media._id}>
             <article className={style.cardImage}>
@@ -52,6 +52,7 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                 </article>
                 <article className={style.textDetailsCont}>
                     <h3><BsStar />{media.vote_average}</h3>
+                    <h3>{recommendedToUser(data, preferences)}</h3>
                 </article>
             </article>
         </section >
@@ -65,6 +66,10 @@ export const stopMovie = (e) => {
 
 export const playMovie = (e) => {
     e.target.play();
+}
+
+export function recommendedToUser(data, userPreferencesArr) {
+
 }
 
 export function filterByGenres(filterCategory, mainMediaArray) {
@@ -88,15 +93,16 @@ export function getData(route, setData, setIsLoading) {
 export function addToUserList(authLocalId, dataArray, objId, listName, setFunction, watchList, favoritesList) {
     let updatedArrayAfterAdding = [];
     const foundObj = dataArray.find(obj => obj._id === objId);
+    
     if (listName.indexOf(foundObj) > -1) {
         alert(`already in your ${listName}`);
     } else {
         updatedArrayAfterAdding = [foundObj, ...listName];
         setFunction(updatedArrayAfterAdding);
         if (listName === watchList) {
-            addToWatchList(authLocalId, updatedArrayAfterAdding)
+            addToWatchList(authLocalId, updatedArrayAfterAdding);
         } else if (listName === favoritesList) {
-            addToFavoritesList(authLocalId, updatedArrayAfterAdding)
+            addToFavoritesList(authLocalId, updatedArrayAfterAdding);
         }
     }
 }
@@ -141,12 +147,13 @@ export function updateUserPreferences(authLocalId, preferencesArr) {
         });
 }
 
-export function getUserOrMediaDataById(route, id, setWatchList, setFavoritesList) {
+export function getUserOrMediaDataById(route, id, setWatchList, setFavoritesList, setPreferences) {
     axios
         .get(`/${route}/${id}`)
         .then(response => {
             setWatchList(response.data.watchList);
-            setFavoritesList(response.data.favoritesList)
+            setFavoritesList(response.data.favoritesList);
+            setPreferences(response.data.preferences);
         })
         .catch(error => {
             console.log(error, "you are in get user/media by id catch");

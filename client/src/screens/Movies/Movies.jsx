@@ -9,7 +9,7 @@ import style from '../Home/Home.module.css';
 const Movies = () => {
     const [isRedirect, setIsRedirect] = useState(false),
         [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false),
-        { auth, isLoading, movies, watchList, favoritesList, setFavoritesList, setWatchList, setMovieToPlay, setMovieDetails } = useContext(Context);
+        { auth, isLoading, movies, watchList, favoritesList, setFavoritesList, setWatchList, setMovieToPlay, setMovieDetails ,preferences} = useContext(Context);
 
     const action = filterByGenres(28, movies),
         drama = filterByGenres(18, movies),
@@ -20,14 +20,14 @@ const Movies = () => {
         romance = filterByGenres(10749, movies),
         documentary = filterByGenres(99, movies);
 
-    const actionElements = mainCardsDisplay(auth, 'movies', action, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer),
-        dramaElements = mainCardsDisplay(auth, 'movies', drama, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer),
-        crimeElements = mainCardsDisplay(auth, 'movies', crime, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer),
-        adventureElements = mainCardsDisplay(auth, 'movies', adventure, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer),
-        animationElements = mainCardsDisplay(auth, 'movies', animation, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer),
-        romanceElements = mainCardsDisplay(auth, 'movies', romance, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer),
-        comedyElements = mainCardsDisplay(auth, 'movies', comedy, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer),
-        documentaryElements = mainCardsDisplay(auth, 'movies', documentary, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer);
+    const actionElements = mainCardsDisplay(auth, 'movies', action, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer,preferences),
+        dramaElements = mainCardsDisplay(auth, 'movies', drama, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer,preferences),
+        crimeElements = mainCardsDisplay(auth, 'movies', crime, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer,preferences),
+        adventureElements = mainCardsDisplay(auth, 'movies', adventure, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer,preferences),
+        animationElements = mainCardsDisplay(auth, 'movies', animation, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer,preferences),
+        romanceElements = mainCardsDisplay(auth, 'movies', romance, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer,preferences),
+        comedyElements = mainCardsDisplay(auth, 'movies', comedy, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer,preferences),
+        documentaryElements = mainCardsDisplay(auth, 'movies', documentary, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer,preferences);
 
 
     return (

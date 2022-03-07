@@ -27,6 +27,7 @@ function App() {
     [tvShows, setTvShows] = useState([]),
     [watchList, setWatchList] = useState([]),
     [favoritesList, setFavoritesList] = useState([]),
+    [preferences, setPreferences] = useState([]),
     [topRated, setTopRated] = useState([]),
     [popular, setPopular] = useState([]),
     [searchResults, setSearchResults] = useState([]),
@@ -43,8 +44,8 @@ function App() {
 
   return (
     <Context.Provider value={{
-      auth, isLoading, movies, tvShows, watchList, favoritesList, movieDetails, movieToPlay, showPreferencesDialog, searchTerm, suggestions, topRated, popular, searchResults,
-      setSuggestions, setSearchTerm, setSearchResults, setShowPreferencesDialog, setMovieDetails, setMovieToPlay, setWatchList, setFavoritesList, setAuth
+      auth, isLoading, movies, tvShows, watchList, favoritesList, preferences, movieDetails, movieToPlay, showPreferencesDialog, searchTerm, suggestions, topRated, popular, searchResults,
+      setPreferences, setSuggestions, setSearchTerm, setSearchResults, setShowPreferencesDialog, setMovieDetails, setMovieToPlay, setWatchList, setFavoritesList, setAuth
     }}>
       <BrowserRouter>
         <div className="App">

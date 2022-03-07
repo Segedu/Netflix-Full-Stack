@@ -10,12 +10,12 @@ import Context from "../context";
 import { Link } from "react-router-dom";
 import style from './SignIn.module.css';
 
-const SignIn = ({ setWatchList, setFavoritesList }) => {
+const SignIn = () => {
     const [email, setEmail] = useState(''),
         [password, setPassword] = useState(''),
         [errorFromServer, setErrorFromServer] = useState(false),
         [loading, setLoading] = useState(false),
-        { setAuth } = useContext(Context),
+        { setAuth, setWatchList, setFavoritesList, setPreferences } = useContext(Context),
         LOCAL_STORAGE_AUTH_KEY = 'auth';
 
     let usersRoute = 'users';
@@ -35,7 +35,7 @@ const SignIn = ({ setWatchList, setFavoritesList }) => {
                 password,
             })
             .then(function (response) {
-                getUserOrMediaDataById(usersRoute, response.data.localId, setWatchList, setFavoritesList);
+                getUserOrMediaDataById(usersRoute, response.data.localId, setWatchList, setFavoritesList, setPreferences);
                 setLoading(false);
                 setAuth(response.data);
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));

@@ -8,18 +8,18 @@ function Preferences() {
     const { showPreferencesDialog, setShowPreferencesDialog, auth } = useContext(Context);
 
     const genres = [
-        { name: 'Action', isChecked: false, },
-        { name: 'Animation', isChecked: false },
-        { name: 'Adventure', isChecked: false },
-        { name: 'Crime', isChecked: false },
-        { name: 'Comedy', isChecked: false },
-        { name: 'Drama', isChecked: false },
-        { name: 'Documentary', isChecked: false },
-        { name: 'Family', isChecked: false },
-        { name: 'Fantasy', isChecked: false },
-        { name: 'Mystery', isChecked: false },
-        { name: 'Romance', isChecked: false },
-        { name: 'Reality', isChecked: false },
+        { name: 'Action', isChecked: false, id: 28 },
+        { name: 'Animation', isChecked: false, id: 16 },
+        { name: 'Adventure', isChecked: false, id: 12 },
+        { name: 'Crime', isChecked: false, id: 80 },
+        { name: 'Comedy', isChecked: false, id: 35 },
+        { name: 'Drama', isChecked: false, id: 18 },
+        { name: 'Documentary', isChecked: false, id: 99 },
+        { name: 'Family', isChecked: false, id: 10751 },
+        { name: 'Fantasy', isChecked: false, id: 10765 },
+        { name: 'Mystery', isChecked: false, id: 9648 },
+        { name: 'Romance', isChecked: false, id: 10749 },
+        { name: 'Reality', isChecked: false, id: 10764 },
     ]
 
     function setAsChecked(e) {
@@ -34,8 +34,8 @@ function Preferences() {
 
     return (
         <div className={style.preferences}>
-            <dialog open={showPreferencesDialog ? 'open' : 'close'}>
-                <form className={style.prefForm} onSubmit={(e) => {
+           <dialog open={showPreferencesDialog ? 'open' : 'close'}>
+             <form className={style.prefForm} onSubmit={(e) => {
                     e.preventDefault()
                     setShowPreferencesDialog(false);
                     getUserGenrePreferences()
@@ -95,7 +95,7 @@ function Preferences() {
                 </form>
             </dialog>
 
-        </div>
+         </div>
     )
 }
 
