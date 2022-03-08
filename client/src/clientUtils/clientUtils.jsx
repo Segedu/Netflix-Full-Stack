@@ -236,7 +236,7 @@ export function searchData(input, dataArray, secondDataArr, setArray, setInput) 
     }
 }
 
-//todo: finish search by tvShow function 
+//todo: search by tvShow function 
 export function getSuggestionsOnSearch(searchTerm, setSuggestions, dataArray, secondDataArr) {
     let matches = [];
     if (searchTerm) {
