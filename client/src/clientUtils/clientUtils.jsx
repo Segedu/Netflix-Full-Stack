@@ -69,12 +69,16 @@ export const playMovie = (e) => {
 }
 
 export function recommendedToUser(data, userPreferencesArr) {
-
     for (let i = 0; i < data.length; i++) {
-        const res = data[i].genre_ids.filter(item => userPreferencesArr ? !userPreferencesArr.includes(item) : [])
-        console.log({ res })
-        // return res
+        for (let j = 0; j < userPreferencesArr.length; j++) {
+            if (data[i].genre_ids[i] === userPreferencesArr[j]) {
+                console.log(data[i].genre_ids[i], userPreferencesArr[j]);
+                return true;
+            }
+        }
     }
+    return false;
+
 }
 
 export function filterByGenres(filterCategory, mainMediaArray) {
