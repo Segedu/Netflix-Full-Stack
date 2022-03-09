@@ -70,6 +70,11 @@ export const playMovie = (e) => {
 
 export function recommendedToUser(data, userPreferencesArr) {
 
+    for (let i = 0; i < data.length; i++) {
+        const res = data[i].genre_ids.filter(item => userPreferencesArr ? !userPreferencesArr.includes(item) : [])
+        console.log({ res })
+        // return res
+    }
 }
 
 export function filterByGenres(filterCategory, mainMediaArray) {
@@ -93,7 +98,7 @@ export function getData(route, setData, setIsLoading) {
 export function addToUserList(authLocalId, dataArray, objId, listName, setFunction, watchList, favoritesList) {
     let updatedArrayAfterAdding = [];
     const foundObj = dataArray.find(obj => obj._id === objId);
-    
+
     if (listName.indexOf(foundObj) > -1) {
         alert(`already in your ${listName}`);
     } else {

@@ -28,14 +28,17 @@ function Preferences() {
     }
 
     function getUserGenrePreferences() {
-        let userPreferencesArr = genres.filter(obj => obj.isChecked == true);
+        let genrePreferencesArr = genres.filter(obj => obj.isChecked == true);
+        const userPreferencesArr = genrePreferencesArr.map(({ name, isChecked, ...rest }) => {
+            return rest.id;
+        });
         updateUserPreferences(auth.localId, userPreferencesArr);
     }
 
     return (
         <div className={style.preferences}>
-           <dialog open={showPreferencesDialog ? 'open' : 'close'}>
-             <form className={style.prefForm} onSubmit={(e) => {
+            <dialog open={showPreferencesDialog ? 'open' : 'close'}>
+                <form className={style.prefForm} onSubmit={(e) => {
                     e.preventDefault()
                     setShowPreferencesDialog(false);
                     getUserGenrePreferences()
@@ -95,7 +98,7 @@ function Preferences() {
                 </form>
             </dialog>
 
-         </div>
+        </div>
     )
 }
 
