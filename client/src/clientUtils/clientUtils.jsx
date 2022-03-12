@@ -78,7 +78,6 @@ export function recommendedToUser(data, userPreferencesArr) {
         }
     }
     return false;
-
 }
 
 export function filterByGenres(filterCategory, mainMediaArray) {
