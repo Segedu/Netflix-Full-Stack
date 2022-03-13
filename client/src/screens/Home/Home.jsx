@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { showObjDetails, mainCardsDisplay } from '../../clientUtils/clientUtils';
+import Preferences from "../../components/Preferences/Preferences";
 import Context from "../../components/context";
 import { Redirect } from "react-router-dom";
 import Spinner from '../../components/Spinner/Spinner';
@@ -7,9 +8,10 @@ import MainBanner from "../../components/MainBanner";
 import style from './Home.module.css';
 
 const Home = () => {
+
     const [isRedirect, setIsRedirect] = useState(false),
         [isRedirectToVideoPlayer, setIsRedirectToVideoPlayer] = useState(false),
-        { auth, isLoading, movies, tvShows, watchList, favoritesList, setFavoritesList, setWatchList, setMovieDetails, setMovieToPlay, searchResults, topRated, popular, preferences } = useContext(Context);
+        { auth, setShowPreferencesDialog, showPreferencesDialog, isLoading, movies, tvShows, watchList, favoritesList, setFavoritesList, setWatchList, setMovieDetails, setMovieToPlay, searchResults, topRated, popular, preferences } = useContext(Context);
 
     const searchResultsElements = mainCardsDisplay(auth, "searchResults", searchResults, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer, preferences),
         topRatedElements = mainCardsDisplay(auth, "topRated", topRated, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer, preferences),
@@ -21,7 +23,9 @@ const Home = () => {
 
     return (
         <div className={style.cardsContainer}>
+            {auth ? setShowPreferencesDialog(true) : null}
             {auth ? <>
+                <Preferences /> 
                 <MainBanner />
                 <div className={style.cardsRow} >{searchResultsElements ? searchResultsElements : ""}</div>
                 <h1>Top Rated</h1>

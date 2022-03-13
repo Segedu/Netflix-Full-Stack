@@ -32,8 +32,9 @@ function App() {
     [popular, setPopular] = useState([]),
     [searchResults, setSearchResults] = useState([]),
     [searchTerm, setSearchTerm] = useState(""),
-    [showPreferencesDialog, setShowPreferencesDialog] = useState(false),
-    [suggestions, setSuggestions] = useState("");
+    [suggestions, setSuggestions] = useState(""),
+     [showPreferencesDialog, setShowPreferencesDialog] = useState();
+
 
   useEffect(() => {
     getData('movies', setMovies, setIsLoading);
@@ -44,8 +45,8 @@ function App() {
 
   return (
     <Context.Provider value={{
-      auth, isLoading, movies, tvShows, watchList, favoritesList, preferences, movieDetails, movieToPlay, showPreferencesDialog, searchTerm, suggestions, topRated, popular, searchResults,
-      setPreferences, setSuggestions, setSearchTerm, setSearchResults, setShowPreferencesDialog, setMovieDetails, setMovieToPlay, setWatchList, setFavoritesList, setAuth
+      auth, isLoading, movies, tvShows, watchList, favoritesList, preferences, movieDetails, movieToPlay, searchTerm, suggestions, topRated, popular, searchResults,showPreferencesDialog, setShowPreferencesDialog,
+      setPreferences, setSuggestions, setSearchTerm, setSearchResults, setMovieDetails, setMovieToPlay, setWatchList, setFavoritesList, setAuth
     }}>
       <BrowserRouter>
         <div className="App">
@@ -53,7 +54,6 @@ function App() {
             <nav>
               {auth ? (
                 <>
-                  <Preferences />
                   <Link to="/"><img src={netflixLogo} alt="appLogo" /></Link>
                   <Link to="/MyList">My List</Link>
                   <Link to="/Movies">Movies</Link>

@@ -80,10 +80,11 @@ animation-play-state: paused;
 .cardsSection:hover .details{
   opacity: 1;
 }
+
 .cardImage{
   display: flex;
   height: 70%;
-  width: 18rem;
+  width: 11rem;
   filter: drop-shadow(2px 4px 6px #484848);
 }
 

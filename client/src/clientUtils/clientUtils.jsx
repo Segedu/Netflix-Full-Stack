@@ -51,8 +51,8 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                     }
                 </article>
                 <article className={style.textDetailsCont}>
+                    <h4>{recommendedToUser(preferences, data)}%</h4>
                     <h3><BsStar />{media.vote_average}</h3>
-                    <h3>{recommendedToUser(data, preferences)}</h3>
                 </article>
             </article>
         </section >
@@ -68,16 +68,14 @@ export const playMovie = (e) => {
     e.target.play();
 }
 
-export function recommendedToUser(data, userPreferencesArr) {
-    for (let i = 0; i < data.length; i++) {
-        for (let j = 0; j < userPreferencesArr.length; j++) {
-            if (data[i].genre_ids[i] === userPreferencesArr[j]) {
-                console.log(data[i].genre_ids[i], userPreferencesArr[j]);
-                return true;
-            }
-        }
+let result;
+export function recommendedToUser(userPreferencesArr, data) {
+    const percentOneMovie = 100 / userPreferencesArr.length
+    for (let j = 0; j < data.length; j++) {
+        const matchMovies = userPreferencesArr.filter(element => data[j].genre_ids.includes(element));
+        result = matchMovies.length * percentOneMovie;
+        return ("Recommended for you " + Math.round(result))
     }
-    return false;
 }
 
 export function filterByGenres(filterCategory, mainMediaArray) {
