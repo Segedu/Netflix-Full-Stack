@@ -7,7 +7,6 @@ import style from './Preferences.module.css';
 function Preferences() {
     const { auth,showPreferencesDialog, setShowPreferencesDialog } = useContext(Context);
 
-
     const genres = [
         { name: 'Action', isChecked: false, id: 28 },
         { name: 'Animation', isChecked: false, id: 16 },
@@ -99,8 +98,6 @@ function Preferences() {
                 <input type="submit" value="Save" />
             </form>
         </div >
-
-
     )
 }
 

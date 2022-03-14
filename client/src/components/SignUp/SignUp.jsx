@@ -51,7 +51,7 @@ const SignUp = () => {
                 e.preventDefault();
                 {
                     password === confirmPassword ?
-                        signUp() && setShowPreferencesDialog(true)
+                        signUp() 
                         : alert("passwords doesn't match")
                 }
             }}>
