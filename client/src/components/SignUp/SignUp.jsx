@@ -17,7 +17,7 @@ const SignUp = () => {
 
     function signUp() {
         setLoading(true)
-        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`
+        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
         axios
             .post(url, {
                 email: userEmail,
@@ -25,7 +25,7 @@ const SignUp = () => {
             })
             .then(response => {
                 insertNewUser('users', response.data.localId, response.data.email);
-                setLoading(false)
+                setLoading(false);
                 setAuth(response.data);
                 localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(response.data));
             })

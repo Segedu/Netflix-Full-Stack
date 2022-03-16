@@ -6,18 +6,20 @@ import netflixTrailer from '../video/trailersCollection.mp4';
 import style from '../screens/Home/Home.module.css';
 
 export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetails, setIsRedirect, watchList, setWatchList, favoritesList, setFavoritesList, setMovieToPlay, setIsRedirectToVideoPlayer, preferences) {
+
     const elements = data?.map(media =>
         <section className={style.cardsSection} key={media._id}>
             <article className={style.cardImage}>
-                <h2>{media.title ? media.title : media.name}</h2>
-                <video
+                <h4>{media.title ? media.title : media.name}</h4>
+                <img src={`https://image.tmdb.org/t/p/original${media.backdrop_path}`} alt="movie image" />
+                {/* <video
                     onMouseOver={playMovie}
                     onMouseOut={stopMovie}
                     src={netflixTrailer}
                     poster={`https://image.tmdb.org/t/p/original${media.backdrop_path}`}
                     preload='none'
                     muted
-                    loop />
+                    loop /> */}
             </article>
             <article className={style.details} >
                 <article className={style.buttonsCont}>
@@ -51,7 +53,7 @@ export function mainCardsDisplay(auth, str, data, showObjDetails, setMovieDetail
                     }
                 </article>
                 <article className={style.textDetailsCont}>
-                    <h4>{recommendedToUser(preferences, data)}%</h4>
+                    <h5>{recommendedToUser(preferences, data)}%</h5>
                     <h3><BsStar />{media.vote_average}</h3>
                 </article>
             </article>

@@ -27,7 +27,7 @@
 .cardsContainer h1{
   display: flex;
   align-items: flex-end;
- color:white;
+  color:white;
   margin-left: 1rem;
 } 
 
@@ -37,6 +37,7 @@
   /* overflow-x: scroll; */
   /* overflow-y: hidden; */
   color: white;
+  margin-bottom: 8rem;
 }
 
 ::-webkit-scrollbar{
@@ -52,6 +53,7 @@
   background: #483c3c2e;
   border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #ff010163;
 }
@@ -82,13 +84,16 @@ animation-play-state: paused;
 }
 
 .cardImage{
-  display: flex;
+  /* display: flex;
   height: 70%;
-  width: 11rem;
+  width: 11rem; */
+  display: flex;
+  height: 100%;
+  width: 16rem;
   filter: drop-shadow(2px 4px 6px #484848);
 }
 
-.cardImage h2{
+.cardImage h4{
   position: absolute;
 }
 
@@ -103,7 +108,8 @@ animation-play-state: paused;
   flex-direction: column;
   align-items: flex-start;
   transition: 0.5s ease-in-out;
-  width: 22.3rem;
+  /* width: 22.3rem; */
+  width: 15.3rem;
   height: 30%;
   opacity: 0;
   bottom: 0;
@@ -157,6 +163,7 @@ transform: translateX(calc(-272px*128));
 
 .favoritesCards, .watchListCards {
   display: flex;
+  margin-bottom: 8rem;
 }
 
 @media (max-width:786px){
@@ -193,7 +200,7 @@ z-index: 1;
   margin-bottom: 0;
 }
 .cardImage h2{
-  position: absolute;
+position: absolute;
 font-size: small;
 width: 8rem;
 }
